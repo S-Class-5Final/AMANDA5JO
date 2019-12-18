@@ -281,7 +281,6 @@ public class MemberController {
 
 	}
 
-	
 	  //구글
 	/*
 	@RequestMapping("processImage.do")

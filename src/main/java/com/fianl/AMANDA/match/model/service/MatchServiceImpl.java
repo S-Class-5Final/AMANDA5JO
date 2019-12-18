@@ -29,8 +29,8 @@ public class MatchServiceImpl implements MatchService {
 	}
 	
 	@Override
-	public ArrayList<MemberImg> selectPlist(MemberImg mi) {
-		return matchDao.selectPlist(mi);
+	public ArrayList<MemberImg> selectPlist(HashMap<String, Object> map) {
+		return matchDao.selectPlist(map);
 	}
 	@Override
 	public int likeInsert(Match ml) {
@@ -56,6 +56,7 @@ public class MatchServiceImpl implements MatchService {
 	public ArrayList<Member> selectMMYlist(HashMap<String, Object> map) {
 		return matchDao.selectMMYlist(map);
 	}
+
 
 	
 	

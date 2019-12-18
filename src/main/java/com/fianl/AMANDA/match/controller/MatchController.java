@@ -34,33 +34,6 @@ public class MatchController {
 	@Autowired
 	MatchServiceImpl matchService;
 	
-	/*
-	 * 회원 리스트
-//	 */
-//   @RequestMapping("mList.do")
-//   @ResponseBody
-//   public void Mlist(HttpServletResponse response, 
-//		   			 HttpServletRequest request,
-//		   			 Member m, MemberImg mi) throws JsonIOException, IOException {
-//      response.setContentType("application/json; charset=utf-8");
-//      HttpSession session = request.getSession();
-//
-//      ArrayList<Member> mlist = matchService.selectMlist(m);
-//      ArrayList<MemberImg> plist = matchService.selectPlist(mi);
-//      
-//      System.out.println("회원리스트" + mlist);
-//      System.out.println("사진리스트" + plist);
-//      
-//      session.setAttribute("mlist", mlist);
-//      session.setAttribute("plist", plist);
-//      
-//      if(mlist != null && mlist.size() > 0) {
-//    	  new Gson().toJson(mlist, response.getWriter());
-//      }else {
-//    	  throw new MatchException("조회 실패");
-//      }
-//   }
-   
    
    
     /*  
@@ -70,15 +43,17 @@ public class MatchController {
   @ResponseBody
   public void Mlist(HttpServletResponse response, 
 		   			 HttpServletRequest request,
-		   			 Member m, MemberImg mi, Sort s,
+
 		   			 @RequestParam("genderSelect") String genderSelect, 
-		   			 @RequestParam("loginUser") String loginUser) throws JsonIOException, IOException {
+		   			 @RequestParam("loginUser") String loginUser1) throws JsonIOException, IOException {
      response.setContentType("application/json; charset=utf-8");
      HttpSession session = request.getSession();
-    
+     Member member = (Member)session.getAttribute("loginUser");
      Member user = new Member();
-     user.setUser_nick(loginUser);
+     user.setUser_nick(loginUser1);
+     user.setGender(member.getGender());
      
+
 //     if(genderSelect != null) {
 //    	 genderSelect = genderSelect;
 //     }else if (genderSelect == null && genderSelect == " " ) {
@@ -95,52 +70,46 @@ public class MatchController {
      ArrayList<Member> mlist =null;
      ArrayList<MemberImg> plist = null;
      //////////////////
-     switch (genderSelect) {
+     	switch (genderSelect) {
 	case "":
 		 mlist = matchService.selectMlist(map);
-		 plist = matchService.selectPlist(mi);
-		 System.out.println(mlist);
-		 System.out.println(plist);
+		 plist = matchService.selectPlist(map);
+		 System.out.println("로그인시 상대 성별 리스트:" +  mlist);
+		 System.out.println("로그인시 상대 성병 리스트 사진: " + plist);
 		 break;
 	case "F":
 		 mlist = matchService.selectMFlist(map);
-		 plist = matchService.selectPlist(mi);
+		// plist = matchService.selectPlist(mi);
 		 System.out.println(mlist);
 		 System.out.println(plist);
 		break;
 	case "FY":
 		mlist = matchService.selectMFYlist(map);
-		plist = matchService.selectPlist(mi);
+		//plist = matchService.selectPlist(mi);
 		System.out.println(mlist);
 		System.out.println(plist);
 		break;
 	case "M":
 		mlist = matchService.selectMMlist(map);
-		plist = matchService.selectPlist(mi);
+		//plist = matchService.selectPlist(mi);
 		System.out.println(mlist);
 		System.out.println(plist);
 		break;
 	case "MY":
 		mlist = matchService.selectMMYlist(map);
-		plist = matchService.selectPlist(mi);
+		//plist = matchService.selectPlist(mi);
 		System.out.println(mlist);
 		System.out.println(plist);
 		break;
 		
 	}
-     ////////////////
-		/*
-		 * mlist = matchService.selectMlist(map); 
-		 * plist = matchService.selectPlist(mi);
-		 */
-     System.out.println("회원리스트" + mlist);
-     System.out.println("사진리스트" + plist);
-     
-     session.setAttribute("mlist", mlist);
-     session.setAttribute("plist", plist);
-     
-     if(mlist != null && mlist.size() > 0) {
-   	  new Gson().toJson(mlist, response.getWriter());
+
+        Map<String, Object> listmap = new HashMap<String, Object>();
+        map.put("mlist", mlist);
+        map.put("plist", plist);
+
+     if(listmap != null && listmap.size() > 0) {
+   	  new Gson().toJson(listmap, response.getWriter());
      }else {
    	  //throw new MatchException("조회 실패");
      }

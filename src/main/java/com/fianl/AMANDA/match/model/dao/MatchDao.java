@@ -25,8 +25,8 @@ public class MatchDao {
 		return (ArrayList)sqlSession.selectList("matchMapper.selectMlist", map);
 	}
 
-	public ArrayList<MemberImg> selectPlist(MemberImg mi) {
-		return (ArrayList)sqlSession.selectList("matchMapper.selectPlist", mi);
+	public ArrayList<MemberImg> selectPlist(HashMap<String, Object> map) {
+		return (ArrayList)sqlSession.selectList("matchMapper.selectPlist", map);
 	}
 
 	public int likeInsert(Match ml) {

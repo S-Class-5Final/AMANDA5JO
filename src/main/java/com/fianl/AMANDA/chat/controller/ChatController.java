@@ -49,15 +49,15 @@ public class ChatController {
 		ArrayList<MemberImg> chatImg;
 		if (chat != null) {
 			chatImg = chService.findAllImg(chat);
-			mv.addObject("chat", chat).addObject("userImg", chatImg).setViewName("chat/chatView");
+			mv.addObject("chat", chat).addObject("userImg", chatImg).setViewName("Chat/chatView");
 			
 		}else if(chat.getStatus().equals("N")){
-			mv.addObject("fail", "fail").setViewName("chat/chatView");
+			mv.addObject("fail", "fail").setViewName("Chat/chatView");
 		}else {
 			// 채팅방 정보가 없을 시 생성하고 전송
 			chat = createChat(chatRoom, u_mId, u_mId2);
 			chatImg = chService.findAllImg(chat);
-			mv.addObject("chat", chat).addObject("userImg", chatImg).setViewName("chat/chatView");
+			mv.addObject("chat", chat).addObject("userImg", chatImg).setViewName("Chat/chatView");
 		}
 		return mv;
 	}

@@ -156,13 +156,13 @@
 			
 			SELECT * FROM CHATUSER
 			WHERE 
-				<foreach collection="list" item="item" separator=" ">
+			<foreach collection="list" item="item" separator=" ">
 					USER_NICK = #{item.userNick} AND CHATID = #{item.chatId}
-				</foreach>
+			</foreach>
 	</select>
 	
 	<select id="findAllImg" parameterType="ChatInfo" resultMap="MemberImgResultMap">
 		SELECT * FROM MEMBERIMG
-		WHERE USER_ID = #{user_Id} OR USER_ID = #{user_Id2};
+		WHERE USER_ID = #{user_Id} OR USER_ID = #{user_Id2}
 	</select>
 </mapper>

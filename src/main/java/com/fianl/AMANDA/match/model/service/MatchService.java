@@ -21,8 +21,7 @@ public interface MatchService {
 	/*
 	 * 회원 사진 리스트
 	 */
-	ArrayList<MemberImg> selectPlist(MemberImg mi);
-	
+	ArrayList<MemberImg> selectPlist(HashMap<String, Object> map);
 	/*
 	 * 좋아요 매칭 
 	 */
@@ -33,13 +32,9 @@ public interface MatchService {
 	 */
 	public int HateInsert(Hate h);
 
+
 	
-	/*
-	 * 
-	 */
+
 	
-	
-	/*
-	 * 
-	 */
+
 }
