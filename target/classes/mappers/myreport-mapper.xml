@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reportMapper">
+  <resultMap type="Member" id="MemberResultMap">
+	<id property="u_mid" column="U_MID"/>
+	<result property="user_id" column="USER_ID"/>
+	<result property="user_pwd" column="USER_PWD"/>
+	<result property="user_nick" column="USER_NICK"/>
+	<result property="grade" column="GRADE"/>
+	<result property="gender" column="GENDER"/>
+	<result property="phone" column="PHONE"/>
+	<result property="height" column="HEIGHT"/>
+	<result property="age" column="AGE"/>
+	<result property="address" column="ADDRESS"/>
+	<result property="user_into" column="USER_INTO"/>
+	<result property="gay" column="GAY"/>
+	<result property="r_count" column="R_COUNT"/>
+	<result property="updata_date" column="UPDATA_DATE"/>
+	<result property="status" column="STATUS"/>
+	<result property="pay_status" column="PAY_STATUS"/>
+	<result property="kakao" column="KAKAO"/>
+	</resultMap>
+  
+  	  <resultMap id="reportResultMap" type="Report2">
+	<id property="rkey" column="RKEY"/>
+	<result property="u_mid" column="U_MID"/>
+	<result property="r_user_id" column="R_USER_ID"/>
+	<result property="r_type" column="R_TYPE"/>
+	<result property="r_contents" column="R_CONTENTS"/>
+	<result property="r_date" column="R_DATE"/>
+	<result property="status" column="STATUS"/>
+	</resultMap>
+
+  <!-- 	<resultMap id="chatResultMap" type="Chat">
+  	<id property="chatid" column="CHATID"/>
+  	<result property="chatroom" column="CHATROOM"/>
+  	<result property="createdate" column="CREATEDATE"/>
+  	<result property="modifydate" column="MODIFYDATE"/>
+  	<result property="u_mid" column="U_MID"/>
+  	<result property="u_mid" column="U_MID2"/>
+  	<result property="status" column="STATUS"/>
+  	</resultMap> -->
+  	
+  		<resultMap id="chatResultMap" type="ChatInfo2">
+  	<id property="chatid" column="CHATID"/>
+  	<result property="chatroom" column="CHATROOM"/>
+  	<result property="user_id" column="USER_ID"/>
+  	<result property="user_id2" column="USER_ID2"/>
+  	<result property="username" column="USERNAME"/>
+  	<result property="username2" column="USERNAME2"/>
+  	<result property="status" column="STATUS"/>
+  	</resultMap> 
+ 
+
+  <insert id="myReportInsert" parameterType="Report2">
+  INSERT INTO REPORT
+  VALUES(SEQ_RKEY.NEXTVAL, #{u_mid}, #{r_user_id},#{r_type},#{r_contents},SYSDATE,'Y')
+  </insert>
+  
+  <select id="getmychatListCount" resultType="_int">
+  SELECT COUNT(*)
+  FROM CHATINFO
+  WHERE USER_ID=#{user_id}
+  </select>
+  
+  <select id="selectmychatList" resultMap="chatResultMap">
+  SELECT *
+  FROM CHATINFO
+   ORDER BY CHATID ASC
+  </select>
+  
+  <update id="myReportUpdate" parameterType="String">
+  UPDATE CHATINFO
+  SET STATUS='N'
+  WHERE USER_ID=#{user_id}
+  </update>
+  
+  
+</mapper>
+

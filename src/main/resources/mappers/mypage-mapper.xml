@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="MypageMapper">
+	<!-- 회원가입 -->
+	<resultMap type="Member" id="myMemberResultMap">
+	<id property="u_mid" column="U_MID"/>
+	<result property="user_id" column="USER_ID"/>
+	<result property="user_pwd" column="USER_PWD"/>
+	<result property="user_nick" column="USER_NICK"/>
+	<result property="grade" column="GRADE"/>
+	<result property="gender" column="GENDER"/>
+	<result property="phone" column="PHONE"/>
+	<result property="height" column="HEIGHT"/>
+	<result property="age" column="AGE"/>
+	<result property="address" column="ADDRESS"/>
+	<result property="user_into" column="USER_INTO"/>
+	<result property="gay" column="GAY"/>
+	<result property="r_count" column="R_COUNT"/>
+	<result property="updata_date" column="UPDATA_DATE"/>
+	<result property="status" column="STATUS"/>
+	<result property="pay_status" column="PAY_STATUS"/>
+	<result property="kakao" column="KAKAO"/>
+	</resultMap>
+	<!-- 취미 -->
+	<resultMap type="Hobby" id="myHobbyResultMap">
+	<id property="user_id" column="USER_ID"/>
+	<result property="movie" column="MOVIE"/>
+	<result property="sing" column="SING"/>
+	<result property="game" column="GAME"/>
+	<result property="jmt" column="JMT"/>
+	<result property="pet" column="PET"/>
+	<result property="cafe" column="CAFE"/>
+	<result property="working" column="WORKING"/>
+	<result property="poto" column="POTO"/>
+	<result property="travel" column="TRAVEL"/>
+	</resultMap>
+
+		<!-- 사진 -->
+	<resultMap type="MemberImg" id="myMemberImgResultMap">
+	<id property="user_id" column="USER_ID"/>
+	<result property="originalFileName" column="ORIGINALFILENAME"/>
+	<result property="renameFileName" column="RENAMEFILENAME"/>
+	<result property="update_date" column="UPDATE_DATE"/>
+	<result property="status" column="STATUS"/>
+	</resultMap>
+	
+        	
+	 <update id="myupdateMember" parameterType="Member">
+	UPDATE MEMBER
+	SET  USER_ID=#{user_id}, USER_PWD=#{user_pwd}, USER_NICK=#{user_nick}, GENDER=#{gender}, PHONE=#{phone}, HEIGHT=#{height},
+				AGE=#{age}, ADDRESS=#{address}, USER_INTO=#{user_into}, GAY=#{gay}, KAKAO=#{kakao}
+	WHERE USER_ID=#{user_id}
+	</update> 
+	
+	
+	
+	<update id="myupdateHobby" parameterType="Hobby">
+	UPDATE HOBBY
+	SET USER_ID=#{user_id}, MOVIE=#{movie}, SING=#{sing}, GAME=#{game}, JMT=#{jmt}, PET=#{pet},
+				CAFE=#{cafe},WORKING=#{working},POTO=#{poto},TRAVEL=#{travel}
+	WHERE USER_ID=#{user_id}			
+	</update>  
+	
+	<insert id="myupdateMemberImg" parameterType="MemberImg">
+	INSERT INTO MEMBERIMG
+		VALUES(#{user_id}, #{originalFileName}, #{renameFileName},#{img_count}, SYSDATE, 'Y')
+	</insert>
+	
+	<select id="myupdateMemberlist" parameterType="String" resultMap="myMemberResultMap">
+	SELECT *
+	FROM MEMBER
+	WHERE USER_ID = #{user_id}
+	</select>	
+	
+	<select id="myupdateHobbylist" parameterType="String" resultMap="myHobbyResultMap">
+		SELECT *
+		FROM HOBBY
+		WHERE USER_ID=#{user_id}
+	</select>
+	
+	<select id="myupdateMemberImglist" parameterType="String" resultMap="myMemberImgResultMap">
+		SELECT *
+		FROM MEMBERIMG
+		WHERE USER_ID = #{user_id} AND STATUS='Y'
+	</select>
+	
+	<update id="myresult" parameterType="String">
+	UPDATE MEMBERIMG
+	SET STATUS='N'
+	WHERE USER_ID=#{user_id}
+	</update>
+
+	
+</mapper>

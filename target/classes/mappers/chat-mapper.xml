@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ChatMapper">
+	
+	<!-- 채팅방 -->
+	<resultMap type="Chat" id="ChatResultMap">
+		<id property="chatId" column="CHATID"/>
+		<result property="chatRoom" column="CHATROOM"/>
+		<result property="createDate" column="CREATEDATE"/>
+		<result property="modifyDate" column="MODIFYDATE"/>
+		<result property="u_mId" column="U_MID"/>
+		<result property="u_mId2" column="U_MID2"/>
+		<result property="status" column="STATUS"/>
+	</resultMap>
+	
+	<!-- 채팅 내역 -->
+	<resultMap type="ChatRoom" id="ChatRoomResultMap">
+		<id property="crId" column="CR_ID"/>
+		<result property="chatId" column="CHATID"/>
+		<result property="chatUser" column="CHATUSER"/>
+		<result property="c_Content" column="C_CONTENT"/>
+		<result property="chatDate" column="CHATDATE"/>
+		<result property="chatTime" column="CHATTIME"/>
+		<result property="confirm" column="CONFIRM"/>
+		<result property="status" column="STATUS"/>
+		<result property="img_status" column="IMG_STATUS"/>
+	</resultMap>
+	
+	<!-- 채팅 간편 정보 -->
+	<resultMap type="ChatInfo" id="ChatInfoResultMap">
+		<id property="chatId" column="CHATID"/>
+		<result property="chatRoom" column="CHATROOM"/>
+		<result property="user_Id" column="USER_ID"/>
+		<result property="user_Id2" column="USER_ID2"/>
+		<result property="userName" column="USERNAME"/>
+		<result property="userName2" column="USERNAME2"/>
+		<result property="status" column="STATUS"/>
+	</resultMap>
+	<resultMap type="Report" id="ReportResultMap">
+		<id property="rKey" column="RKEY"/>
+		<result property="u_Mid" column="U_MID"/>
+		<result property="r_user_Id" column="R_USER_ID"/>
+		<result property="r_Type" column="R_TYPE"/>
+		<result property="r_Contents" column="R_CONTENTS"/>
+		<result property="date" column="R_DATE"/>
+		<result property="status" column="STATUS"/>
+	</resultMap>	
+	
+	<!-- 사진 -->
+	<resultMap type="MemberImg3" id="MemberImgResultMap">
+		<id property="user_id" column="USER_ID"/>
+		<result property="originalFileName" column="ORIGINALFILENAME"/>
+		<result property="renameFileName" column="RENAMEFILENAME"/>
+		<result property="img_count" column="IMG_COUNT"/>
+		<result property="update_date" column="UPDATE_DATE"/>
+		<result property="status" column="STATUS"/>
+	</resultMap>
+	<!-- 사진 및 유저 정보 -->
+	<resultMap type="ChatUser" id="ChatUserResultMap">
+		<id property="userId" column="USER_ID"/>
+		<result property="chatId" column="CHATID"/>
+		<result property="uMid" column="U_MID"/>
+		<result property="userNick" column="USER_NICK"/>
+		<result property="renameFileName" column="RENAMEFILENAME"/>
+		<result property="conSum" column="CONSUM"/>
+	</resultMap>
+	
+	<!-- 채팅방 찾기 -->
+	<select id="selectChat" parameterType="string" resultType="ChatInfo">
+		SELECT * FROM CHATINFO
+		WHERE CHATROOM = #{chatRoom}
+	</select>
+	
+	<!-- 모든 채팅방 찾기 -->
+	<select id="selectAllChat" parameterType="string" resultMap="ChatInfoResultMap">
+		SELECT * FROM CHATINFO
+		WHERE USERNAME = #{userName} OR USERNAME2 = #{userName}
+	</select>
+	
+	<!-- 모든 채팅내용 출력 -->
+	<select id="allChatContent" parameterType="_int" resultMap="ChatRoomResultMap">
+		SELECT * FROM CHATROOM
+		WHERE CHATID = #{chatId}
+		ORDER BY CR_ID DESC
+	</select>
+	
+	<!-- 채팅방 생성 -->
+	<insert id="createChat" parameterType="Chat">
+		INSERT INTO CHAT VALUES(SEQ_CHAT.NEXTVAL, #{chatRoom}, 
+							SYSDATE, SYSDATE, #{u_mId}, #{u_mId2}, DEFAULT)
+	</insert>
+	
+	<!-- 채팅 내용 저장 -->
+	<insert id="insertChatRoom" parameterType="ChatRoom">
+		INSERT INTO CHATROOM VALUES(SEQ_CRID.NEXTVAL, #{chatId}, 
+		#{chatUser}, #{c_Content}, SYSDATE, DEFAULT, 
+		<choose>
+			<when test="confirm != null">
+				#{confirm}
+			</when>
+			<when test="confirm == null">
+				DEFAULT
+			</when>
+		</choose>
+		, DEFAULT, DEFAULT)
+	</insert>
+	
+	<!-- 채팅 삭제 -->
+	<update id="updateChatRoom" parameterType="_int">
+		UPDATE CHATROOM
+		SET STATUS = 'N'
+		WHERE CR_ID = #{crId}
+	</update>
+	<!-- 채팅창 차단 및 신고시 -->
+	<update id="updateChat" parameterType="_int">
+		UPDATE CHAT
+		SET STATUS = 'N'
+		WHERE CHATID = #{chatId}
+	</update>
+	<!-- 상대가 안본 채팅 확인 시 -->
+	<update id="updateConfirm" parameterType="_int">
+		UPDATE CHATROOM
+		SET CONFIRM = 0
+		WHERE CR_ID = #{crId} AND CONFIRM = 1
+	</update>
+	
+	<!-- 이미지 데이터 insert -->
+	<insert id="insertImgChat" parameterType="ChatRoom">
+		INSERT INTO CHATROOM VALUES(
+				SEQ_CRID.NEXTVAL,
+				#{chatId},
+				#{chatUser},
+				#{c_Content},
+				SYSDATE,
+				DEFAULT,
+				DEFAULT,
+				DEFAULT,
+				#{img_status}
+			)
+	</insert>
+	
+	<!-- 입력한 채팅 내용 정보 -->
+	<select id="lastInsertChat" parameterType="string" resultMap="ChatRoomResultMap">
+		SELECT * FROM CHATROOM
+		WHERE STATUS = 'Y' AND CHATUSER = #{chatUser}
+		ORDER BY CR_ID DESC
+	</select>
+	
+	<!-- 신고 유저 데이터 입력-->
+	<insert id="insertReport" parameterType="Report">
+		INSERT INTO REPORT VALUES(SEQ_RKEY.NEXTVAL, #{u_Mid}, 
+		#{r_user_Id}, #{r_Type}, #{r_Contents}, SYSDATE, DEFAULT)
+	</insert>
+	
+	<select id="findMainImg" parameterType="java.util.Map" resultMap="ChatUserResultMap">
+			
+			SELECT * FROM CHATUSER
+			WHERE 
+				<foreach collection="list" item="item" separator=" ">
+					USER_NICK = #{item.userNick} AND CHATID = #{item.chatId}
+				</foreach>
+	</select>
+	
+	<select id="findAllImg" parameterType="ChatInfo" resultMap="MemberImgResultMap">
+		SELECT * FROM MEMBERIMG
+		WHERE USER_ID = #{user_Id} OR USER_ID = #{user_Id2};
+	</select>
+</mapper>
