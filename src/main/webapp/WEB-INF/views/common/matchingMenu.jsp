@@ -224,9 +224,9 @@ body {
 		<a>Profile</a> <a href="javascript:void(0)" class="closebtn"
 			onclick="closeNav()">&times;</a>
 		<!-- <img alt="사진없음" src="me.jpg" style="width: 400px; height: 400px; margin-left: 22px; border-radius: 100px;"> -->
-		<img alt="사진없음" src="resources/face/G.jpg"
+		<img alt="사진없음" src="resources/userface/${loginImg[0].renameFileName}"
 			style="width: 370px; height: 400px; margin-left: 22px; border-radius: 100px;">
-
+		
 		<div id="but" align="center">
 			<div class="button button--flip">
 				<button class="btn button__face"
@@ -262,6 +262,8 @@ body {
 				<button class="btn button__top" style="margin-left: 133px;"
 					onclick="location.href='Mlogout.do'">Logout</button>
 			</div>
+			
+			<br>
 			   <c:url var="myListbtn" value="myupdatememberlist.do">
             <c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
          </c:url>

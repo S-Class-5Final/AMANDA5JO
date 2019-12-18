@@ -1,5 +1,8 @@
 package com.fianl.AMANDA.member.model.service;
 
+
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,6 +62,11 @@ public class MemberServiceImpl implements MemberService{
 		@Override
 		public int mloginkakaoIdCheck(Member m) {
 			return mDao.mloginkakaoIdCheck(m);
+		}
+
+		@Override
+		public ArrayList<MemberImg> loginMemberImg(Member m) {
+			return mDao.mloginMemberImg(m);
 		}
 
 

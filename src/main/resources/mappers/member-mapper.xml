@@ -99,4 +99,10 @@
 	SELECT COUNT(*) FROM MEMBER
 	WHERE KAKAO=#{kakao} AND STATUS='Y'
 	</select>
+	
+	<!-- 로그인시 사진 가져오기 -->
+	<select id="mloginMemberImg" resultMap="MemberImgResultMap" parameterType="Member">
+	SELECT * FROM MEMBERIMG
+	WHERE USER_ID =#{user_id} AND STATUS='Y'
+	</select>
 </mapper>

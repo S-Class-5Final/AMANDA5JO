@@ -13,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +37,7 @@ import com.fianl.AMANDA.member.model.vo.MemberImg;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 //
+
 @SessionAttributes("loginUser")
 @Controller
 public class MemberController {
@@ -148,16 +150,18 @@ public class MemberController {
 							  @RequestParam("loginPwd") String user_pwd) {
 		
 		Member m = new Member(user_id, user_pwd);
-		
 		HttpSession session = request.getSession();  //
 		
 		String msg = "아이디 및 비밀번호 확인해 주세요";
 		Member loginUser = mService.loginMember(m);
+		ArrayList<MemberImg> loginImg = mService.loginMemberImg(m);
 		
+		System.out.println("로그인시 이미지" + loginImg);
+		session.setAttribute("loginImg", loginImg);
 		session.setAttribute("loginUser2", loginUser);  //
-
 		if (bcryptPasswordEncoder.matches(m.getUser_pwd(), loginUser.getUser_pwd())) {
 			model.addAttribute("loginUser", loginUser);
+			
 		} else {
 			model.addAttribute("msg", msg);
 //				throw new MemberException("로그인 실패");

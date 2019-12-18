@@ -1,5 +1,7 @@
 package com.fianl.AMANDA.member.model.service;
 
+import java.util.ArrayList;
+
 import com.fianl.AMANDA.member.model.vo.Hobby;
 import com.fianl.AMANDA.member.model.vo.Member;
 import com.fianl.AMANDA.member.model.vo.MemberImg;
@@ -28,6 +30,8 @@ public interface MemberService {
 	
 	//카카오 아이디만 비교
 	int mloginkakaoIdCheck(Member m);
+
+	ArrayList<MemberImg> loginMemberImg(Member m);
 
 
 }

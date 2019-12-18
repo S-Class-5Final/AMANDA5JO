@@ -1,5 +1,7 @@
 package com.fianl.AMANDA.member.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -53,6 +55,10 @@ public class MemberDao {
 
 		public int mloginkakaoIdCheck(Member m) {
 			return sqlSession.selectOne("MemberMapper.mloginkakaoIdCheck",m);
+		}
+
+		public ArrayList<MemberImg> mloginMemberImg(Member m) {
+			return (ArrayList)sqlSession.selectList("MemberMapper.mloginMemberImg",m);
 		}
 
 
