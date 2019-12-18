@@ -98,7 +98,7 @@
               
 
 	</select>
-	
+	<!-- 여자일때 -->
 	<select id="selectMFlist" resultMap="MemberResultMap" resultType="Member" parameterType="hashMap">
 		SELECT *
 		FROM MEMBER
@@ -112,6 +112,7 @@
                              	    WHERE H_SENDER=#{user.user_nick})
               
 	</select>
+	<!-- 레즈비언일때 -->
  	<select id="selectMFYlist" resultMap="MemberResultMap" resultType="Member" parameterType="hashMap">
 		SELECT *
 		FROM MEMBER
@@ -124,6 +125,8 @@
                         		    FROM MHATE 
                              	    WHERE H_SENDER=#{user.user_nick})
 	</select>
+	
+	<!-- 남자일때 -->
 	<select id="selectMMlist" resultMap="MemberResultMap" resultType="Member" parameterType="hashMap">
 		SELECT *
 		FROM MEMBER
@@ -136,6 +139,8 @@
                         		    FROM MHATE 
                              	    WHERE H_SENDER=#{user.user_nick})
 	</select>
+	
+	<!-- 게이일때 -->
 	<select id="selectMMYlist" resultMap="MemberResultMap" resultType="Member" parameterType="hashMap">
 		SELECT *
 		FROM MEMBER
@@ -163,6 +168,68 @@
                     		        FROM MHATE 
                              	    WHERE H_SENDER=#{user.user_nick})) M ON (MI.USER_ID = M.USER_ID)
 	</select>
+	<!-- 여자 -->
+	<select id="selectPFlist" resultMap="MemberImgResultMap" resultType="MemberImg"  parameterType="hashMap">
+		SELECT MI.*
+		FROM MEMBERIMG MI
+	   JOIN (SELECT *
+		FROM MEMBER
+        WHERE GRADE = '1'
+              AND STATUS= 'Y'
+              AND NOT USER_NICK=#{user.user_nick}
+              AND GENDER = 'F'
+              AND GAY = 'N'
+      		  AND USER_NICK NOT IN (SELECT H_RECEIVER 
+                        		    FROM MHATE 
+                             	    WHERE H_SENDER=#{user.user_nick})) M ON (MI.USER_ID = M.USER_ID)
+	</select>
+	<!-- 레즈 -->
+	<select id="selectPFYlist" resultMap="MemberImgResultMap" resultType="MemberImg"  parameterType="hashMap">
+		SELECT MI.*
+		FROM MEMBERIMG MI
+	   JOIN (SELECT *
+		FROM MEMBER
+        WHERE GRADE = '1'
+              AND STATUS= 'Y'
+              AND NOT USER_NICK=#{user.user_nick}
+              AND GENDER = 'F'
+              AND GAY = 'Y'
+      		  AND USER_NICK NOT IN (SELECT H_RECEIVER 
+                        		    FROM MHATE 
+                             	    WHERE H_SENDER=#{user.user_nick})) M ON (MI.USER_ID = M.USER_ID)
+	</select>
+	<!-- 남자 -->
+	<select id="selectPMlist" resultMap="MemberImgResultMap" resultType="MemberImg"  parameterType="hashMap">
+		SELECT MI.*
+		FROM MEMBERIMG MI
+	   JOIN (SELECT *
+		FROM MEMBER
+        WHERE GRADE = '1'
+              AND STATUS= 'Y'
+              AND NOT USER_NICK=#{user.user_nick}
+              AND GENDER = 'M'
+              AND GAY = 'N'
+      		  AND USER_NICK NOT IN (SELECT H_RECEIVER 
+                        		    FROM MHATE 
+                             	    WHERE H_SENDER=#{user.user_nick})) M ON (MI.USER_ID = M.USER_ID)
+	</select>
+	<!-- 게이 -->
+	<select id="selectPMYlist" resultMap="MemberImgResultMap" resultType="MemberImg"  parameterType="hashMap">
+		SELECT MI.*
+		FROM MEMBERIMG MI
+	   JOIN (SELECT *
+		FROM MEMBER
+        WHERE GRADE = '1'
+              AND STATUS= 'Y'
+              AND NOT USER_NICK=#{user.user_nick}
+              AND GENDER = 'M'
+              AND GAY = 'Y'
+      		  AND USER_NICK NOT IN (SELECT H_RECEIVER 
+                        		    FROM MHATE 
+                             	    WHERE H_SENDER=#{user.user_nick})) M ON (MI.USER_ID = M.USER_ID)
+	</select>
+	
+	
 	
 	<!-- 좋아요 삽입 -->
 	<insert id="likeInsert" parameterType="Match">

@@ -54,6 +54,24 @@ public class MatchDao {
 		return (ArrayList)sqlSession.selectList("matchMapper.selectMMYlist", map);
 	}
 
+	public ArrayList<MemberImg> selectPFlist(HashMap<String, Object> map) {
+		return (ArrayList)sqlSession.selectList("matchMapper.selectPFlist", map);
+	}
+
+	public ArrayList<MemberImg> selectPFYlist(HashMap<String, Object> map) {
+		return (ArrayList)sqlSession.selectList("matchMapper.selectPFYlist", map);
+	}
+
+	public ArrayList<MemberImg> selectPMlist(HashMap<String, Object> map) {
+		return (ArrayList)sqlSession.selectList("matchMapper.selectPMlist", map);
+	}
+
+	public ArrayList<MemberImg> selectPMYlist(HashMap<String, Object> map) {
+		return (ArrayList)sqlSession.selectList("matchMapper.selectPMYlist", map);
+	}
+
+
+
 
 
 

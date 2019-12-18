@@ -42,20 +42,44 @@ public class MatchServiceImpl implements MatchService {
 		return matchDao.HateInsert(h);
 	}
 
+	@Override
 	public ArrayList<Member> selectMFlist(HashMap<String, Object> map) {
 		return matchDao.selectMFlist(map);
 	}
 
+	@Override
 	public ArrayList<Member> selectMFYlist(HashMap<String, Object> map) {
 		return matchDao.selectMFYlist(map);
 	}
 
+	@Override
 	public ArrayList<Member> selectMMlist(HashMap<String, Object> map) {
 		return matchDao.selectMMlist(map);
 	}
 
+	@Override
 	public ArrayList<Member> selectMMYlist(HashMap<String, Object> map) {
 		return matchDao.selectMMYlist(map);
+	}
+
+	@Override
+	public ArrayList<MemberImg> selectPFlist(HashMap<String, Object> map) {
+		return matchDao.selectPFlist(map);
+	}
+
+	@Override
+	public ArrayList<MemberImg> selectPFYlist(HashMap<String, Object> map) {
+		return matchDao.selectPFYlist(map);
+	}
+
+	@Override
+	public ArrayList<MemberImg> selectPMlist(HashMap<String, Object> map) {
+		return matchDao.selectPMlist(map);
+	}
+
+	@Override
+	public ArrayList<MemberImg> selectPMYlist(HashMap<String, Object> map) {
+		return matchDao.selectPMYlist(map);
 	}
 
 

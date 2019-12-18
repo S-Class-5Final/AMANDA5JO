@@ -346,10 +346,10 @@
            </div>
            
            <div id="selectGay" style="z-index: 100;">
-                 <button class="gayBtn" id="gayBtn1" value="F">W</button>&nbsp;&nbsp;
-                 <button class="gayBtn" id="gayBtn2" value="FY">&nbsp;W ♥ W&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <button class="gayBtn" id="gayBtn3" value="M">M</button>&nbsp;&nbsp;
-                 <button class="gayBtn" id="gayBtn4" value="MY">&nbsp;M ♥ M&nbsp;</button>
+                 <button type="button" class="gayBtn" id="gayBtn1" value="F">W</button>&nbsp;&nbsp;
+                 <button type="button" class="gayBtn" id="gayBtn2" value="FY">&nbsp;W ♥ W&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <button type="button" class="gayBtn" id="gayBtn3" value="M">M</button>&nbsp;&nbsp;
+                 <button type="button" class="gayBtn" id="gayBtn4" value="MY">&nbsp;M ♥ M&nbsp;</button>
            </div>
                         
   <%--       
@@ -390,7 +390,7 @@
           <div id="myModal" class="modal" style="z-index: 101">
            <div class="modal-content">
               <span class="closeModal">&times;</span> 
-             <h2 align="center" style="margin-top: -8px;margin-bottom: 10px;">${loginUser2.user_nick }</h2>
+             <h2 align="center" style="margin-top: -8px;margin-bottom: 10px;">${loginUser.user_nick }</h2>
              <h2 align="center">PHOTOS</h2>
              <div style="width:auto; height:62%; background: white;">
                 
@@ -403,8 +403,9 @@
                </div>
            </div>
          </div> 
-         
-          <script>
+</div>
+
+  <script>
                var modal = document.getElementById("myModal");
                var btn = document.getElementById("infoBtn");
                var span = document.getElementsByClassName("closeModal")[0];
@@ -423,21 +424,7 @@
                  }
                } 
          </script> 
-</div>
- 
- <script type="text/javascript">
-            
-         $(function() {
-         $.ajax({
-            url: "pList.do",
-              type:"get",
-              success: function(plist) {
-               alert("dd");
-            }
-      });
-   
- 
- </script>
+
  
 <script>
    // ajax의 작업을 먼저 완료하고, 그다음에 다큐먼트들을 긁어온다음, 카드들을 생성해야되.
@@ -608,9 +595,20 @@
           contentType:"application/json;charset=utf-8",
           success: function(testlist) {
          //    $(".tinder--cards").html(""); // 앞의 카드 비워주기.
-             alert(testlist);
-            console.log(testlist);
-            /* $.each(listmap.size(), function(index, value) {
+          //   alert(testlist[0].memberlist[user_id]);
+            console.log("상대 ID: " + testlist[0].memberlist.user_id);
+            console.log(testlist[0].memberlist.user_id + " 의 첫번째 사진 " +testlist[0].imglist[0].renameFileName);
+            console.log(testlist[0].memberlist.user_id + " 의 두번째 사진 " +testlist[0].imglist[1].renameFileName);
+            console.log(testlist[0].memberlist.user_id + " 의 세번째 사진 " +testlist[0].imglist[2].renameFileName);
+            console.log("상대 ID: " + testlist[1].memberlist.user_id);
+            console.log(testlist[1].memberlist.user_id + " 의 첫번째 사진 " +testlist[1].imglist[0].renameFileName);
+            console.log(testlist[1].memberlist.user_id + " 의 두번째 사진 " +testlist[1].imglist[1].renameFileName);
+            console.log(testlist[1].memberlist.user_id + " 의 세번째 사진 " +testlist[1].imglist[2].renameFileName);
+           	console.log(testlist[0]);
+           	console.log(testlist[1]);
+           	console.log(Object.keys(testlist).length);
+           	var listsize = Object.keys(testlist).length;
+          /*   $.each(testlist.size(), function(index, value) {
                 var str = 
                            "<div id = card"+(index+1)+" class=tinder--card>"+
                            "      <div class='mySlides"+(index+1)+" fade' style='pointer-events: none;'>"+
@@ -636,6 +634,7 @@
                            "</div>";
                        $(".tinder--cards").append(str);    
              });*/
+           
           },
           error:function(request, status, errorData){
              alert("매칭 에이젝스 error code: " + request.status + "\n"
@@ -651,7 +650,10 @@
 
     <!-- selectGay 버튼  -->
     <script>
-       $("#gayBtn1").click(function() {
+    var gayBtn1 = $("#gayBtn1");
+   		 gayBtn1.click(function(){
+    	   alert("?");
+       
          $(this).css('background','#ff8282').css('color','white');
          $("#gayBtn2").css('background','white').css('color','#ff8282');
          $("#gayBtn3").css('background','white').css('color','#ff8282');
@@ -662,7 +664,7 @@
          
          
          
-          var tinderContainer = document.querySelector('.tinder');
+          	var tinderContainer = document.querySelector('.tinder');
             var allCards = document.querySelectorAll('.tinder--card');
             var nope = document.getElementById('nope');
             var love = document.getElementById('love');
@@ -732,8 +734,9 @@
                   initCards();
                 }
               });
-            });
+            }); 
       });
+       
       $("#gayBtn2").click(function() {
          $(this).css('background','#ff8282').css('color','white');
          $("#gayBtn1").css('background','white').css('color','#ff8282');
@@ -926,7 +929,8 @@
             function showSlides(n) {
                 var i;
               // var slides = document.getElementsByClassName("mySlides"); // 사진부분.
-                for(var num = 1; num <= ${mlist.size()} ; num++){ 
+            /*
+              for(var num = 1; num <= ${mlist.size()} ; num++){ 
               //   var slides = $("#card"+num+" .mySlides"+num);
                 var slides = $(".mySlides"+num);
                 var dots = document.getElementsByClassName("dot"); // 사진 넘길 수 있는 점들.
@@ -945,7 +949,9 @@
                  }
                  slides[slideIndex-1].style.display = "block";  
                  dots[slideIndex-1].className += " active";
-              }      
+              }  
+              */
+              
             }
          
           var tinderContainer = document.querySelector('.tinder');
@@ -1058,10 +1064,12 @@
       
       // 위의 1,2,3 에서 매개변수 갖고와서 돌자.
       // 슬라이드 보여주는 함수
-      function showSlides(n) {
+       function showSlides(n) {
           var i;
         // var slides = document.getElementsByClassName("mySlides"); // 사진부분.
-          for(var num = 1; num <= ${mlist.size()} ; num++){ 
+     
+      /*     
+        for(var num = 1; num <= ${mlist.size()} ; num++){ 
         //   var slides = $("#card"+num+" .mySlides"+num);
           var slides = $(".mySlides"+num);
           var dots = document.getElementsByClassName("dot"); // 사진 넘길 수 있는 점들.
@@ -1080,7 +1088,9 @@
            }
            slides[slideIndex-1].style.display = "block";  
            dots[slideIndex-1].className += " active";
-        }      
+        }   
+        
+        */
       }
    </script>
      

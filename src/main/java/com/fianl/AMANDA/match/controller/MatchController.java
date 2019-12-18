@@ -74,32 +74,32 @@ public class MatchController {
 	case "":
 		 mlist = matchService.selectMlist(map);
 		 plist = matchService.selectPlist(map);
-		 System.out.println("로그인시 상대 성별 리스트:" +  mlist);
-		 System.out.println("로그인시 상대 성병 리스트 사진: " + plist);
+		 System.out.println("공백 mlist: " +  mlist);
+		 System.out.println("공백 plist: " + plist);
 		 break;
 	case "F":
 		 mlist = matchService.selectMFlist(map);
-		// plist = matchService.selectPlist(mi);
-		 System.out.println(mlist);
-		 System.out.println(plist);
+		 plist = matchService.selectPFlist(map);
+		 System.out.println("F버튼 mlist: " +  mlist);
+		 System.out.println("F버튼 plist: " + plist);
 		break;
 	case "FY":
 		mlist = matchService.selectMFYlist(map);
-		//plist = matchService.selectPlist(mi);
-		System.out.println(mlist);
-		System.out.println(plist);
+		plist = matchService.selectPFYlist(map);
+		 System.out.println("FY mlist: " +  mlist);
+		 System.out.println("FY plist: " + plist);
 		break;
 	case "M":
 		mlist = matchService.selectMMlist(map);
-		//plist = matchService.selectPlist(mi);
-		System.out.println(mlist);
-		System.out.println(plist);
+		plist = matchService.selectPMlist(map);
+		 System.out.println("M mlist: " +  mlist);
+		 System.out.println("M plist: " + plist);
 		break;
 	case "MY":
 		mlist = matchService.selectMMYlist(map);
-		//plist = matchService.selectPlist(mi);
-		System.out.println(mlist);
-		System.out.println(plist);
+		plist = matchService.selectPMYlist(map);
+		 System.out.println("MY mlist: " +  mlist);
+		 System.out.println("MY plist: " + plist);
 		break;
 		
 	}
@@ -110,7 +110,6 @@ public class MatchController {
      	JSONArray mlistArray = null;
      	JSONArray plistArray = null;
      	try {
-     		plistArray = new JSONArray();
      		mlistArray = new JSONArray();
      		for(int i = 0; i < mlist.size(); i++) {
      			JSONObject memberObject = new JSONObject();
@@ -133,9 +132,10 @@ public class MatchController {
      			memberObject.put("pay_status",mlist.get(i).getPay_status());
      			memberObject.put("kakao",mlist.get(i).getKakao());
      			mlistArray.add(memberObject);
-     		
+     			plistArray = new JSONArray();
      		for(int j = 0; j < plist.size(); j++) {
      			JSONObject imgObject =  new JSONObject();
+     			if(mlist.get(i).getUser_id().equals(plist.get(j).getUser_id())) {
      			imgObject.put("user_id",plist.get(j).getUser_id());
      			imgObject.put("originalFileName",plist.get(j).getOriginalFileName());
      			imgObject.put("renameFileName",plist.get(j).getRenameFileName());
@@ -144,9 +144,14 @@ public class MatchController {
      			imgObject.put("update_date",date);
      			imgObject.put("status",plist.get(j).getStatus());
      			plistArray.add(imgObject);
+     			System.out.println("imgObject : " + imgObject);
+     			}
+     			
      		}
+     		
      		obj.put("memberlist",memberObject);
      		obj.put("imglist", plistArray);
+     		System.out.println("obj에 들어감  : " +plistArray );
      		testlist.add(obj);
      		}
      		
