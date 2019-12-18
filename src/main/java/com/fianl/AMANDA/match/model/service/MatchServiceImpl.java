@@ -13,6 +13,7 @@ import com.fianl.AMANDA.match.model.vo.MemberImg;
 import com.fianl.AMANDA.member.model.vo.Member;
 
 
+
 @Service("matchService")
 public class MatchServiceImpl implements MatchService {
 	

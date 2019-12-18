@@ -13,6 +13,7 @@ import com.fianl.AMANDA.match.model.vo.MemberImg;
 import com.fianl.AMANDA.member.model.vo.Member;
 
 
+
 @Repository("matchDao")
 public class MatchDao {
 	@Autowired

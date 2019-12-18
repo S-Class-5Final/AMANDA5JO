@@ -7,48 +7,57 @@ import java.sql.Date;
  *
  */
 public class Member {
-//	<id property="u_mid" column="U_MID"/>
-//	<result property="user_id" column="USER_ID"/>
-//	<result property="user_nick" column="USER_NICK"/>
-//	<result property="gender" column="GENDER"/>
-//	<result property="height" column="HEIGHT"/>
-//	<result property="age" column="AGE"/>
-//	<result property="address" column="ADDRESS"/>
-//	<result property="user_into" column="USER_INTO"/>
-//	<result property="gay" column="GAY"/>
-//	<result property="status" column="STATUS"/>
-//	<result property="kakao" column="KAKAO"/>
+
 	private int u_mid;
 	private String user_id;
+	private String user_pwd;
 	private String user_nick;
+	private String grade;
 	private String gender;
+	private String phone;
 	private int height;
 	private int age;
 	private String address;
 	private String user_into;
 	private String gay;
+	private int r_count;
+	private Date updata_date;
 	private String status;
+	private String pay_status;
 	private String kakao;
-//	private String renameFileName;
 	
 	public Member() {
 	}
 
-	public Member(int u_mid, String user_id, String user_nick, String gender, int height, int age, String address,
-			String user_into, String gay, String status, String kakao) {
+	
+	public Member(String user_id, String user_pwd) {
+		super();
+		this.user_id = user_id;
+		this.user_pwd = user_pwd;
+	}
+
+
+	public Member(int u_mid, String user_id, String user_pwd, String user_nick, String grade, String gender,
+			String phone, int height, int age, String address, String user_into, String gay, int r_count,
+			Date updata_date, String status, String pay_status, String kakao) {
 		super();
 		this.u_mid = u_mid;
 		this.user_id = user_id;
+		this.user_pwd = user_pwd;
 		this.user_nick = user_nick;
+		this.grade = grade;
 		this.gender = gender;
+		this.phone = phone;
 		this.height = height;
 		this.age = age;
 		this.address = address;
 		this.user_into = user_into;
 		this.gay = gay;
+		this.r_count = r_count;
+		this.updata_date = updata_date;
 		this.status = status;
+		this.pay_status = pay_status;
 		this.kakao = kakao;
-		
 	}
 
 	public int getU_mid() {
@@ -67,6 +76,14 @@ public class Member {
 		this.user_id = user_id;
 	}
 
+	public String getUser_pwd() {
+		return user_pwd;
+	}
+
+	public void setUser_pwd(String user_pwd) {
+		this.user_pwd = user_pwd;
+	}
+
 	public String getUser_nick() {
 		return user_nick;
 	}
@@ -75,12 +92,28 @@ public class Member {
 		this.user_nick = user_nick;
 	}
 
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
 	public String getGender() {
 		return gender;
 	}
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public int getHeight() {
@@ -123,12 +156,36 @@ public class Member {
 		this.gay = gay;
 	}
 
+	public int getR_count() {
+		return r_count;
+	}
+
+	public void setR_count(int r_count) {
+		this.r_count = r_count;
+	}
+
+	public Date getUpdata_date() {
+		return updata_date;
+	}
+
+	public void setUpdata_date(Date updata_date) {
+		this.updata_date = updata_date;
+	}
+
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getPay_status() {
+		return pay_status;
+	}
+
+	public void setPay_status(String pay_status) {
+		this.pay_status = pay_status;
 	}
 
 	public String getKakao() {
@@ -141,8 +198,10 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [u_mid=" + u_mid + ", user_id=" + user_id + ", user_nick=" + user_nick + ", gender=" + gender
-				+ ", height=" + height + ", age=" + age + ", address=" + address + ", user_into=" + user_into + ", gay="
-				+ gay + ", status=" + status + ", kakao=" + kakao + "]";
+		return "Member [u_mid=" + u_mid + ", user_id=" + user_id + ", user_pwd=" + user_pwd + ", user_nick=" + user_nick
+				+ ", grade=" + grade + ", gender=" + gender + ", phone=" + phone + ", height=" + height + ", age=" + age
+				+ ", address=" + address + ", user_into=" + user_into + ", gay=" + gay + ", r_count=" + r_count
+				+ ", updata_date=" + updata_date + ", status=" + status + ", pay_status=" + pay_status + ", kakao="
+				+ kakao + "]";
 	}
 }

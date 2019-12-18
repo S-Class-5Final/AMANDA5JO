@@ -3,7 +3,6 @@ package com.fianl.AMANDA.match.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,20 +11,22 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.fianl.AMANDA.match.model.exception.MatchException;
 import com.fianl.AMANDA.match.model.service.MatchServiceImpl;
 import com.fianl.AMANDA.match.model.vo.Hate;
 import com.fianl.AMANDA.match.model.vo.Match;
 import com.fianl.AMANDA.match.model.vo.MemberImg;
-import com.fianl.AMANDA.match.model.vo.Sort;
 import com.fianl.AMANDA.member.model.vo.Member;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONException;
+import net.sf.json.JSONObject;
+
 
 
 @Controller
@@ -43,7 +44,6 @@ public class MatchController {
   @ResponseBody
   public void Mlist(HttpServletResponse response, 
 		   			 HttpServletRequest request,
-
 		   			 @RequestParam("genderSelect") String genderSelect, 
 		   			 @RequestParam("loginUser") String loginUser1) throws JsonIOException, IOException {
      response.setContentType("application/json; charset=utf-8");
@@ -104,12 +104,59 @@ public class MatchController {
 		
 	}
 
-        Map<String, Object> listmap = new HashMap<String, Object>();
-        map.put("mlist", mlist);
-        map.put("plist", plist);
+     	JSONObject obj = new JSONObject();
+     	JSONArray testlist = new JSONArray();
+     	
+     	JSONArray mlistArray = null;
+     	JSONArray plistArray = null;
+     	try {
+     		plistArray = new JSONArray();
+     		mlistArray = new JSONArray();
+     		for(int i = 0; i < mlist.size(); i++) {
+     			JSONObject memberObject = new JSONObject();
+     			memberObject.put("u_mid",mlist.get(i).getU_mid());
+     			memberObject.put("user_id",mlist.get(i).getUser_id());
+     			memberObject.put("user_pwd",mlist.get(i).getUser_pwd());
+     			memberObject.put("user_nick",mlist.get(i).getUser_nick());
+     			memberObject.put("grade",mlist.get(i).getGrade());
+     			memberObject.put("gender",mlist.get(i).getGender());
+     			memberObject.put("phone",mlist.get(i).getPhone());
+     			memberObject.put("height",mlist.get(i).getHeight());
+     			memberObject.put("age",mlist.get(i).getAge());
+     			memberObject.put("address",mlist.get(i).getAddress());
+     			memberObject.put("user_into",mlist.get(i).getUser_into());
+     			memberObject.put("gay",mlist.get(i).getGay());
+     			memberObject.put("r_count",mlist.get(i).getR_count());
+     			String update = String.valueOf(mlist.get(i).getUpdata_date());
+     			memberObject.put("updata_date",update);
+     			memberObject.put("status",mlist.get(i).getStatus());
+     			memberObject.put("pay_status",mlist.get(i).getPay_status());
+     			memberObject.put("kakao",mlist.get(i).getKakao());
+     			mlistArray.add(memberObject);
+     		
+     		for(int j = 0; j < plist.size(); j++) {
+     			JSONObject imgObject =  new JSONObject();
+     			imgObject.put("user_id",plist.get(j).getUser_id());
+     			imgObject.put("originalFileName",plist.get(j).getOriginalFileName());
+     			imgObject.put("renameFileName",plist.get(j).getRenameFileName());
+     			imgObject.put("img_count",plist.get(j).getImg_count());
+     			String date = String.valueOf(plist.get(j).getUpdate_date());
+     			imgObject.put("update_date",date);
+     			imgObject.put("status",plist.get(j).getStatus());
+     			plistArray.add(imgObject);
+     		}
+     		obj.put("memberlist",memberObject);
+     		obj.put("imglist", plistArray);
+     		testlist.add(obj);
+     		}
+     		
+     	}catch(JSONException e) {
+     		e.printStackTrace();
+     	}
+     	System.out.println(testlist);
 
-     if(listmap != null && listmap.size() > 0) {
-   	  new Gson().toJson(listmap, response.getWriter());
+     if(testlist != null && testlist.size() > 0) {
+   	  new Gson().toJson(testlist, response.getWriter());
      }else {
    	  //throw new MatchException("조회 실패");
      }

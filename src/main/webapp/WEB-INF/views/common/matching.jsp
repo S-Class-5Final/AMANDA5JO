@@ -606,10 +606,10 @@
           dataType: "json",
           async: false,
           contentType:"application/json;charset=utf-8",
-          success: function(listmap) {
+          success: function(testlist) {
          //    $(".tinder--cards").html(""); // 앞의 카드 비워주기.
-             alert(listmap.listmap[0]);
-            console.log(listmap);
+             alert(testlist);
+            console.log(testlist);
             /* $.each(listmap.size(), function(index, value) {
                 var str = 
                            "<div id = card"+(index+1)+" class=tinder--card>"+

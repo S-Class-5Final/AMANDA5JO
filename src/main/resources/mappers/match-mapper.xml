@@ -2,18 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="matchMapper">
 	<!-- 회원 -->
-	<resultMap type="Member2" id="MemberResultMap">
-		<id property="u_mid" column="U_MID"/>
-		<result property="user_id" column="USER_ID"/>
-		<result property="user_nick" column="USER_NICK"/>
-		<result property="gender" column="GENDER"/>
-		<result property="height" column="HEIGHT"/>
-		<result property="age" column="AGE"/>
-		<result property="address" column="ADDRESS"/>
-		<result property="user_into" column="USER_INTO"/>
-		<result property="gay" column="GAY"/>
-		<result property="status" column="STATUS"/>
-		<result property="kakao" column="KAKAO"/>
+	<resultMap type="Member" id="MemberResultMap">
+	<id property="u_mid" column="U_MID"/>
+	<result property="user_id" column="USER_ID"/>
+	<result property="user_pwd" column="USER_PWD"/>
+	<result property="user_nick" column="USER_NICK"/>
+	<result property="grade" column="GRADE"/>
+	<result property="gender" column="GENDER"/>
+	<result property="phone" column="PHONE"/>
+	<result property="height" column="HEIGHT"/>
+	<result property="age" column="AGE"/>
+	<result property="address" column="ADDRESS"/>
+	<result property="user_into" column="USER_INTO"/>
+	<result property="gay" column="GAY"/>
+	<result property="r_count" column="R_COUNT"/>
+	<result property="updata_date" column="UPDATA_DATE"/>
+	<result property="status" column="STATUS"/>
+	<result property="pay_status" column="PAY_STATUS"/>
+	<result property="kakao" column="KAKAO"/>
 	</resultMap>
 <!-- 	<resultMap type="Member2" id="MemberResultMap">
 		<id property="u_mid" column="U_MID"/>
@@ -77,7 +83,7 @@
 	
 	
 	<!-- 회원 리스트(관리자, 본인, 싫어요 한사람 제외시킴.)-->
-	<select id="selectMlist" resultMap="MemberResultMap" resultType="Member2" parameterType="hashMap">
+	<select id="selectMlist" resultMap="MemberResultMap" resultType="Member" parameterType="hashMap">
 
 	   	SELECT *
 		FROM MEMBER
@@ -93,7 +99,7 @@
 
 	</select>
 	
-	<select id="selectMFlist" resultMap="MemberResultMap" resultType="Member2" parameterType="hashMap">
+	<select id="selectMFlist" resultMap="MemberResultMap" resultType="Member" parameterType="hashMap">
 		SELECT *
 		FROM MEMBER
         WHERE GRADE = '1'
@@ -106,7 +112,7 @@
                              	    WHERE H_SENDER=#{user.user_nick})
               
 	</select>
- 	<select id="selectMFYlist" resultMap="MemberResultMap" resultType="Member2" parameterType="hashMap">
+ 	<select id="selectMFYlist" resultMap="MemberResultMap" resultType="Member" parameterType="hashMap">
 		SELECT *
 		FROM MEMBER
         WHERE GRADE = '1'
@@ -118,7 +124,7 @@
                         		    FROM MHATE 
                              	    WHERE H_SENDER=#{user.user_nick})
 	</select>
-	<select id="selectMMlist" resultMap="MemberResultMap" resultType="Member2" parameterType="hashMap">
+	<select id="selectMMlist" resultMap="MemberResultMap" resultType="Member" parameterType="hashMap">
 		SELECT *
 		FROM MEMBER
         WHERE GRADE = '1'
@@ -130,7 +136,7 @@
                         		    FROM MHATE 
                              	    WHERE H_SENDER=#{user.user_nick})
 	</select>
-	<select id="selectMMYlist" resultMap="MemberResultMap" resultType="Member2" parameterType="hashMap">
+	<select id="selectMMYlist" resultMap="MemberResultMap" resultType="Member" parameterType="hashMap">
 		SELECT *
 		FROM MEMBER
         WHERE GRADE = '1'
@@ -144,7 +150,7 @@
 	</select> 
 	
 	<!-- 사진 리스트 -->
-	<select id="selectPlist" resultMap="MemberImgResultMap" resultType="MemberImg2"  parameterType="hashMap">
+	<select id="selectPlist" resultMap="MemberImgResultMap" resultType="MemberImg"  parameterType="hashMap">
 		SELECT MI.*
 		FROM MEMBERIMG MI
 	   JOIN (SELECT *
