@@ -527,8 +527,8 @@ body {
 					<input type="file" id="sendFile" name="fileImg[]" accept=".png, .gif, .jpg, .jpeg" multiple="multiple">
 					<!-- 채팅방 인덱스번호를 가진 jstl 태그 이용 -->
 					<input type="hidden" name="chatId" value="${chat.chatId}">
-					<!-- 현재 사용자의 이름을 가진 jstl 태그 이용 --> <!-- 수정 -->
-					<input type="hidden" name="chatUser" value="홍길동">
+					<!-- 현재 사용자의 이름을 가진 jstl 태그 이용 -->
+					<input type="hidden" name="chatUser" value="${loginUser.user_nick }">
 					<input type="hidden" name="img_status" value="Y">
 				</form>
 			</div>
@@ -542,15 +542,11 @@ body {
 				</div>
 				<div id="chatImgDivBox">
 					<div class="innerUserImg">
+						<c:forEach var="cImg" items="${userImg}" varStatus="status">
 						<div class="innerImgDiv active">
-							<img alt="first" src="resources/images/exam.jpg">
+							<img alt="first" src="resources/userface/${cImg.renameFileName}">
 						</div>
-						<div class="innerImgDiv">
-							<img alt="second" src="resources/images/exPhoto.jpg">
-						</div>
-						<div class="innerImgDiv">
-							<img alt="third" src="resources/images/sendMsg2.png">
-						</div>
+						</c:forEach>
 						<ul class="slideUl">
 							<li id="slideImg1" class="activeImg"></li>
 							<li id="slideImg2"></li>
@@ -613,8 +609,8 @@ body {
 						</ul>
 						<!-- 채팅방 인덱스번호를 가진 jstl 태그 이용 -->
 						<input type="hidden" name="chatId" value="${chat.chatId}">
-						<!-- 현재 사용자의 이름을 가진 jstl 태그 이용 --> <!-- 수정 -->
-						<input type="hidden" name="chatUser" value="홍길동"> 
+						<!-- 현재 사용자의 이름을 가진 jstl 태그 이용 --> 
+						<input type="hidden" name="chatUser" value="${loginUser.user_nick }"> 
 						<input type="hidden" name="img_status" value="Y">
 					</div>
 					<div style="vertical-align: bottom; text-align:center">
@@ -630,9 +626,8 @@ body {
 	<script type="text/javascript">
 	/* const socket = io("http://172.30.1.36:80"); */
 	const socket = io("http://192.168.130.136:80");
-	/* 수정 */
 	var room = "${chat.chatRoom}";
-	var name = '홍길동';
+	var name = '${loginUser.user_nick }';
 	var chTime = 0;
 		$(function() {
 			// 엔터키 이벤트
@@ -646,7 +641,8 @@ body {
 
 			// 채팅창에 들어왔을 시 socket에 join
 			socket.emit('joinRoom', room, '임시');
-
+			
+			
 			// 채팅창이 닫히면 발동
 			window.onbeforeunload = function() {
 				socket.emit('leaveRoom', room, '임시');
@@ -688,21 +684,39 @@ body {
 				}
 				var cp = data.chatTime+data.chatUser;
 				if(cp != chTime){
-					/* 수정 */
 					chTime = data.chatTime+data.chatUser;
-					if(name == '홍길동'){
-						my_chat(data.crId, data.c_Content, timeP, data.img_status);
+					if(name == '${loginUser.user_nick }'){
+						my_chat(data.crId, data.c_Content, timeP);
 					}else{
-						opponent_chat(data.crId, data.chatUser, data.c_Content, timeP, data.img_status);
+						opponent_chat(data.crId, data.chatUser, data.c_Content, timeP);
 					}
 				}else{
-					/* 수정 */
-					if(name == '홍길동'){
-						my_chat2(data.crId, data.c_Content, data.img_status);
+					if(name == '${loginUser.user_nick }'){
+						my_chat2(data.crId, data.c_Content);
 					}else{									
-						opponent_chat2(data.crId, data.c_Content, data.img_status);
+						opponent_chat2(data.crId, data.c_Content);
 					}
 				}
+				$('#chat_box').animate({
+					scrollTop : $('#chat_box').get(0).scrollHeight
+				}, 100);
+			});
+			
+			//소켓 서버로 부터 sendImg_msg를 통해 이벤트를 받을 경우 
+			socket.on('chatImg_msg', function(data) {
+				var timeP = data.chatTime.split(':');
+				if(timeP[0] > 11){
+					timeP = '오후 '+timeP[0]+":"+timeP[1];
+				}else{
+					timeP = '오전 '+timeP[0]+":"+timeP[1];
+				}
+
+				if(name == '${loginUser.user_nick }'){
+					my_chat(data.crId, data.c_Content, timeP, data.img_status);
+				}else{
+					opponent_chat(data.crId, data.chatUser, data.c_Content, timeP, data.img_status);
+				}
+				
 				$('#chat_box').animate({
 					scrollTop : $('#chat_box').get(0).scrollHeight
 				}, 100);
@@ -710,20 +724,15 @@ body {
 		});
 		// 내 채팅
 		function my_chat(index, msg, time, status) {
-			var contentDiv = $("<div></div>").addClass("chatLine").appendTo(
-					"#chat_box");
+			var contentDiv = $("<div></div>").addClass("chatLine").appendTo("#chat_box");
+			
 			var tableChat = $("<table></table>").addClass("myChat_table")
-					.appendTo(contentDiv);
+			.appendTo(contentDiv);
 			var firstTr = $("<tr></tr>").appendTo(tableChat);
 			var timeTd = $('<td></td>').text(time).addClass("send_time my")
-					.appendTo(firstTr);
-			var addTd;
-			if(status == 'Y'){
-				addTd = $('<td></td>').appendTo(firstTr);
-				$('<img>').attr("src", "resources/chatImg/"+msg).addClass("my_chatImg").appendTo(addTd);
-			}else{
-				addTd = $('<td></td>').text(msg).addClass("my-bubble bubble").appendTo(firstTr);			
-			}
+			.appendTo(firstTr);
+			var addTd = $('<td></td>').text(msg).addClass("my-bubble bubble").appendTo(firstTr);			
+			
 			$("<input>").attr({"type" : "hidden", "name":"crId", "id": index}).appendTo(addTd);
 		}
 
@@ -733,15 +742,8 @@ body {
 			var tableChat = $(".chatLine").last().children(".myChat_table");
 			var addTr = $('<tr></tr>').appendTo(tableChat)
 			// tr의 갯수를 파악하여 rowspan을 한다.
-			tableChat.children("tr").find(".send_time").attr("rowspan",
-					tableChat.children("tr").length);
-			var addTd;
-			if(status == 'Y'){
-				addTd = $('<td></td>').appendTo(addTr);
-				$('<img>').attr("src", "resources/chatImg/"+msg).addClass("my_chatImg").appendTo(addTd);
-			}else{
-				addTd = $('<td></td>').text(msg).addClass("my-bubble2 bubble").appendTo(addTr);
-			}
+			tableChat.children("tr").find(".send_time").attr("rowspan",tableChat.children("tr").length);
+			var addTd = $('<td></td>').text(msg).addClass("my-bubble2 bubble").appendTo(addTr);
 			$("<input>").attr({"type" : "hidden", "name":"crId", "id":index}).appendTo(addTd);
 		}
 		
@@ -759,14 +761,8 @@ body {
 					.addClass("chatImg-box").appendTo(imgTd);
 			var nameTd = $("<td></td>").text(name).attr("colspan", "2")
 					.addClass("name-box").appendTo(firstTr);
-			var addTd;
-			if(status == 'Y'){
-				addTd = $('<td></td>').appendTo(secondTr);
-				$('<img>').attr("src", "resources/chatImg/"+msg).addClass("opponent_chatImg").appendTo(addTd);
-			}else{
-				addTd = $("<td></td>").text(msg).addClass(
+			var addTd = $("<td></td>").text(msg).addClass(
 						"opponent-bubble bubble").appendTo(secondTr);
-			}
 			var timeTd = $('<td></td>').text(time).addClass("send_time opponent")
 					.appendTo(secondTr);
 			$("<input>").attr({"type" : "hidden", "name":"crId", "id":index}).appendTo(addTd);
@@ -774,24 +770,49 @@ body {
 		
 		// 상대방이 연속으로 채팅 시
 		function opponent_chat2(index, msg, status) {
-			var tableChat = $(".chatLine").last().children(
-					".opponentChat_table");
+			var tableChat = $(".chatLine").last().children(".opponentChat_table");
 			var addTr = $('<tr></tr>').appendTo(tableChat);
 			// tr의 갯수를 파악하여 rowspan을 한다.
-			tableChat.children("tr").find(".img-align").attr("rowspan",
-					tableChat.children("tr").length);
-			tableChat.children("tr").find(".send_time").attr("rowspan",
-					tableChat.children("tr").length);
-			var addTd;
-			if(status == 'Y'){
-				addTd = $('<td></td>').appendTo(addTr);
-				$('<img>').attr("src", "resources/chatImg/"+msg).addClass("opponent_chatImg").appendTo(addTd);
-			}else{
-				addTd = $('<td></td>').text(msg).addClass(
-						"opponent-bubble2 bubble").appendTo(addTr);
-			}
+			tableChat.children("tr").find(".img-align").attr("rowspan",tableChat.children("tr").length);
+			tableChat.children("tr").find(".send_time").attr("rowspan",tableChat.children("tr").length);
+			var addTd = $('<td></td>').text(msg).addClass("opponent-bubble2 bubble").appendTo(addTr);
+			
 			$("<input>").attr({"type" : "hidden", "name":"crId", "id":index}).appendTo(addTd);
 		}
+		
+		function my_imgChat(){
+			var contentDiv = $("<div></div>").addClass("chatLine").appendTo("#chat_box");
+			var addTd;
+			var tableChat = $("<table></table>").addClass("myChat_table").appendTo(contentDiv);
+			var firstTr = $("<tr></tr>").appendTo(tableChat);
+			var timeTd = $('<td></td>').text(time).addClass("send_time my").appendTo(firstTr);
+			addTd = $('<td></td>').appendTo(firstTr);
+			$('<img>').attr("src", "resources/chatImg/"+msg).addClass("my_chatImg").appendTo(addTd);
+			
+			$("<input>").attr({"type" : "hidden", "name":"crId", "id": index}).appendTo(addTd);
+		}
+		
+		function opponent_imgChat(){
+			var contentDiv = $("<div></div>").addClass("chatLine").appendTo(
+			"#chat_box");
+			var tableChat = $("<table></table>").addClass("opponentChat_table")
+					.appendTo(contentDiv);
+			var firstTr = $("<tr></tr>").appendTo(tableChat);
+			var secondTr = $("<tr></tr>").appendTo(tableChat);
+			var imgTd = $("<td></td>").attr("rowspan", "2").appendTo(firstTr)
+					.addClass("img-align");
+			var img = $('<img>').attr("src", "resources/img/ex22.jpg")
+					.addClass("chatImg-box").appendTo(imgTd);
+			var nameTd = $("<td></td>").text(name).attr("colspan", "2")
+					.addClass("name-box").appendTo(firstTr);
+			var addTd = $('<td></td>').appendTo(secondTr);
+				$('<img>').attr("src", "resources/chatImg/"+msg).addClass("opponent_chatImg").appendTo(addTd);
+			
+			var timeTd = $('<td></td>').text(time).addClass("send_time opponent")
+					.appendTo(secondTr);
+			$("<input>").attr({"type" : "hidden", "name":"crId", "id":index}).appendTo(addTd);
+		}
+		
 		
 	</script>
 	<!-- 이미지 드래그 모달 -->
@@ -925,7 +946,7 @@ body {
 						
 						for(var i in data){
 							console.log(data[data.length-i-1]);
-							socket.emit("send_msg", '${chat.chatRoom}', data[data.length-i-1]);
+							socket.emit("sendImg_msg", '${chat.chatRoom}', data[data.length-i-1]);
 						}
 					}
 					// 채팅창 scroll 맨뒤로
@@ -956,16 +977,14 @@ body {
 								timeP = '오전 '+timeP[0]+":"+timeP[1];
 							}
 							if(cp != cpTime){
-								/* 수정 */
 								cpTime = data[i].chatTime+data[i].chatUser;
-								if(data[i].chatUser == '홍길동'){
+								if(data[i].chatUser == '${loginUser.user_nick }'){
 									my_reloadChat(data[i].crId, data[i].c_Content, timeP, data[i].img_status);
 								}else{
 									opponent_reloadChat(data[i].crId, data[i].chatUser, data[i].c_Content, timeP, data[i].img_status);
 								}
 							}else{
-								/* 수정 */
-								if(data[i].chatUser == '홍길동'){
+								if(data[i].chatUser == '${loginUser.user_nick }'){
 									my_reloadChat2(data[i].crId, data[i].c_Content, data[i].img_status);
 								}else{									
 									opponent_reloadChat(data[i].crId, data[i].c_Content, data[i].img_status);

@@ -39,6 +39,8 @@ public class ChatController {
 	public ModelAndView connectChatView(ModelAndView mv, @RequestParam("user1") Integer u_mId,
 			@RequestParam("user2") Integer u_mId2) {
 		String chatRoom;
+		System.out.println("u_mId "+u_mId);
+		System.out.println("u_mId2 "+u_mId2);
 		// 번호가 빠른순이 앞에 존재해야 하기 때문에
 		if (u_mId > u_mId2) {
 			chatRoom = u_mId2 + "," + u_mId;
@@ -46,18 +48,21 @@ public class ChatController {
 			chatRoom = u_mId + "," + u_mId2;
 		}
 		ChatInfo chat = chService.selectChat(chatRoom);
-		ArrayList<MemberImg> chatImg;
+		ArrayList<MemberImg> chatImg = new ArrayList<MemberImg>();
+		System.out.println(chat);
 		if (chat != null) {
 			chatImg = chService.findAllImg(chat);
 			mv.addObject("chat", chat).addObject("userImg", chatImg).setViewName("Chat/chatView");
 			
-		}else if(chat.getStatus().equals("N")){
-			mv.addObject("fail", "fail").setViewName("Chat/chatView");
-		}else {
+		}else if(chat == null){
 			// 채팅방 정보가 없을 시 생성하고 전송
 			chat = createChat(chatRoom, u_mId, u_mId2);
 			chatImg = chService.findAllImg(chat);
 			mv.addObject("chat", chat).addObject("userImg", chatImg).setViewName("Chat/chatView");
+		}
+		
+		if(chat.getStatus().equals("N")){
+			mv.addObject("fail", "fail").setViewName("Chat/chatView");
 		}
 		return mv;
 	}
@@ -213,7 +218,7 @@ public class ChatController {
 		response.setContentType("application/json;charset=utf-8");
 		ArrayList<ChatInfo> chatList = chService.selectAllChat(userName);
 		ArrayList<ChatUser> cu = new ArrayList<ChatUser>();
-
+		System.out.println(chatList);
 		if(chatList != null && chatList.size() > 0) {
 			for(ChatInfo c : chatList) {
 				ChatUser user = new ChatUser();
@@ -224,16 +229,17 @@ public class ChatController {
 					user.setUserNick(c.getUserName2());
 					user.setChatId(c.getChatId());
 				}
+				System.out.println(user);
 				cu.add(user);
 			}
 		}
-		
 		cu = chService.findMainImg(cu);
 		/*
 		 * HashMap<String, ArrayList> map = new HashMap<String, ArrayList>();
 		 * map.put("chatRoom", chatList); map.put("user", cu);
 		 */
-		
+		System.out.println("확인용 "+chatList);
+		System.out.println("확인용 "+cu);
 		Gson gson = new Gson();
 		gson.toJson(cu, response.getWriter());
 		

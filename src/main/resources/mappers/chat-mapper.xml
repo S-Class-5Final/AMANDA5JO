@@ -152,13 +152,10 @@
 		#{r_user_Id}, #{r_Type}, #{r_Contents}, SYSDATE, DEFAULT)
 	</insert>
 	
-	<select id="findMainImg" parameterType="java.util.Map" resultMap="ChatUserResultMap">
-			
+	<select id="findMainImg" parameterType="ChatUser" resultMap="ChatUserResultMap">
 			SELECT * FROM CHATUSER
-			WHERE 
-			<foreach collection="list" item="item" separator=" ">
-					USER_NICK = #{item.userNick} AND CHATID = #{item.chatId}
-			</foreach>
+			WHERE USER_NICK = #{userNick} AND CHATID = #{chatId}
+			
 	</select>
 	
 	<select id="findAllImg" parameterType="ChatInfo" resultMap="MemberImgResultMap">
