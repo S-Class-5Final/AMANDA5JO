@@ -620,7 +620,7 @@
           async: false,
           contentType:"application/json;charset=utf-8",
           success: function(testlist) {
-         //    $(".tinder--cards").html(""); // 앞의 카드 비워주기.
+             $(".tinder--cards").html(""); // 앞의 카드 비워주기.
           //   alert(testlist[0].memberlist[user_id]);
             console.log("상대 ID: " + testlist[0].memberlist.user_id);
             console.log(testlist[0].memberlist.user_id + " 의 첫번째 사진 " +testlist[0].imglist[0].renameFileName);
@@ -633,26 +633,28 @@
               console.log(testlist[0]);
               console.log(testlist[1]);
               console.log(Object.keys(testlist).length);
+              
               var listsize = Object.keys(testlist).length;
              $.each(testlist, function(index, value) {
             	indexsize = index;
+
                 var str = 
                            "<div id = card"+(index)+" class=tinder--card >"+
-                           "      <div class=mySlides" +index  +" id=Slides1 style='pointer-events: none;'>"+
-                           "         <img src =${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName + " style='width: 400px; height: 300px;display: block'>"+
+                           "      <div class=mySlides" +index+" id='Slides1' style='pointer-events: none;'>"+
+                           "         <img src =${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName + " style='width: 400px; height: 300px;'>"+
                            "      </div>"+
-                           "      <div class=mySlides"+index+ " id=Slides1 style='pointer-events: none;'>"+
-                           "         <img src =${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName + " style='width: 400px; height: 300px;display: none'>"+
+                           "      <div class=mySlides"+index+ " id='Slides2' style='pointer-events: none;'>"+
+                           "         <img src =${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName + " style='width: 400px; height: 300px;'>"+
                            "      </div>"+
-                           "      <div class=mySlides"+index+" id=Slides1 style='pointer-events: none ;'>"+
-                           "         <img src =${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName + " style='width: 400px; height: 300px;display: none'>"+
+                           "      <div class=mySlides"+index+" id='Slides3' style='pointer-events: none ;'>"+
+                           "         <img src =${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName + " style='width: 400px; height: 300px;'>"+
                            "      </div>"+
-                           "      <a class=prev onclick=plusSlides(-1)>&#10094;</a>"+
-                           "      <a class=next onclick=plusSlides(1)>&#10095;</a>"+
+                           "      <a class=prev onclick=plusSlides(-1,"+index+")>&#10094;</a>"+
+                           "      <a class=next onclick=plusSlides(1,"+index+")>&#10095;</a>"+
                            "      <div style=text-align:center style='pointer-events: none;'>"+
-                           "          <span class=dot onclick=currentSlide(1)></span>"+
-                           "          <span class=dot onclick=currentSlide(2)></span>"+
-                           "          <span class=dot onclick=currentSlide(3)></span>"+
+                           "          <span class=dot onclick=currentSlide(1,"+index+")></span>"+
+                           "          <span class=dot onclick=currentSlide(2,"+index+")></span>"+
+                           "          <span class=dot onclick=currentSlide(3,"+index+")></span>"+
                            "      </div>"+
                            "      <h3 id=tUser-name>"+testlist[index].memberlist.user_nick +"</h3>"+
                            "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
@@ -663,11 +665,13 @@
                        //$("#mySlides1").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
                        //$("#mySlides2").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName);
                        //$("#mySlides3").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName);
-                        
-                  
-                     //  $(".mySlides"+(index)).eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
-                 //      $(".mySlides"+(index+1)).eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName);
-                 //    $(".mySlides"+(index+1)).eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName);
+       $(".mySlides"+(index)).eq(0).css("display","block");
+       $(".mySlides"+(index)).eq(1).css("display","none");
+       $(".mySlides"+(index)).eq(2).css("display","none");	
+                  /* 
+                      $(".mySlides"+(index)).eq(0).css("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
+                       $(".mySlides"+(index)).eq(1).attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName);
+                     $(".mySlides"+(index)).eq(2).attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName); */
              });
            
           },
@@ -1128,22 +1132,63 @@
     <script>
         // 1. 슬라이드가 1(처음)일 때,,,
       var slideIndex = 1;
-      showSlides(slideIndex);
-      
+
       // 2. 다음 슬라이드로 넘어갈 때,,, 
-       function plusSlides(n) {
-        showSlides(slideIndex += n);
+       function plusSlides(n,e) {
+        showSlides(slideIndex += n,e);
       } 
       // 3. 현재 슬라이드 보고 있을 때,,,
-      function currentSlide(n) {
-        showSlides(slideIndex = n);
+      function currentSlide(n,e) {
+        showSlides(slideIndex = n,e);
       }
       
       // 위의 1,2,3 에서 매개변수 갖고와서 돌자.
       // 슬라이드 보여주는 함수
-      function showSlides(n) {
+      function showSlides(n,e) {
           var i;
+          var s = $(".mySlides"+e);
+          console.log(s[0]);
+          console.log(s[1]);
+          console.log(s[2]);
+          console.log("현재 index:" +e + s.eq(0));
+          console.log("현재 index:" +e + s.eq(1));
+          console.log("현재 index:" +e + s.eq(2));
           console.log("현재 n값 : " + n);
+    	   if(n == 0){
+   		   console.log(n);
+   		s.eq(0).css("display","none");
+   		s.eq(1).css("display","none");
+   		s.eq(2).css("display","block");
+   		   slideIndex = 3;
+   	   }
+   	   if(n == 4){
+   		   console.log(n);
+   		s.eq(0).css("display","block");
+   		s.eq(1).css("display","none");
+   		s.eq(2).css("display","none");
+   		   slideIndex = 1;
+   	   }
+   	   if(n == 1){
+   		   console.log(n);
+   		s.eq(0).css("display","block");
+   		s.eq(1).css("display","none");
+   		s.eq(2).css("display","none");	
+      	   }
+   	   if(n == 2){
+   		   console.log(n);
+   		s.eq(0).css("display","none");
+   		s.eq(1).css("display","block");
+   		s.eq(2).css("display","none");
+      	   }
+   	   if(n == 3){
+   		   console.log(n);
+   		s.eq(0).css("display","none");
+   		s.eq(1).css("display","none");
+   		s.eq(2).css("display","block");
+  			
+   	   }   
+
+		}
         // var slides = document.getElementsByClassName("mySlides"); // 사진부분.
 /*             for(var num = 1; num <= 3; num++){ 
         //   var slides = $("#card"+num+" .mySlides"+num);
@@ -1166,7 +1211,7 @@
          //  slides[slideIndex-1].style.display = "block";  
            dots[slideIndex-1].className += " active";
         }  */      
-      } 
+      
    </script>
      
      
