@@ -372,8 +372,8 @@ body {
 		</form>
 		
 	</div>
-<!-- 채팅목록 스크립트 -->
-<script type="text/javascript">
+	<!-- 채팅목록 스크립트 -->
+	<script type="text/javascript">
 		var chatView;
 		
 		$(function(){
@@ -420,19 +420,19 @@ body {
 			$.ajax({
 				url:"chfindChat.do",
 				type:"post",
-				data:{userName : "홍길동"},
+				data:{userName : "${loginUser.user_nick}"},
 				dataType:"json",
 				success:function(data){
 					var roomDiv = $("#chatListView");
 					console.log(data);
 					for(var i in data){
 						/* 수정 */
-						var addRoom = $("<div></div>").attr("onclick", "newWindow('4','"+data[i].uMid+"')").addClass("chatRoomImg").appendTo(roomDiv);
+						var addRoom = $("<div></div>").attr("onclick", "newWindow('${loginUser.u_mid}','"+data[i].uMid+"')").addClass("chatRoomImg").appendTo(roomDiv);
 						var addSignal = $("<p></p>").appendTo(addRoom);
 						if(data[i].conSum > 0){
 							addSignal.addClass("signalChat").text(data[i].conSum);
 						}
-						var chatImg = $("<img>").attr("src", "resources/images/"+data[i].renameFileName).addClass("chatUserImg").appendTo(addRoom);
+						var chatImg = $("<img>").attr("src", "resources/userface/"+data[i].renameFileName).addClass("chatUserImg").appendTo(addRoom);
 						var userName = $("<p></p>").text(data[i].userNick).addClass("chatUserName").appendTo(addRoom);
 						
 					}

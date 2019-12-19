@@ -115,6 +115,7 @@ public class ChatController {
 	@RequestMapping(value = "chAllContent.do")
 	public void allChatContent(HttpServletResponse response, int chatId) throws JsonIOException, IOException {
 		response.setContentType("application/json;charset=utf-8");
+		System.out.println("이거맞니?" + chatId);
 		ArrayList<ChatRoom> chatroom = chService.allChatContent(chatId);
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
@@ -223,10 +224,10 @@ public class ChatController {
 			for(ChatInfo c : chatList) {
 				ChatUser user = new ChatUser();
 				if(c.getUserName().equals(userName)) {
-					user.setUserNick(c.getUserName());
+					user.setUserNick(c.getUserName2());
 					user.setChatId(c.getChatId());
 				}else {
-					user.setUserNick(c.getUserName2());
+					user.setUserNick(c.getUserName());
 					user.setChatId(c.getChatId());
 				}
 				System.out.println(user);

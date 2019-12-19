@@ -967,6 +967,7 @@ body {
 				data:{chatId:"${chat.chatId}"},
 				dataType:"json",
 				success:function(data){
+					console.log(data);
 					if(data != 'fail'){
 						for(var i in data){
 							var cp = data[i].chatTime+data[i].chatUser;
