@@ -23,7 +23,8 @@
       }
       
       body {
-        background: #CCFBFE;
+       /*  background: #CCFBFE; */
+        background: white;
         overflow: hidden;
         font-family: sans-serif;
       }
@@ -379,8 +380,6 @@
       </div>
    </div>
 
-
-   
          <!-- MODAL창 -->
           <div id="myModal" class="modal" style="z-index: 101">
            <div class="modal-content" style="background: #ff6464;">
@@ -645,7 +644,7 @@
             	indexsize = index;
 
                 var str = 
-                           "<div id = card"+(index)+" class=tinder--card >"+
+                           "<div id = card"+(index)+" class=tinder--card  style='border:1px solid lightpink'>"+
                            "      <div class=mySlides" +index+" id='Slides1' style='pointer-events: none;'>"+
                            "         <img src =${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName + " style='width: 400px; height: 300px;'>"+
                            "      </div>"+
@@ -1222,5 +1221,5 @@
      
      
 </body>
-   <jsp:include page="matchingFooter.jsp"/>
+   <%-- <jsp:include page="matchingFooter.jsp"/> --%>
 </html>
