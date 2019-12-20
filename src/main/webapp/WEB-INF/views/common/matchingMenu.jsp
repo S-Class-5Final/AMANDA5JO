@@ -301,8 +301,8 @@ body {
 				</div>
 				
 				<br>
-				   <c:url var="myListbtn" value="myupdatememberlist.do">
-	            <c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
+				      <c:url var="myListbtn" value="myupdatememberlist.do">
+            <c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
 	         </c:url>
 	         <div class="button button--flip">
 	            <button class="btn button__face"
@@ -312,7 +312,7 @@ body {
 	         </div>
 	         <br>
 	         
-	         <c:url var="myChatListbtn" value="blist.do">
+	         <c:url var="myChatListbtn" value="mylist.do">
 	            <c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
 	         </c:url>
 	         <div class="button button--flip">
@@ -321,6 +321,7 @@ body {
 	            <button class="btn button__top" style="margin-left: 133px;"
 	               onclick="location.href='${myChatListbtn}'">ChatList</button>
 	         </div>
+           
 			</div>
 		</div>
 

@@ -5,13 +5,14 @@ import java.sql.Date;
 import oracle.sql.NUMBER;
 
 public class Report {
-	private int rkey; //  ì‹œí€¸ìŠ¤ ì‹ ê³ ë²ˆí˜¸;
-	private int u_mid; // ì‹œí€¸ìŠ¤ íšŒì›ë²ˆí˜¸;
-	private String r_user_id; // ì‹ ê³ ë‹¹í•œ ìœ ì € ì•„ì´ë”” 
-	private String r_type;  //1.ë¶€ì ì ˆí•œ ì‚¬ì§„ 2. ìŠ¤íŒ¸ìœ¼ë¡œ ì˜ì‹¬ 3.ë¶€ì ì ˆí•œ ë©”ì„¸ì§€ 4.ê¸°íƒ€ (y,n) 
-	private String r_contents; // ì‹ ê³ ë‚´ìš©
-	private Date r_date; // ì‹ ê³ ë‹¹í•œ ë§ˆì§€ë§‰ ë‚ ì§œ
-	private String status; // ì‹ ê³ ì— ëŒ€í•œ ê´€ë¦¬ì í™•ì¸ ì—¬ë¶€
+	
+	private int rkey; //  ½ÃÄı½º ½Å°í¹øÈ£;
+	private int u_mid; // ½ÃÄı½º È¸¿ø¹øÈ£;
+	private String r_user_id; // ½Å°í´çÇÑ À¯Àú ¾ÆÀÌµğ 
+	private String r_type;  //1.ºÎÀûÀıÇÑ »çÁø 2. ½ºÆÔÀ¸·Î ÀÇ½É 3.ºÎÀûÀıÇÑ ¸Ş¼¼Áö 4.±âÅ¸ (y,n) 
+	private String r_contents; // ½Å°í³»¿ë
+	private Date r_date; // ½Å°í´çÇÑ ¸¶Áö¸· ³¯Â¥
+	private String status; // ½Å°í¿¡ ´ëÇÑ °ü¸®ÀÚ È®ÀÎ ¿©ºÎ
 	public Report() {
 	}
 
