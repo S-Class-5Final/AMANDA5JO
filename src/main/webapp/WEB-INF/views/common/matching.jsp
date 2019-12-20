@@ -275,7 +275,8 @@
         margin-left: 43%;
       
         /* background: linear-gradient(135deg, rgba(85,239,203,1) 0%,rgba(30,87,153,1) 0%,rgba(85,239,203,1) 0%,rgba(91,202,255,1) 100%); */
-        background: linear-gradient(135deg, rgba(85,239,203,1) 0%,rgba(449,87,153,1) 0%,rgba(561,239,203,1) 0%,rgba(463,202,255,1) 100%);;
+        /* background: linear-gradient(135deg, rgba(85,239,203,1) 0%,rgba(449,87,153,1) 0%,rgba(561,239,203,1) 0%,rgba(463,202,255,1) 100%); */
+        background: #ff6464;
         background-color: #fefefe;
         padding: 20px;
         border: 1px solid #888;
@@ -382,7 +383,7 @@
    
          <!-- MODAL창 -->
           <div id="myModal" class="modal" style="z-index: 101">
-           <div class="modal-content">
+           <div class="modal-content" style="background: #ff6464;">
               <span class="closeModal">&times;</span> 
              <h2 align="center" style="margin-top: -8px;margin-bottom: 10px;"></h2>
              <h2 align="center">PHOTOS</h2>
@@ -405,7 +406,8 @@
                var btn = document.getElementById("infoBtn");
                var span = document.getElementsByClassName("closeModal")[0];
    
-               function infoBtnn() {
+               function infoBtnn(e) {
+            	   console.log(infoView[e]);
                  modal.style.display = "block";
                }
                
@@ -420,6 +422,8 @@
                } 
          </script> 
 <script>
+
+ var infoView;
    // ajax의 작업을 먼저 완료하고, 그다음에 다큐먼트들을 긁어온다음, 카드들을 생성해야되.
 
         // onload 이벤트보다 먼저 발생한다. 빠른 실행속도가 필요할때 적합하다.
@@ -526,7 +530,7 @@
                 $.ajax({
                     url:"mLike.do",
                      type:"get",
-                     data: {sender: "${loginUser2.user_nick }", receiver: latest},
+                     data: {u_mid: "${loginUser2.u_mid }",sender: "${loginUser2.user_id }", receiver: latest},
                      success: function(data) {
                         if(data == "success"){
                            alert("데이터 삽입 성공");
@@ -606,7 +610,6 @@
 
          
     // ajax 카드만들기 함수.
-    // ajax 카드만들기 함수.
     var indexsize = null;
     function makeCard(parameter) {
        $.ajax({
@@ -634,6 +637,9 @@
               console.log(testlist[1]);
               console.log(Object.keys(testlist).length);
               
+              infoView = testlist;
+              
+              
               var listsize = Object.keys(testlist).length;
              $.each(testlist, function(index, value) {
             	indexsize = index;
@@ -659,7 +665,7 @@
                            "      <h3 id=tUser-name>"+testlist[index].memberlist.user_nick +"</h3>"+
                            "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
                            "      <br>"+
-                           "     <button id=infoBtn type=button onclick=infoBtnn()><img src='${contextPath }/resources/images/info5.png'></button>"+
+                         /*   "     <button id=infoBtn type=button onclick=infoBtnn("+ index +")><img src='${contextPath }/resources/images/info5.png'></button>"+ */
                            "</div>";
                        $(".tinder--cards").append(str);
                        //$("#mySlides1").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
@@ -717,7 +723,7 @@
           btn1 = $(this).val();
          alert("변수에담자" + btn1); 
          makeCard(btn1);
-         
+          
          
          
           var tinderContainer = document.querySelector('.tinder');
@@ -1050,7 +1056,6 @@
               });
             });
             
-            
          /* ----------- */
          showSlides();
          /* ----------- */
@@ -1154,7 +1159,7 @@
           console.log("현재 index:" +e + s.eq(1));
           console.log("현재 index:" +e + s.eq(2));
           console.log("현재 n값 : " + n);
-    	   if(n == 0){
+       if(n == 0){
    		   console.log(n);
    		s.eq(0).css("display","none");
    		s.eq(1).css("display","none");
