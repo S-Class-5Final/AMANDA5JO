@@ -36,6 +36,6 @@ public interface ChatService {
 	
 	public ArrayList<ChatUser> findMainImg(ArrayList<ChatUser> cu);
 	
-	public ArrayList<MemberImg> findAllImg(ChatInfo chat);
+	public ArrayList<MemberImg> findAllImg(String chat);
 	
 }

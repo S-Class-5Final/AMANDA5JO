@@ -37,7 +37,7 @@ public class ChatController {
 	@SuppressWarnings("null")
 	@RequestMapping(value = "chChat.do")
 	public ModelAndView connectChatView(ModelAndView mv, @RequestParam("user1") Integer u_mId,
-			@RequestParam("user2") Integer u_mId2) {
+			@RequestParam("user2") Integer u_mId2, String userId) {
 		String chatRoom;
 		System.out.println("u_mId "+u_mId);
 		System.out.println("u_mId2 "+u_mId2);
@@ -49,21 +49,33 @@ public class ChatController {
 		}
 		ChatInfo chat = chService.selectChat(chatRoom);
 		ArrayList<MemberImg> chatImg = new ArrayList<MemberImg>();
-		System.out.println(chat);
+		String findOpp = "";
 		if (chat != null) {
-			chatImg = chService.findAllImg(chat);
+			if(chat.getUser_Id().equals(userId)) {
+				findOpp = chat.getUser_Id2();
+			}else {
+				findOpp = chat.getUser_Id();
+			}
+			chatImg = chService.findAllImg(findOpp);
+			
 			mv.addObject("chat", chat).addObject("userImg", chatImg).setViewName("Chat/chatView");
 			
 		}else if(chat == null){
 			// 채팅방 정보가 없을 시 생성하고 전송
 			chat = createChat(chatRoom, u_mId, u_mId2);
-			chatImg = chService.findAllImg(chat);
+			if(chat.getUser_Id().equals(userId)) {
+				findOpp = chat.getUser_Id2();
+			}else {
+				findOpp = chat.getUser_Id();
+			}
+			chatImg = chService.findAllImg(findOpp);
 			mv.addObject("chat", chat).addObject("userImg", chatImg).setViewName("Chat/chatView");
 		}
 		
 		if(chat.getStatus().equals("N")){
 			mv.addObject("fail", "fail").setViewName("Chat/chatView");
 		}
+		System.out.println("시발 왜 안되냐"+chatImg);
 		return mv;
 	}
 
@@ -230,7 +242,6 @@ public class ChatController {
 					user.setUserNick(c.getUserName());
 					user.setChatId(c.getChatId());
 				}
-				System.out.println(user);
 				cu.add(user);
 			}
 		}
@@ -239,7 +250,6 @@ public class ChatController {
 		 * HashMap<String, ArrayList> map = new HashMap<String, ArrayList>();
 		 * map.put("chatRoom", chatList); map.put("user", cu);
 		 */
-		System.out.println("확인용 "+chatList);
 		System.out.println("확인용 "+cu);
 		Gson gson = new Gson();
 		gson.toJson(cu, response.getWriter());

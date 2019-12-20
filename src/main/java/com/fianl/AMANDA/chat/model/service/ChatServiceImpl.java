@@ -93,7 +93,7 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public ArrayList<MemberImg> findAllImg(ChatInfo chat) {
+	public ArrayList<MemberImg> findAllImg(String chat) {
 		return chDao.findAllImg(chat);
 	}
 

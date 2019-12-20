@@ -78,7 +78,7 @@
 					<img src="resources/images/paysuccess.png"style="width: 85px; height: 85px; margin-top: 5%">
 				</td>
 				<td>
-					<p class="success"> 결제가 완료되었습니다.</p>
+					<p class="success">결제가 완료되었습니다.</p>
 				</td>
 			</tr>
 		</table>

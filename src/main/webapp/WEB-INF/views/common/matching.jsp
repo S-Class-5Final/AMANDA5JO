@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -28,6 +29,7 @@
       }
       
       .tinder {
+
         width: 100vw;
         height: 78vh;/* 카드랑 버튼 위치 */
         overflow: hidden;
@@ -61,6 +63,7 @@
         position: absolute;
         width: 100px;
         margin-left: -50px;
+        
       }
       
       .tinder_love .fa-heart {
@@ -246,6 +249,7 @@
          cursor: help;
          width:35px; 
          height: 35px;
+         
       }
       
       /* 모달창 -----------------------------------------*/
@@ -316,7 +320,8 @@
         position: relative;
         overflow:hidden;
         transition: .3s;
-        &:after {
+        }
+        /* :after {
           position: absolute;
           transition: .3s;
           content: '';
@@ -324,9 +329,18 @@
           left: 50%;
           bottom: 0;
           height: 3px;
-          background: #f7f7f7;
-        }
-            
+          background: #f7f7f7; 
+        }*/
+        
+/*      #Slides1{
+    display: block;
+    }
+    #Slides2{
+    display: none;
+    }
+    #Slides3{
+    display: none;
+    }  */
   </style>
 </head>
    <jsp:include page="matchingMenu.jsp"/>
@@ -346,24 +360,13 @@
            </div>
            
            <div id="selectGay" style="z-index: 100;">
-                 <button type="button" class="gayBtn" id="gayBtn1" value="F">W</button>&nbsp;&nbsp;
-                 <button type="button" class="gayBtn" id="gayBtn2" value="FY">&nbsp;W ♥ W&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <button type="button" class="gayBtn" id="gayBtn3" value="M">M</button>&nbsp;&nbsp;
-                 <button type="button" class="gayBtn" id="gayBtn4" value="MY">&nbsp;M ♥ M&nbsp;</button>
+                 <button class="gayBtn" id="gayBtn1" value="F">W</button>&nbsp;&nbsp;
+                 <button class="gayBtn" id="gayBtn2" value="FY">&nbsp;W ♥ W&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <button class="gayBtn" id="gayBtn3" value="M">M</button>&nbsp;&nbsp;
+                 <button class="gayBtn" id="gayBtn4" value="MY">&nbsp;M ♥ M&nbsp;</button>
            </div>
-                        
-  <%--       
-            <h2 style="color: black;">맴버 : ${mlist }</h2> 
-             <br>
-             <h2 style="color: black;">사진 : ${plist[0] }</h2> 
-          <br>
-             <h2 style="color: black;">로그인 정보 : ${loginUser }</h2> 
-             <br>
-             <h2 style="color: black;">세션으로 로그인 정보  : ${loginUser2.user_nick }</h2> 
-             <h2 style="color: black;">세션으로 로그인 정보 중 회원번호   : ${loginUser2.u_mid }</h2> 
-   --%>
+
            <div class="tinder--cards"> 
-            <!-- ajax에서 만든 카드 들어가는 자리. -->
            </div>  
       
            <div class="tinder--buttons">
@@ -374,15 +377,6 @@
            </div>
       </div>
    </div>
-   
-   
-   
-   <%-- <c:forEach var="mmlist" items="${mlist }" varStatus="status">
-   
-       <div style="width: 300px; height: 300px; background: black;">안녕</div>
-   
-   </c:forEach>
- --%>
 
 
    
@@ -390,7 +384,7 @@
           <div id="myModal" class="modal" style="z-index: 101">
            <div class="modal-content">
               <span class="closeModal">&times;</span> 
-             <h2 align="center" style="margin-top: -8px;margin-bottom: 10px;">${loginUser.user_nick }</h2>
+             <h2 align="center" style="margin-top: -8px;margin-bottom: 10px;"></h2>
              <h2 align="center">PHOTOS</h2>
              <div style="width:auto; height:62%; background: white;">
                 
@@ -403,14 +397,15 @@
                </div>
            </div>
          </div> 
+         
 </div>
-
-  <script>
+ 
+           <script>
                var modal = document.getElementById("myModal");
                var btn = document.getElementById("infoBtn");
                var span = document.getElementsByClassName("closeModal")[0];
    
-               function infoBtnn() {   
+               function infoBtnn() {
                  modal.style.display = "block";
                }
                
@@ -424,20 +419,23 @@
                  }
                } 
          </script> 
-
- 
 <script>
    // ajax의 작업을 먼저 완료하고, 그다음에 다큐먼트들을 긁어온다음, 카드들을 생성해야되.
-      
-         
-       
-        makeCard("");
-       
-            
-   //makeCard("");
 
+        // onload 이벤트보다 먼저 발생한다. 빠른 실행속도가 필요할때 적합하다.
+       /*  window.addEventListener('DOMContentLoaded', function(){ 
+           //makeAfterCard("");
+          makeCard("");
+           
+        })
+      window.onload = function() {
+         makeCard("");
+      } */
+         makeCard("");
     // 자동실행 부분
-    $(function() {
+    $(function(){
+       
+   //makeAfterCard("");
       var tinderContainer = document.querySelector('.tinder');
       var allCards = document.querySelectorAll('.tinder--card');
       var nope = document.getElementById('nope');
@@ -452,7 +450,6 @@
           card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 30 * index + 'px)';
           card.style.opacity = (10 - index) / 10;
         });
-        
         tinderContainer.classList.add('loaded');
       }
       
@@ -540,7 +537,8 @@
                                +"message: " + request.responseText
                                +"error: " + errorData);
                      }
-                }); 
+                });
+                
           } else { // 취소 누를 시 카드 움직임
             alert("취소 클릭됨");
                card.style.transform = 'translate(-' + moveOutWidth + 'px, -100px) rotate(30deg)';
@@ -578,10 +576,39 @@
 
     
     
+       /* function makeAfterCard(parameter){
+         $.ajax({
+             url:"mList.do",
+             type:"get",
+             data: {
+                       loginUser: "${loginUser2.user_nick }",
+                       genderSelect: parameter
+                   },
+             dataType: "json",
+             async: false,
+             contentType:"application/json;charset=utf-8",
+             success: function(data) {
+                $.each(data.list, function(index, value) {
+               console.log(".mySlides"+(index+1));             
+                   $(".mySlides"+(index+1)).eq(0).find("img").attr("src","${contextPath }/resources/userface/201912172026120.jpg");
+                   $(".mySlides"+(index+1)).eq(1).find("img").attr("src","${contextPath }/resources/userface/${sessionScope.plist[1].renameFileName}");
+                   $(".mySlides"+(index+1)).eq(2).find("img").attr("src","${contextPath }/resources/userface/${plist[2].renameFileName}");
+                });
+             },
+             error:function(request, status, errorData){
+                alert("매칭 에이젝스 error code: " + request.status + "\n"
+                      +"message: " + request.responseText
+                      +"error: " + errorData);
+             }
+          });  
+         }  */
     
-    
-    
+
+         
     // ajax 카드만들기 함수.
+    // ajax 카드만들기 함수.
+    var indexsize = null;
+    var chatIndex = 0;
     function makeCard(parameter) {
        $.ajax({
           url:"mList.do",
@@ -594,7 +621,7 @@
           async: false,
           contentType:"application/json;charset=utf-8",
           success: function(testlist) {
-         //    $(".tinder--cards").html(""); // 앞의 카드 비워주기.
+             $(".tinder--cards").html(""); // 앞의 카드 비워주기.
           //   alert(testlist[0].memberlist[user_id]);
             console.log("상대 ID: " + testlist[0].memberlist.user_id);
             console.log(testlist[0].memberlist.user_id + " 의 첫번째 사진 " +testlist[0].imglist[0].renameFileName);
@@ -604,37 +631,54 @@
             console.log(testlist[1].memberlist.user_id + " 의 첫번째 사진 " +testlist[1].imglist[0].renameFileName);
             console.log(testlist[1].memberlist.user_id + " 의 두번째 사진 " +testlist[1].imglist[1].renameFileName);
             console.log(testlist[1].memberlist.user_id + " 의 세번째 사진 " +testlist[1].imglist[2].renameFileName);
-           	console.log(testlist[0]);
-           	console.log(testlist[1]);
-           	console.log(Object.keys(testlist).length);
-           	var listsize = Object.keys(testlist).length;
-          /*   $.each(testlist.size(), function(index, value) {
+              console.log(testlist[0]);
+              console.log(testlist[1]);
+              console.log(Object.keys(testlist).length);
+              
+              chatConnList = testlist;
+              
+              var listsize = Object.keys(testlist).length;
+             $.each(testlist, function(index, value) {
+            	indexsize = index;
+				
                 var str = 
-                           "<div id = card"+(index+1)+" class=tinder--card>"+
-                           "      <div class='mySlides"+(index+1)+" fade' style='pointer-events: none;'>"+
-                           "         <img src='${contextPath }/resources/userface/${plist[0].renameFileName}' style='width: 400px; height: 300px;'>"+
+                           "<div id = card"+(index)+" class=tinder--card >"+
+                           "      <div class=mySlides" +index+" id='Slides1' style='pointer-events: none;'>"+
+                           "         <img src =${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName + " style='width: 400px; height: 300px;'>"+
                            "      </div>"+
-                           "      <div class='mySlides"+(index+1)+" fade' style='pointer-events: none;'>"+
-                           "         <img src='${contextPath }/resources/userface/${plist[1].renameFileName}' style='width: 400px; height: 300px;'>"+
+                           "      <div class=mySlides"+index+ " id='Slides2' style='pointer-events: none;'>"+
+                           "         <img src =${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName + " style='width: 400px; height: 300px;'>"+
                            "      </div>"+
-                           "      <div class='mySlides"+(index+1)+" fade' style='pointer-events: none;'>"+
-                           "         <img src='${contextPath }/resources/userface/${plist[2].renameFileName}' style='width: 400px; height: 300px;'>"+
+                           "      <div class=mySlides"+index+" id='Slides3' style='pointer-events: none ;'>"+
+                           "         <img src =${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName + " style='width: 400px; height: 300px;'>"+
                            "      </div>"+
-                           "      <a class=prev onclick=plusSlides(-1)>&#10094;</a>"+
-                           "      <a class=next onclick=plusSlides(1)>&#10095;</a>"+
+                           "      <a class=prev onclick=plusSlides(-1,"+index+")>&#10094;</a>"+
+                           "      <a class=next onclick=plusSlides(1,"+index+")>&#10095;</a>"+
                            "      <div style=text-align:center style='pointer-events: none;'>"+
-                           "          <span class=dot onclick=currentSlide(1)></span>"+
-                           "          <span class=dot onclick=currentSlide(2)></span>"+
-                           "          <span class=dot onclick=currentSlide(3)></span>"+
+                           "          <span class=dot onclick=currentSlide(1,"+index+")></span>"+
+                           "          <span class=dot onclick=currentSlide(2,"+index+")></span>"+
+                           "          <span class=dot onclick=currentSlide(3,"+index+")></span>"+
                            "      </div>"+
-                           "      <h3 id=tUser-name>"+mlist[index].user_nick +"</h3>"+
-                           "      <p id=tUser-summary>"+mlist[index].user_into +"</p>"+
+                           "      <h3 id=tUser-name>"+testlist[index].memberlist.user_nick +"</h3>"+
+                           "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
+                           "      <p id=tUser-umid>"+testlist[index].memberlist.u_mid +"</p>"+
                            "      <br>"+
                            "     <button id=infoBtn type=button onclick=infoBtnn()><img src='${contextPath }/resources/images/info5.png'></button>"+
+                           "     <input type='hidden' id='connChat"+ index +"' value='"+ testlist[index].memberlist.u_mid +"'>"+
                            "</div>";
-                       $(".tinder--cards").append(str);    
-             });*/
-           
+                       $(".tinder--cards").append(str);
+                       //$("#mySlides1").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
+                       //$("#mySlides2").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName);
+                       //$("#mySlides3").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName);
+       $(".mySlides"+(index)).eq(0).css("display","block");
+       $(".mySlides"+(index)).eq(1).css("display","none");
+       $(".mySlides"+(index)).eq(2).css("display","none");	
+                  /* 
+                      $(".mySlides"+(index)).eq(0).css("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
+                       $(".mySlides"+(index)).eq(1).attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName);
+                     $(".mySlides"+(index)).eq(2).attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName); */
+             });
+            console.log(chatConnList);
           },
           error:function(request, status, errorData){
              alert("매칭 에이젝스 error code: " + request.status + "\n"
@@ -643,17 +687,34 @@
           },
        });
     } 
+       
 </script>
+             <%-- 
+                <h2  style="color: black;">사진 : ${plist[0].user_nick }</h2>           
+                <h2  style="color: black;">사진 : ${plist[0].renameFileName }</h2>   
+             --%>
+ <!--     <script type="text/javascript">
+        // n번째 카드의 아이디 값 가져오기.
+        for(var i = 1; i < ${mlist.size()}; i ++){
+           //console.log("닉네임 :"+ ${plist[i].user_nick});
+           //alert(${sessionScope.plist});
+           alert(${plist[i]});
+           alert(${plist[i].user_nick});
+           //alert($("#tUser-name").text());
+           //alert($("#card"+i).find("#tUser-name").text());
+           aa = $("#card"+i).find("#tUser-name").text();
+         alert(aa);
+          /* while(aa != ${plist}){
+            alert("불일치");
+         }   */
            
-     
+        }
+     </script> -->
 
 
     <!-- selectGay 버튼  -->
     <script>
-    var gayBtn1 = $("#gayBtn1");
-   		 gayBtn1.click(function(){
-    	   alert("?");
-       
+       $("#gayBtn1").click(function() {
          $(this).css('background','#ff8282').css('color','white');
          $("#gayBtn2").css('background','white').css('color','#ff8282');
          $("#gayBtn3").css('background','white').css('color','#ff8282');
@@ -664,7 +725,7 @@
          
          
          
-          	var tinderContainer = document.querySelector('.tinder');
+          var tinderContainer = document.querySelector('.tinder');
             var allCards = document.querySelectorAll('.tinder--card');
             var nope = document.getElementById('nope');
             var love = document.getElementById('love');
@@ -734,9 +795,13 @@
                   initCards();
                 }
               });
-            }); 
+            });
+            
+            /* ----------- */
+            showSlides();
+           /* ----------- */
+            
       });
-       
       $("#gayBtn2").click(function() {
          $(this).css('background','#ff8282').css('color','white');
          $("#gayBtn1").css('background','white').css('color','#ff8282');
@@ -818,6 +883,10 @@
               });
             });
          
+            /* ----------- */
+            showSlides();
+           /* ----------- */
+            
       });
       $("#gayBtn3").click(function() {
          $(this).css('background','#ff8282').css('color','white');
@@ -900,6 +969,9 @@
               });
             });
          
+            /* ----------- */
+            showSlides();
+            /* ----------- */
       
       });
       $("#gayBtn4").click(function() {
@@ -910,50 +982,7 @@
          btn1 = $(this).val();
          alert("변수에담자" + btn1); 
          makeCard(btn1);
-         
-           // 1. 슬라이드가 1(처음)일 때,,,
-            var slideIndex = 1;
-            showSlides(slideIndex);
-            
-            // 2. 다음 슬라이드로 넘어갈 때,,, 
-             function plusSlides(n) {
-              showSlides(slideIndex += n);
-            } 
-            // 3. 현재 슬라이드 보고 있을 때,,,
-            function currentSlide(n) {
-              showSlides(slideIndex = n);
-            }
-            
-            // 위의 1,2,3 에서 매개변수 갖고와서 돌자.
-            // 슬라이드 보여주는 함수
-            function showSlides(n) {
-                var i;
-              // var slides = document.getElementsByClassName("mySlides"); // 사진부분.
-            /*
-              for(var num = 1; num <= ${mlist.size()} ; num++){ 
-              //   var slides = $("#card"+num+" .mySlides"+num);
-                var slides = $(".mySlides"+num);
-                var dots = document.getElementsByClassName("dot"); // 사진 넘길 수 있는 점들.
-                 
-                 if (n > slides.length){ 
-                    slideIndex = 1
-                 }   
-                 if (n < 1) {
-                    slideIndex = slides.length
-                 }
-                 for (i = 0; i < slides.length; i++) {
-                       slides[i].style.display = "none";  
-                 }
-                 for (i = 0; i < dots.length; i++) {
-                     dots[i].className = dots[i].className.replace(" active", "");
-                 }
-                 slides[slideIndex-1].style.display = "block";  
-                 dots[slideIndex-1].className += " active";
-              }  
-              */
-              
-            }
-         
+      
           var tinderContainer = document.querySelector('.tinder');
             var allCards = document.querySelectorAll('.tinder--card');
             var nope = document.getElementById('nope');
@@ -1025,7 +1054,11 @@
                 }
               });
             });
-         
+            
+            
+         /* ----------- */
+         showSlides();
+         /* ----------- */
       });
     </script>
      
@@ -1040,38 +1073,140 @@
     
     <!-- superLike 버튼 누를 시 -->
     <script>
+    var chatConnList;
        $("#superLike").on('click', function() {
-         // 상대방과 바로 채팅으로 연결되어야함. 
-         alert("상대방과 채팅으로 넘어갑니다.");   
+    	 var chatIndex = $(".tinder--card.removed").length+1;
+    	 
+    	 var chatConnIndex = $(".tinder--card:nth-child("+chatIndex+")").children("input").val();
+    	 console.log(chatConnIndex);
+         
+         if(chatConnIndex > 0){
+	         newWindow("${loginUser.u_mid}", chatConnIndex);	        	 
+         }
       
       });
+       
     </script>
      
     <!-- 이미지 슬라이드 관련 --> 
-     <script>
+<!--     <script>
+
+      var slideIndex = 1;
+      console.log("처음슬라이드 갯수 : " + slideIndex);
+
+       function plusSlides(n) {
+    	   var size = slideIndex+=n;
+    	   if(size < 0){
+    		   console.log(size);
+    	   }
+    	   if(size == 0){
+    		   console.log(size);
+       		$("#Slides1").attr("display","none");
+   			$("#Slides2").attr("display","none");
+   			$("#Slides3").attr("display","block");
+    		   slideIndex = 3;
+    	   }
+    	   if(size == 4){
+    		   console.log(size);
+      			$("#Slides1").css("display","block");
+     			$("#Slides2").css("display","none");
+     			$("#Slides3").css("display","none");
+    		   slideIndex = 1;
+    	   }
+    	   if(size == 1){
+    		   console.log(size);
+       		$("#Slides1").css("display","block");
+      		$("#Slides2").css("display","none");
+      		$("#Slides3").css("display","none");	
+       	   }
+    	   if(size == 2){
+    		   console.log(size);
+       		$("#Slides1").css("display","none");
+      		$("#Slides2").css("display","block");
+      		$("#Slides3").css("display","none");
+       	   }
+    	   if(size == 3){
+    		   console.log(size);
+    		$("#Slides1").css("display","none");
+   			$("#Slides2").css("display","none");
+   			$("#Slides3").css("display","block");
+   			
+    	   }
+    	   console.log("다음 슬라이드를 눌렀을때 n 값: " +size);
+      }
+      
+    	  
+    	
+     
+   </script> -->
+       </script>
+     
+    <!-- 이미지 슬라이드 관련 --> 
+    <script>
         // 1. 슬라이드가 1(처음)일 때,,,
       var slideIndex = 1;
-      showSlides(slideIndex);
-      
+
       // 2. 다음 슬라이드로 넘어갈 때,,, 
-       function plusSlides(n) {
-        showSlides(slideIndex += n);
+       function plusSlides(n,e) {
+        showSlides(slideIndex += n,e);
       } 
       // 3. 현재 슬라이드 보고 있을 때,,,
-      function currentSlide(n) {
-        showSlides(slideIndex = n);
+      function currentSlide(n,e) {
+        showSlides(slideIndex = n,e);
       }
       
       // 위의 1,2,3 에서 매개변수 갖고와서 돌자.
       // 슬라이드 보여주는 함수
-       function showSlides(n) {
+      function showSlides(n,e) {
           var i;
+          var s = $(".mySlides"+e);
+          console.log(s[0]);
+          console.log(s[1]);
+          console.log(s[2]);
+          console.log("현재 index:" +e + s.eq(0));
+          console.log("현재 index:" +e + s.eq(1));
+          console.log("현재 index:" +e + s.eq(2));
+          console.log("현재 n값 : " + n);
+    	   if(n == 0){
+   		   console.log(n);
+   		s.eq(0).css("display","none");
+   		s.eq(1).css("display","none");
+   		s.eq(2).css("display","block");
+   		   slideIndex = 3;
+   	   }
+   	   if(n == 4){
+   		   console.log(n);
+   		s.eq(0).css("display","block");
+   		s.eq(1).css("display","none");
+   		s.eq(2).css("display","none");
+   		   slideIndex = 1;
+   	   }
+   	   if(n == 1){
+   		   console.log(n);
+   		s.eq(0).css("display","block");
+   		s.eq(1).css("display","none");
+   		s.eq(2).css("display","none");	
+      	   }
+   	   if(n == 2){
+   		   console.log(n);
+   		s.eq(0).css("display","none");
+   		s.eq(1).css("display","block");
+   		s.eq(2).css("display","none");
+      	   }
+   	   if(n == 3){
+   		   console.log(n);
+   		s.eq(0).css("display","none");
+   		s.eq(1).css("display","none");
+   		s.eq(2).css("display","block");
+  			
+   	   }   
+
+		}
         // var slides = document.getElementsByClassName("mySlides"); // 사진부분.
-     
-      /*     
-        for(var num = 1; num <= ${mlist.size()} ; num++){ 
+/*             for(var num = 1; num <= 3; num++){ 
         //   var slides = $("#card"+num+" .mySlides"+num);
-          var slides = $(".mySlides"+num);
+          var slides = $("#Slides1");
+          console.log(slides);
           var dots = document.getElementsByClassName("dot"); // 사진 넘길 수 있는 점들.
            
            if (n > slides.length){ 
@@ -1086,12 +1221,10 @@
            for (i = 0; i < dots.length; i++) {
                dots[i].className = dots[i].className.replace(" active", "");
            }
-           slides[slideIndex-1].style.display = "block";  
+         //  slides[slideIndex-1].style.display = "block";  
            dots[slideIndex-1].className += " active";
-        }   
-        
-        */
-      }
+        }  */      
+      
    </script>
      
      

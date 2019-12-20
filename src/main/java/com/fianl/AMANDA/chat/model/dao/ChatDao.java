@@ -79,13 +79,16 @@ public class ChatDao {
 	public ArrayList<ChatUser> findMainImg(ArrayList<ChatUser> cu) {
 		ArrayList<ChatUser> chat = new ArrayList<ChatUser>();
 		for(ChatUser c : cu) {
-			chat.add((ChatUser)sqlSession.selectOne("ChatMapper.findMainImg", c));
+			ChatUser chatting = sqlSession.selectOne("ChatMapper.findMainImg", c);
+			if(chatting != null) {
+				chat.add(chatting);
+			}
 		}
 		
 		return chat;
 	}
 
-	public ArrayList<MemberImg> findAllImg(ChatInfo chat) {
+	public ArrayList<MemberImg> findAllImg(String chat) {
 		return (ArrayList)sqlSession.selectList("ChatMapper.findAllImg", chat);
 	}
 	

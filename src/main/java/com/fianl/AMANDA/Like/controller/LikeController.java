@@ -23,6 +23,7 @@ import com.fianl.AMANDA.Like.model.vo.Like;
 import com.fianl.AMANDA.Message.model.vo.Message;
 import com.fianl.AMANDA.member.model.vo.Member;
 import com.fianl.AMANDA.member.model.vo.MemberImg;
+import com.google.api.client.http.HttpResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
@@ -33,11 +34,13 @@ public class LikeController {
 	LikeService lService;
 	
 	@RequestMapping("likeTo.do")
-	public void likeTo(HttpServletResponse response, Member m) throws JsonIOException, IOException {
+	public void likeTo(HttpServletResponse response, Member m, Like lk, String user_id) throws JsonIOException, IOException {
 		response.setContentType("application/json;charset=utf-8");
 		ArrayList<Member> result = lService.selectSender(m);
 		ArrayList<MemberImg> result2 = lService.selectSenderImg(m);
 		Map<String, Object> map = new HashMap<String, Object>();
+		lk.setReceiver(user_id);
+		int likeUpdate = lService.updateLike(lk);
 		
 		map.put("info", result);
 		map.put("image", result2);
@@ -99,6 +102,15 @@ public class LikeController {
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(map, response.getWriter());
+	}
+	
+	@RequestMapping("alramLike.do")
+	public void alramLike(Like lk, HttpServletResponse response) throws JsonIOException, IOException{
+		int result = lService.selectLikeAlram(lk);
+		Gson alram = new GsonBuilder().create();
+		alram.toJson(result, response.getWriter());
+		
+		
 	}
 	
 }
