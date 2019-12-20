@@ -87,6 +87,7 @@ public class ChatDao {
 		
 		return chat;
 	}
+	
 
 	public ArrayList<MemberImg> findAllImg(String chat) {
 		return (ArrayList)sqlSession.selectList("ChatMapper.findAllImg", chat);

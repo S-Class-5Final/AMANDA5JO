@@ -72,6 +72,7 @@ public class ChatController {
 			mv.addObject("chat", chat).addObject("userImg", chatImg).setViewName("Chat/chatView");
 		}
 		
+		
 		if(chat.getStatus().equals("N")){
 			mv.addObject("fail", "fail").setViewName("Chat/chatView");
 		}

@@ -38,4 +38,5 @@ public interface ChatService {
 	
 	public ArrayList<MemberImg> findAllImg(String chat);
 	
+	
 }
