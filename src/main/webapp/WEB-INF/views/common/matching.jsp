@@ -638,12 +638,11 @@
               console.log(testlist[1]);
               console.log(Object.keys(testlist).length);
               
-<<<<<<< HEAD
               chatConnList = testlist;
-=======
+
               infoView = testlist;
               
->>>>>>> refs/remotes/origin/master
+
               
               var listsize = Object.keys(testlist).length;
              $.each(testlist, function(index, value) {
@@ -669,18 +668,12 @@
                            "      </div>"+
                            "      <h3 id=tUser-name>"+testlist[index].memberlist.user_nick +"</h3>"+
                            "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
-<<<<<<< HEAD
                            "      <p id=tUser-umid>"+testlist[index].memberlist.u_mid +"</p>"+
-=======
                            "      <input type=hidden id=tUser-email value=" + testlist[index].memberlist.user_id + ">"+
->>>>>>> refs/remotes/origin/master
                            "      <br>"+
-<<<<<<< HEAD
                            "     <button id=infoBtn type=button onclick=infoBtnn()><img src='${contextPath }/resources/images/info5.png'></button>"+
                            "     <input type='hidden' id='connChat"+ index +"' value='"+ testlist[index].memberlist.u_mid +"'>"+
-=======
                          /*   "     <button id=infoBtn type=button onclick=infoBtnn("+ index +")><img src='${contextPath }/resources/images/info5.png'></button>"+ */
->>>>>>> refs/remotes/origin/master
                            "</div>";
                        $(".tinder--cards").append(str);
                        //$("#mySlides1").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
