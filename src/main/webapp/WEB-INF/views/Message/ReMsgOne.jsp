@@ -47,11 +47,11 @@
 			</tr>
 			<tr>
 				<td style="width: 80px; text-align: right; margin-top: 1%;"><p class="first">제목 : </p> </td>
-				<td style="width: 120px;"><p class="first"><input type="text" name="mTitle" style="width: 330px; border-radius: 3px; border: 0.8px solid #1559FF; outline: none;"></p></td>
+				<td style="width: 120px;"><p class="first"><input type="text" id="uhyo" name="mTitle" style="width: 330px; border-radius: 3px; border: 0.8px solid #1559FF; outline: none;"></p></td>
 			</tr>
 		</table>
 		<br>
-		<textarea name="mContent" style="border:0px; border-radius:8px; outline:none; resize:none; width: 400px; height: 200px; margin-left: 3.5%; border: 0.9px solid #1559FF;"></textarea>
+		<textarea name="mContent" id="uhyo2" style="border:0px; border-radius:8px; outline:none; resize:none; width: 400px; height: 200px; margin-left: 3.5%; border: 0.9px solid #1559FF;"></textarea>
 		<div style="width: 200px; margin-left: 38%;">
 			<button class="btn" type="button" onclick="Gosubmit()">보내기</button>
 			<button class="btn" onclick="check()">취소</button>
@@ -65,9 +65,19 @@
 			window.close();
 		};
 		function Gosubmit() {
-			$("#Remsg").submit();
-			alert("답장을 보냈습니다.");
-			window.close();
+			var uhyo = $("#uhyo").val()
+			var uhyo2 = $("#uhyo2").val()
+			if(uhyo == ""){
+				alert("제목을 입력해주세요!")
+				return;
+			}else if(uhyo2 == ""){
+				alert("내용을 입력해주세요!")
+				return;
+			}else{
+				$("#Remsg").submit();
+				alert("답장을 보냈습니다.");
+				window.close();
+			}
 		};
 	</script>
 </body>

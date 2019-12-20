@@ -62,6 +62,16 @@ public class LikeServiceImpl implements LikeService {
 		return lDao.selectMatchImg(m);
 	}
 
+	@Override
+	public int selectLikeAlram(Like lk) {
+		return lDao.selectLikeAlram(lk);
+	}
+
+	@Override
+	public int updateLike(Like lk) {
+		return lDao.updateLike(lk);
+	}
+
 	 
 
 }

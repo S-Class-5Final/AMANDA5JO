@@ -341,7 +341,7 @@
 									제목 &nbsp;
 								</td>
 								<td>
-									<input type="text" style="width: 420px; margin-top: 3%;" name="mTitle"> <br><br>
+									<input id="uhyo" type="text" style="width: 420px; margin-top: 3%;" name="mTitle"> <br><br>
 								</td>
 							</tr>
 							<tr>
@@ -349,7 +349,7 @@
 									내용 &nbsp;
 								</td>
 								<td>
-									<textarea style="width:420px; height: 150px; resize: none;" name="mContent"></textarea>
+									<textarea id="uhyo2" style="width:420px; height: 150px; resize: none;" name="mContent"></textarea>
 								</td>
 							</tr>
 						</table>
@@ -491,6 +491,16 @@
 		<script>
 		$(function() {
 			$("#msgGo").click(function () {
+				var uhyo = $("#uhyo").val();
+				var uhyo2 = $("#uhyo2").val();
+				if(uhyo == ""){
+					alert("제목을 입력해주세요 !");
+					return;
+				}else if(uhyo2 == ""){
+					alert("내용을 입력해주세요 !");
+					return;
+				}
+				
 				$("#messagsSend").submit();
 			});
 		});
@@ -593,8 +603,15 @@
 		});
 	</script>
 	<script>
-		
-	
+	/* 	$(function() {
+			$.ajax({
+				url:"LikeSusinCheck.do",
+				data:{receiver: "${sessionScope.loginUser.user_id}"},
+				success:function(data){
+					alert(data);
+				}
+			});
+		}); */
 	</script>
 	
 </body>

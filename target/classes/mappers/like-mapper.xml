@@ -111,7 +111,20 @@
                     FROM MLIKE A, MLIKE B
                     WHERE A.SENDER = B.RECEIVER AND B.SENDER = A.RECEIVER 
                     AND A.SENDER = #{user_id} AND B.RECEIVER = #{user_id}
-                    AND A.LIKESTATUS ='Y' AND B.LIKESTATUS='Y' AND IMG_COUNT=0)
+                    AND A.LIKESTATUS ='Y' AND B.LIKESTATUS='Y')
+        AND STATUS = 'Y' AND IMG_COUNT=0
 	</select>
+	
+	<select id="selectLikeAlram" parameterType="Like" resultType="_int">
+		SELECT COUNT(*)
+		FROM MLIKE
+		WHERE RECEIVER = #{receiver} AND LIKESUSIN = 0 AND LIKESTATUS = 'Y'
+	</select>
+	
+	<update id="LikeReDi" parameterType="Like">
+		UPDATE MLIKE
+		SET LIKESUSIN = 1
+		WHERE RECEIVER = #{receiver} AND LIKESTATUS = 'Y'
+	</update>
 
 </mapper>
