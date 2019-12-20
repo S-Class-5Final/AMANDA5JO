@@ -606,7 +606,6 @@
 
          
     // ajax 카드만들기 함수.
-    // ajax 카드만들기 함수.
     var indexsize = null;
     function makeCard(parameter) {
        $.ajax({
@@ -717,7 +716,7 @@
           btn1 = $(this).val();
          alert("변수에담자" + btn1); 
          makeCard(btn1);
-         
+          
          
          
           var tinderContainer = document.querySelector('.tinder');
@@ -1154,7 +1153,7 @@
           console.log("현재 index:" +e + s.eq(1));
           console.log("현재 index:" +e + s.eq(2));
           console.log("현재 n값 : " + n);
-    	   if(n == 0){
+       if(n == 0){
    		   console.log(n);
    		s.eq(0).css("display","none");
    		s.eq(1).css("display","none");

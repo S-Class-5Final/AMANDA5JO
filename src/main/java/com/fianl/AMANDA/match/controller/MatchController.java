@@ -36,10 +36,10 @@ public class MatchController {
 	MatchServiceImpl matchService;
 	
    
-   
-    /*  
-	 * 회원 리스트
-	 */
+	   
+  /*  
+  * 회원 리스트
+  */
   @RequestMapping("mList.do")
   @ResponseBody
   public void Mlist(HttpServletResponse response, 
@@ -47,19 +47,13 @@ public class MatchController {
 		   			 @RequestParam("genderSelect") String genderSelect, 
 		   			 @RequestParam("loginUser") String loginUser1) throws JsonIOException, IOException {
      response.setContentType("application/json; charset=utf-8");
+  
      HttpSession session = request.getSession();
-     Member member = (Member)session.getAttribute("loginUser");
+     
+     Member member = (Member)session.getAttribute("loginUser"); 
      Member user = new Member();
      user.setUser_nick(loginUser1);
      user.setGender(member.getGender());
-     
-
-//     if(genderSelect != null) {
-//    	 genderSelect = genderSelect;
-//     }else if (genderSelect == null && genderSelect == " " ) {
-//    	 genderSelect = "ALL";
-//	 }
-//     System.out.println("성별 : " + "d" + genderSelect + "d" + genderSelect.getClass().getName());
 
      HashMap<String, Object> map = new HashMap<String, Object>();
      map.put("user", user);
@@ -69,8 +63,8 @@ public class MatchController {
      System.out.println("성별 : " + genderSelect);
      ArrayList<Member> mlist =null;
      ArrayList<MemberImg> plist = null;
-     //////////////////
-     	switch (genderSelect) {
+    
+    switch (genderSelect) {
 	case "":
 		 mlist = matchService.selectMlist(map);
 		 plist = matchService.selectPlist(map);
@@ -161,9 +155,9 @@ public class MatchController {
      	System.out.println(testlist);
 
      if(testlist != null && testlist.size() > 0) {
-   	  new Gson().toJson(testlist, response.getWriter());
+   	  	new Gson().toJson(testlist, response.getWriter());
      }else {
-   	  //throw new MatchException("조회 실패");
+   	  	throw new MatchException("조회 실패");
      }
   }
    
