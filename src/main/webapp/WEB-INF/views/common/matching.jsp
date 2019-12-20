@@ -609,7 +609,8 @@
 
          
     // ajax 카드만들기 함수.
-    var indexsize = null;
+      var indexsize = null;
+    var chatIndex = 0;
     function makeCard(parameter) {
        $.ajax({
           url:"mList.do",
@@ -636,15 +637,18 @@
               console.log(testlist[1]);
               console.log(Object.keys(testlist).length);
               
+              chatConnList = testlist;
+
               infoView = testlist;
               
+
               
               var listsize = Object.keys(testlist).length;
              $.each(testlist, function(index, value) {
-            	indexsize = index;
-
+               indexsize = index;
+            
                 var str = 
-                           "<div id = card"+(index)+" class=tinder--card  style='border:1px solid lightpink'>"+
+                           "<div id = card"+(index)+" class=tinder--card >"+
                            "      <div class=mySlides" +index+" id='Slides1' style='pointer-events: none;'>"+
                            "         <img src =${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName + " style='width: 400px; height: 300px;'>"+
                            "      </div>"+
@@ -663,8 +667,11 @@
                            "      </div>"+
                            "      <h3 id=tUser-name>"+testlist[index].memberlist.user_nick +"</h3>"+
                            "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
+                           "      <p id=tUser-umid>"+testlist[index].memberlist.u_mid +"</p>"+
                            "      <input type=hidden id=tUser-email value=" + testlist[index].memberlist.user_id + ">"+
                            "      <br>"+
+                           "     <button id=infoBtn type=button onclick=infoBtnn()><img src='${contextPath }/resources/images/info5.png'></button>"+
+                           "     <input type='hidden' id='connChat"+ index +"' value='"+ testlist[index].memberlist.u_mid +"'>"+
                          /*   "     <button id=infoBtn type=button onclick=infoBtnn("+ index +")><img src='${contextPath }/resources/images/info5.png'></button>"+ */
                            "</div>";
                        $(".tinder--cards").append(str);
@@ -673,13 +680,13 @@
                        //$("#mySlides3").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName);
        $(".mySlides"+(index)).eq(0).css("display","block");
        $(".mySlides"+(index)).eq(1).css("display","none");
-       $(".mySlides"+(index)).eq(2).css("display","none");	
+       $(".mySlides"+(index)).eq(2).css("display","none");   
                   /* 
                       $(".mySlides"+(index)).eq(0).css("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
                        $(".mySlides"+(index)).eq(1).attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName);
                      $(".mySlides"+(index)).eq(2).attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName); */
              });
-           
+            console.log(chatConnList);
           },
           error:function(request, status, errorData){
              alert("매칭 에이젝스 error code: " + request.status + "\n"
@@ -690,6 +697,7 @@
     } 
        
 </script>
+       
              <%-- 
                 <h2  style="color: black;">사진 : ${plist[0].user_nick }</h2>           
                 <h2  style="color: black;">사진 : ${plist[0].renameFileName }</h2>   
@@ -1073,11 +1081,19 @@
     
     <!-- superLike 버튼 누를 시 -->
     <script>
+    var chatConnList;
        $("#superLike").on('click', function() {
-         // 상대방과 바로 채팅으로 연결되어야함. 
-         alert("상대방과 채팅으로 넘어갑니다.");   
+    	 var chatIndex = $(".tinder--card.removed").length+1;
+    	 
+    	 var chatConnIndex = $(".tinder--card:nth-child("+chatIndex+")").children("input").val();
+    	 console.log(chatConnIndex);
+         
+         if(chatConnIndex > 0){
+	         newWindow("${loginUser.u_mid}", chatConnIndex);	        	 
+         }
       
       });
+       
     </script>
      
     <!-- 이미지 슬라이드 관련 --> 
