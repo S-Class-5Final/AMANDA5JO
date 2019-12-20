@@ -611,6 +611,7 @@
          
     // ajax 카드만들기 함수.
     var indexsize = null;
+    var chatIndex = 0;
     function makeCard(parameter) {
        $.ajax({
           url:"mList.do",
@@ -637,13 +638,17 @@
               console.log(testlist[1]);
               console.log(Object.keys(testlist).length);
               
+<<<<<<< HEAD
+              chatConnList = testlist;
+=======
               infoView = testlist;
               
+>>>>>>> refs/remotes/origin/master
               
               var listsize = Object.keys(testlist).length;
              $.each(testlist, function(index, value) {
             	indexsize = index;
-
+				
                 var str = 
                            "<div id = card"+(index)+" class=tinder--card >"+
                            "      <div class=mySlides" +index+" id='Slides1' style='pointer-events: none;'>"+
@@ -664,9 +669,18 @@
                            "      </div>"+
                            "      <h3 id=tUser-name>"+testlist[index].memberlist.user_nick +"</h3>"+
                            "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
+<<<<<<< HEAD
+                           "      <p id=tUser-umid>"+testlist[index].memberlist.u_mid +"</p>"+
+=======
                            "      <input type=hidden id=tUser-email value=" + testlist[index].memberlist.user_id + ">"+
+>>>>>>> refs/remotes/origin/master
                            "      <br>"+
+<<<<<<< HEAD
+                           "     <button id=infoBtn type=button onclick=infoBtnn()><img src='${contextPath }/resources/images/info5.png'></button>"+
+                           "     <input type='hidden' id='connChat"+ index +"' value='"+ testlist[index].memberlist.u_mid +"'>"+
+=======
                          /*   "     <button id=infoBtn type=button onclick=infoBtnn("+ index +")><img src='${contextPath }/resources/images/info5.png'></button>"+ */
+>>>>>>> refs/remotes/origin/master
                            "</div>";
                        $(".tinder--cards").append(str);
                        //$("#mySlides1").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
@@ -680,7 +694,7 @@
                        $(".mySlides"+(index)).eq(1).attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName);
                      $(".mySlides"+(index)).eq(2).attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName); */
              });
-           
+            console.log(chatConnList);
           },
           error:function(request, status, errorData){
              alert("매칭 에이젝스 error code: " + request.status + "\n"
@@ -1074,11 +1088,19 @@
     
     <!-- superLike 버튼 누를 시 -->
     <script>
+    var chatConnList;
        $("#superLike").on('click', function() {
-         // 상대방과 바로 채팅으로 연결되어야함. 
-         alert("상대방과 채팅으로 넘어갑니다.");   
+    	 var chatIndex = $(".tinder--card.removed").length+1;
+    	 
+    	 var chatConnIndex = $(".tinder--card:nth-child("+chatIndex+")").children("input").val();
+    	 console.log(chatConnIndex);
+         
+         if(chatConnIndex > 0){
+	         newWindow("${loginUser.u_mid}", chatConnIndex);	        	 
+         }
       
       });
+       
     </script>
      
     <!-- 이미지 슬라이드 관련 --> 

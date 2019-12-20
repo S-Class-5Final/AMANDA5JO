@@ -158,8 +158,8 @@
 			
 	</select>
 	
-	<select id="findAllImg" parameterType="ChatInfo" resultMap="MemberImgResultMap">
+	<select id="findAllImg" parameterType="string" resultMap="MemberImgResultMap">
 		SELECT * FROM MEMBERIMG
-		WHERE USER_ID = #{user_Id} OR USER_ID = #{user_Id2}
+		WHERE USER_ID = #{chat} AND STATUS = 'Y'
 	</select>
 </mapper>

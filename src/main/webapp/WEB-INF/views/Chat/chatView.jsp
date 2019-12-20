@@ -391,7 +391,7 @@ body {
 	z-index:1003;
 	border: 0px;
 	opacity :0.5;
-	background-image: url('resources/img/leftArrow.png');
+	background-image: url('resources/images/leftChatArrow.png');
 	background-size: 100% 100%;
 }
 #nextModalImg{
@@ -402,7 +402,7 @@ body {
 	z-index:1003;
 	border: 0px;
 	opacity :0.5;
-	background-image: url('resources/img/rightArrow.png');
+	background-image: url('resources/images/rightChatArrow.png');
 	background-size: 100% 100%;
 }
 .activeImg{
@@ -502,6 +502,15 @@ body {
 .declarImg{
 
 }
+#img_button{
+	width: 2em;
+	height: 2em;
+	background-image: url('resources/images/chatImgSend.png');
+	background-size: 100% 100%;
+	border: 0;
+	opacity: 0.7;
+	cursor: pointer;
+}
 </style>
 </head>
 <!-- 남은 기능
@@ -511,6 +520,9 @@ body {
 	4. input hidden을 통한 찾기 (보류)
  -->
 <body>
+	<!-- 상대방 이미지 -->
+	
+	
 	<div id="chatView">
 		<!-- 채팅 내용 div -->
 		<div id="chat_box"></div>
@@ -520,7 +532,7 @@ body {
 			</div>
 			<div id="button-div">
 				<button id="msg_process">전송</button>
-				<input type="button" id="img_button" value="이미지">
+				<input type="button" id="img_button">
 			</div>
 			<div style="display:none;">
 				<form id="chatImgBtnForm" name="chatImgBtnForm" enctype="multipart/form-data" method="post">
@@ -543,9 +555,9 @@ body {
 				<div id="chatImgDivBox">
 					<div class="innerUserImg">
 						<c:forEach var="cImg" items="${userImg}" varStatus="status">
-						<div class="innerImgDiv active">
-							<img alt="first" src="resources/userface/${cImg.renameFileName}">
-						</div>
+								<div class="innerImgDiv">
+									<img alt="first" src="resources/userface/${cImg.renameFileName}">
+								</div>
 						</c:forEach>
 						<ul class="slideUl">
 							<li id="slideImg1" class="activeImg"></li>
@@ -558,7 +570,7 @@ body {
 				</div>
 				<div class="chatIdModal-footer">
 					<input class="userImgBtn" onclick="declarUser();" type="button" value="신고">
-					<input id="nowDeclar" class="userImgBtn" type="button" value="차단">
+					<!-- <input id="nowDeclar" class="userImgBtn" onclick="blockUser();" type="button" value="차단"> -->
 					<input onclick="closeModal();" class="userImgBtn" type="button" value="닫기">
 				</div>
 			</div>
@@ -621,13 +633,13 @@ body {
 			</div>
 		</div>
 	</div>
-
+	<!-- ip 주소값 수정 -->
 	<script src="http://192.168.130.136:80/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
-	/* const socket = io("http://172.30.1.36:80"); */
 	const socket = io("http://192.168.130.136:80");
 	var room = "${chat.chatRoom}";
 	var name = '${loginUser.user_nick }';
+	var userCount = 0;
 	var chTime = 0;
 		$(function() {
 			// 엔터키 이벤트
@@ -642,11 +654,29 @@ body {
 			// 채팅창에 들어왔을 시 socket에 join
 			socket.emit('joinRoom', room, '임시');
 			
-			
+			 // 신고된 채팅창일 시 
+			socket.on('declar_User', function(roomNum){
+				if(room == roomNum){
+					window.close();
+				}
+			});
+		
 			// 채팅창이 닫히면 발동
 			window.onbeforeunload = function() {
 				socket.emit('leaveRoom', room, '임시');
 			}
+			
+			socket.on('joinRoom', function(count){
+				userCount = count;
+				
+				if(userCount == 0){
+					var chatCount = $(".userChatCount p").text("");
+				}
+			});
+			
+			socket.on('leaveRoom', function(count){
+				userCount = count;
+			});
 			
 			//msg_process를 클릭할 때
 			$("#msg_process").click(function() {
@@ -658,12 +688,13 @@ body {
 						url:"chInsertChat.do",
 						type:"post",
 								/* name 부분은 세션값으로 변경 */
-						data:{chatId:'${chat.chatId}', chatUser:name, c_Content:msg},
+						data:{chatId:'${chat.chatId}', chatUser:name, c_Content:msg, confirm:userCount},
 						success:function(data){
 							if(data != "fail"){
 								for(var i in data){
 									socket.emit("send_msg", '${chat.chatRoom}', data[i]);									
 								}
+								console.log(userCount)
 							}else{
 								console.log("fail");
 							}
@@ -685,16 +716,16 @@ body {
 				var cp = data.chatTime+data.chatUser;
 				if(cp != chTime){
 					chTime = data.chatTime+data.chatUser;
-					if(name == '${loginUser.user_nick }'){
-						my_chat(data.crId, data.c_Content, timeP);
+					if(data.chatUser == '${loginUser.user_nick }'){
+						my_chat(data.crId, data.c_Content, timeP, data.confirm);
 					}else{
 						opponent_chat(data.crId, data.chatUser, data.c_Content, timeP);
 					}
 				}else{
-					if(name == '${loginUser.user_nick }'){
-						my_chat2(data.crId, data.c_Content);
-					}else{									
-						opponent_chat2(data.crId, data.c_Content);
+					if(data.chatUser == '${loginUser.user_nick }'){
+							my_chat2(data.crId, data.c_Content);
+					}else{
+							opponent_chat2(data.crId, data.c_Content);
 					}
 				}
 				$('#chat_box').animate({
@@ -711,10 +742,10 @@ body {
 					timeP = '오전 '+timeP[0]+":"+timeP[1];
 				}
 
-				if(name == '${loginUser.user_nick }'){
-					my_chat(data.crId, data.c_Content, timeP, data.img_status);
+				if(data.chatUser == '${loginUser.user_nick }'){
+					my_imgChat(data.crId, data.c_Content, timeP, data.confirm);
 				}else{
-					opponent_chat(data.crId, data.chatUser, data.c_Content, timeP, data.img_status);
+					opponent_imgChat(data.crId, data.chatUser, data.c_Content, timeP);
 				}
 				
 				$('#chat_box').animate({
@@ -723,21 +754,24 @@ body {
 			});
 		});
 		// 내 채팅
-		function my_chat(index, msg, time, status) {
+		function my_chat(index, msg, time, count) {
 			var contentDiv = $("<div></div>").addClass("chatLine").appendTo("#chat_box");
 			
 			var tableChat = $("<table></table>").addClass("myChat_table")
 			.appendTo(contentDiv);
 			var firstTr = $("<tr></tr>").appendTo(tableChat);
-			var timeTd = $('<td></td>').text(time).addClass("send_time my")
-			.appendTo(firstTr);
+			var timeTd = $('<td></td>').addClass("send_time my").appendTo(firstTr);
+			if(count > 0){
+				$('<p></p>').text(count).css({"margin-bottom":"0", "color":"yellow"}).addClass("userChatCount").appendTo(timeTd);				
+			}
+			$('<p></p>').text(time).css("margin-top", "0").appendTo(timeTd);
 			var addTd = $('<td></td>').text(msg).addClass("my-bubble bubble").appendTo(firstTr);			
 			
 			$("<input>").attr({"type" : "hidden", "name":"crId", "id": index}).appendTo(addTd);
 		}
 
 		// 내가 연속으로 채팅 시
-		function my_chat2(index, msg, status) {
+		function my_chat2(index, msg) {
 			console.log(msg);
 			var tableChat = $(".chatLine").last().children(".myChat_table");
 			var addTr = $('<tr></tr>').appendTo(tableChat)
@@ -746,18 +780,19 @@ body {
 			var addTd = $('<td></td>').text(msg).addClass("my-bubble2 bubble").appendTo(addTr);
 			$("<input>").attr({"type" : "hidden", "name":"crId", "id":index}).appendTo(addTd);
 		}
+		var opponentImg;
+		
 		
 		// 상대방 채팅
-		function opponent_chat(index, name, msg, time, status) {
-			var contentDiv = $("<div></div>").addClass("chatLine").appendTo(
-					"#chat_box");
+		function opponent_chat(index, name, msg, time) {
+			var contentDiv = $("<div></div>").addClass("chatLine").appendTo("#chat_box");
 			var tableChat = $("<table></table>").addClass("opponentChat_table")
 					.appendTo(contentDiv);
 			var firstTr = $("<tr></tr>").appendTo(tableChat);
 			var secondTr = $("<tr></tr>").appendTo(tableChat);
 			var imgTd = $("<td></td>").attr("rowspan", "2").appendTo(firstTr)
 					.addClass("img-align");
-			var img = $('<img>').attr("src", "resources/img/ex22.jpg")
+			var img = $('<img>').attr("src", "resources/userface/${userImg[0].renameFileName}")
 					.addClass("chatImg-box").appendTo(imgTd);
 			var nameTd = $("<td></td>").text(name).attr("colspan", "2")
 					.addClass("name-box").appendTo(firstTr);
@@ -769,7 +804,7 @@ body {
 		}
 		
 		// 상대방이 연속으로 채팅 시
-		function opponent_chat2(index, msg, status) {
+		function opponent_chat2(index, msg) {
 			var tableChat = $(".chatLine").last().children(".opponentChat_table");
 			var addTr = $('<tr></tr>').appendTo(tableChat);
 			// tr의 갯수를 파악하여 rowspan을 한다.
@@ -780,28 +815,31 @@ body {
 			$("<input>").attr({"type" : "hidden", "name":"crId", "id":index}).appendTo(addTd);
 		}
 		
-		function my_imgChat(){
+		function my_imgChat(index, msg, time, count){
+			console.log("되니?");
 			var contentDiv = $("<div></div>").addClass("chatLine").appendTo("#chat_box");
-			var addTd;
 			var tableChat = $("<table></table>").addClass("myChat_table").appendTo(contentDiv);
 			var firstTr = $("<tr></tr>").appendTo(tableChat);
-			var timeTd = $('<td></td>').text(time).addClass("send_time my").appendTo(firstTr);
-			addTd = $('<td></td>').appendTo(firstTr);
+			var timeTd = $('<td></td>').addClass("send_time my").appendTo(firstTr);
+			if(count > 0){
+				$('<p></p>').text(count).css({"margin-bottom":"0", "color":"yellow"}).addClass("userChatCount").appendTo(timeTd);				
+			}
+			$('<p></p>').text(time).css("margin-top", "0").appendTo(timeTd);
+			var addTd = $('<td></td>').appendTo(firstTr);
+			$("<p></p>").text(userCount).appendTo(timeTd).addClass("userChatCount");
 			$('<img>').attr("src", "resources/chatImg/"+msg).addClass("my_chatImg").appendTo(addTd);
-			
 			$("<input>").attr({"type" : "hidden", "name":"crId", "id": index}).appendTo(addTd);
 		}
 		
-		function opponent_imgChat(){
-			var contentDiv = $("<div></div>").addClass("chatLine").appendTo(
-			"#chat_box");
+		function opponent_imgChat(index, name, msg, time){
+			var contentDiv = $("<div></div>").addClass("chatLine").appendTo("#chat_box");
 			var tableChat = $("<table></table>").addClass("opponentChat_table")
 					.appendTo(contentDiv);
 			var firstTr = $("<tr></tr>").appendTo(tableChat);
 			var secondTr = $("<tr></tr>").appendTo(tableChat);
 			var imgTd = $("<td></td>").attr("rowspan", "2").appendTo(firstTr)
 					.addClass("img-align");
-			var img = $('<img>').attr("src", "resources/img/ex22.jpg")
+			var img = $('<img>').attr("src", "resources/userface/${userImg[0].renameFileName}")
 					.addClass("chatImg-box").appendTo(imgTd);
 			var nameTd = $("<td></td>").text(name).attr("colspan", "2")
 					.addClass("name-box").appendTo(firstTr);
@@ -827,7 +865,7 @@ body {
 	        // 파일 드롭 다운
 	        fileDropDown();
 	    });
-	 
+	 	$(".innerImgDiv:nth-child(0)").addClass("active")
 	    // 파일 드롭 다운
 	    function fileDropDown(){
 	        var dropZone = $("#chatView");
@@ -925,9 +963,10 @@ body {
 			var formData = new FormData(form);
 			for(var i in filesArr){
 				formData.append("files", filesArr[uploadFileList[i]]);
+				formData.append("confirm", userCount);
 				console.log(filesArr[uploadFileList[i]]);
 			}
-			/* insertImg(formData); */
+			insertImg(formData);
 		});
 		
 		function insertImg(formData){
@@ -967,7 +1006,6 @@ body {
 				data:{chatId:"${chat.chatId}"},
 				dataType:"json",
 				success:function(data){
-					console.log(data);
 					if(data != 'fail'){
 						for(var i in data){
 							var cp = data[i].chatTime+data[i].chatUser;
@@ -980,28 +1018,35 @@ body {
 							if(cp != cpTime){
 								cpTime = data[i].chatTime+data[i].chatUser;
 								if(data[i].chatUser == '${loginUser.user_nick }'){
-									my_reloadChat(data[i].crId, data[i].c_Content, timeP, data[i].img_status);
+									if(data[i].img_status == 'Y'){
+										my_reloadImgChat(data[i].crId, data[i].c_Content, timeP, data[i].confirm);
+									}else{
+										my_reloadChat(data[i].crId, data[i].c_Content, timeP, data[i].confirm);										
+									}
 								}else{
-									opponent_reloadChat(data[i].crId, data[i].chatUser, data[i].c_Content, timeP, data[i].img_status);
+									if(data[i].img_status == 'Y'){
+										opponent_reloadImgChat(data[i].crId, data[i].chatUser, data[i].c_Content, timeP);										
+									}else{
+										opponent_reloadChat(data[i].crId, data[i].chatUser, data[i].c_Content, timeP);
+									}
 								}
 							}else{
 								if(data[i].chatUser == '${loginUser.user_nick }'){
-									my_reloadChat2(data[i].crId, data[i].c_Content, data[i].img_status);
-								}else{									
-									opponent_reloadChat(data[i].crId, data[i].c_Content, data[i].img_status);
+									if(data[i].img_status == 'Y'){
+										my_reloadImgChat(data[i].crId, data[i].c_Content, timeP);
+									}else{
+										my_reloadChat2(data[i].crId, data[i].c_Content);
+									}
+								}else{		
+									if(data[i].img_status == 'Y'){
+										opponent_reloadImgChat(data[i].crId, data[i].chatUser, data[i].c_Content, timeP);										
+									}else{
+										opponent_reloadChat2(data[i].crId, data[i].c_Content);
+									}
 								}
 							}
 						}
 					}
-					/* 나중에 지우기 수정 */
-					/* var offset = $(".chatLine").last().offset();
-			        $('#chat_box').animate({scrollTop : offset.top}, 0);
-			        console.log(offset.top); */
-			        
-			        /* var chat_box = $("#chat_box");
-			        chat_box.scrollTop = chat_box.scrollHeight;
-			        console.log(chat_box.scrollTop); */
-			        /* 질문하기 */
 					$("#chat_box").scrollTop($("#chat_box")[0].scrollHeight);
 				}
 			});
@@ -1009,7 +1054,7 @@ body {
 		});
 
 		// 내 채팅
-		function my_reloadChat(index, msg, time, status) {
+		function my_reloadChat(index, msg, time, count) {
 			var firstDiv = $(".chatLine").first();
 			var contentDiv;
 			if(firstDiv.length == 0){
@@ -1020,36 +1065,28 @@ body {
 			var tableChat = $("<table></table>").addClass("myChat_table")
 					.appendTo(contentDiv);
 			var firstTr = $("<tr></tr>").appendTo(tableChat);
-			var timeTd = $('<td></td>').text(time).addClass("send_time my").appendTo(firstTr);
-			var addTd;
-			if(status == 'Y'){
-				addTd = $('<td></td>').appendTo(firstTr);
-				$('<img>').attr("src", "resources/chatImg/"+msg).addClass("my_chatImg").appendTo(addTd);
-			}else{
-				addTd = $('<td></td>').text(msg).addClass("my-bubble bubble").appendTo(firstTr);			
+			var timeTd = $('<td></td>').addClass("send_time my").appendTo(firstTr);
+			if(count > 0){
+				$('<p></p>').text(count).css({"margin-bottom":"0", "color":"yellow"}).addClass("userChatCount").appendTo(timeTd);				
 			}
+			$('<p></p>').text(time).css("margin-top", "0").appendTo(timeTd);
+			var addTd = $('<td></td>').text(msg).addClass("my-bubble bubble").appendTo(firstTr);			
 			$("<input>").attr({"type" : "hidden", "name":"crId", "id":index}).appendTo(addTd);
 		}
-
+		
 		// 내가 연속으로 채팅 시
-		function my_reloadChat2(index, msg, status) {
+		function my_reloadChat2(index, msg) {
 			var tableChat = $(".chatLine").first().children(".myChat_table");
 			var addTr = $('<tr></tr>').appendTo(tableChat)
 			// tr의 갯수를 파악하여 rowspan을 한다.
 			tableChat.children("tr").find(".send_time").attr("rowspan",
 					tableChat.children("tr").length);
-			var addTd;
-			if(status == 'Y'){
-				addTd = $('<td></td>').appendTo(addTr);
-				$('<img>').attr("src", "resources/chatImg/"+msg).addClass("my_chatImg").appendTo(addTd);
-			}else{
-				addTd = $('<td></td>').text(msg).addClass("my-bubble2 bubble").appendTo(addTr);			
-			}
+			var addTd = $('<td></td>').text(msg).addClass("my-bubble2 bubble").appendTo(addTr);			
 			$("<input>").attr({"type" : "hidden", "name":"crId", "id":index}).appendTo(addTd);			
 		}
 		
 		// 상대방 채팅
-		function opponent_reloadChat(index, name, msg, time, status) {
+		function opponent_reloadChat(index, name, msg, time) {
 			var firstDiv = $(".chatLine").first();
 			var contentDiv;
 			if(firstDiv.length == 0){
@@ -1064,23 +1101,17 @@ body {
 			var secondTr = $("<tr></tr>").appendTo(tableChat);
 			var imgTd = $("<td></td>").attr("rowspan", "2").appendTo(firstTr)
 					.addClass("img-align");
-			var img = $('<img>').attr("src", "resources/img/ex22.jpg")
+			var img = $('<img>').attr("src", "resources/userface/${userImg[0].renameFileName}")
 					.addClass("chatImg-box").appendTo(imgTd);
 			var nameTd = $("<td></td>").text(name).attr("colspan", "2")
 					.addClass("name-box").appendTo(firstTr);
-			var addTd;
-			if(status == 'Y'){
-				addTd = $("<td></td>").appendTo(secondTr);
-				$('<img>').attr("src", "resources/chatImg/"+msg).addClass("opponent_chatImg").appendTo(addTd);
-			}else{
-				addTd = $("<td></td>").text(msg).addClass("opponent-bubble bubble").appendTo(secondTr);	
-			}
+			var addTd = $("<td></td>").text(msg).addClass("opponent-bubble bubble").appendTo(secondTr);	
 			var timeTd = $('<td></td>').text(time).addClass("send_time opponent").appendTo(secondTr);
 			$("<input>").attr({"type" : "hidden", "name":"crId", "id":index}).appendTo(addTd);
 		}
 		
 		// 상대방이 연속으로 채팅 시
-		function opponent_reloadChat2(index, msg, status) {
+		function opponent_reloadChat2(index, msg) {
 			var tableChat = $(".chatLine").first().children(
 					".opponentChat_table");
 			var addTr = $('<tr></tr>').appendTo(tableChat)
@@ -1089,13 +1120,55 @@ body {
 					tableChat.children("tr").length);
 			tableChat.children("tr").find(".send_time").attr("rowspan",
 					tableChat.children("tr").length);
-			var addTd;
-			if(status == 'Y'){
-				addTd = $('<td></td>').appendTo(addTr);
-				$('<img>').attr("src", "resources/chatImg/"+msg).addClass("opponent_chatImg").appendTo(addTd);
+			var addTd = $('<td></td>').text(msg).addClass("opponent-bubble2 bubble").appendTo(addTr);
+			$("<input>").attr({"type" : "hidden", "name":"crId", "id":index}).appendTo(addTd);
+		}
+		
+		function my_reloadImgChat(index, msg, time, count){
+			var firstDiv = $(".chatLine").first();
+			var contentDiv;
+			if(firstDiv.length == 0){
+				contentDiv = $("<div></div>").addClass("chatLine").appendTo("#chat_box");
 			}else{
-				addTd = $('<td></td>').text(msg).addClass("opponent-bubble2 bubble").appendTo(addTr);
+				contentDiv = $("<div></div>").addClass("chatLine").insertBefore(firstDiv);
 			}
+			
+			var tableChat = $("<table></table>").addClass("myChat_table").appendTo(contentDiv);
+			var firstTr = $("<tr></tr>").appendTo(tableChat);
+			var timeTd = $('<td></td>').addClass("send_time my").appendTo(firstTr);
+			if(count > 0){
+				$('<p></p>').text(count).css({"margin-bottom":"0", "color":"yellow"}).addClass("userChatCount").appendTo(timeTd);				
+			}
+			$('<p></p>').text(time).css("margin-top", "0").appendTo(timeTd);
+			var addTd = $('<td></td>').appendTo(firstTr);
+			$('<img>').attr("src", "resources/chatImg/"+msg).addClass("my_chatImg").appendTo(addTd);
+			
+			$("<input>").attr({"type" : "hidden", "name":"crId", "id": index}).appendTo(addTd);
+		}
+		
+		function opponent_reloadImgChat(index, name, msg, time){
+			var firstDiv = $(".chatLine").first();
+			var contentDiv;
+			if(firstDiv.length == 0){
+				contentDiv = $("<div></div>").addClass("chatLine").appendTo("#chat_box");
+			}else{
+				contentDiv = $("<div></div>").addClass("chatLine").insertBefore(firstDiv);
+			}
+			var tableChat = $("<table></table>").addClass("opponentChat_table")
+					.appendTo(contentDiv);
+			var firstTr = $("<tr></tr>").appendTo(tableChat);
+			var secondTr = $("<tr></tr>").appendTo(tableChat);
+			var imgTd = $("<td></td>").attr("rowspan", "2").appendTo(firstTr)
+					.addClass("img-align");
+			var img = $('<img>').attr("src", "resources/userface/${userImg[0].renameFileName}")
+					.addClass("chatImg-box").appendTo(imgTd);
+			var nameTd = $("<td></td>").text(name).attr("colspan", "2")
+					.addClass("name-box").appendTo(firstTr);
+			var addTd = $('<td></td>').appendTo(secondTr);
+				$('<img>').attr("src", "resources/chatImg/"+msg).addClass("opponent_chatImg").appendTo(addTd);
+			
+			var timeTd = $('<td></td>').text(time).addClass("send_time opponent")
+					.appendTo(secondTr);
 			$("<input>").attr({"type" : "hidden", "name":"crId", "id":index}).appendTo(addTd);
 		}
 	</script>
@@ -1165,15 +1238,21 @@ body {
 					url:"declarUser.do",
 					type:"post",
 					/* u_Mid와 r_user_Id 넣기 */
-					data:{r_Type:$("#r_Type").val(), r_Contents:$("#declarMsg").val()},
+					data:{u_Mid : "${loginUser.u_mid}", r_user_Id : "${userImg[0].user_id}",
+						r_Type:$("#r_Type").val(), r_Contents:$("#declarMsg").val(), chatId : "${chat.chatId}"},
+					dataType:"json",
 					success:function(data){
-						if(success){
-							window.close();
+						console.log(data);
+						if(data == "success"){
+							socket.emit("declar_User", room);
 						}
 					}
 				});				
 			}
 		}
+		
+		
+		
 	</script>
 </body>
 </html>
