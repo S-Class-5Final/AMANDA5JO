@@ -230,14 +230,14 @@ body {
 <body id="bodyAl">
 
 <!-- Snow효과 -->
-<!-- <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+ <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
 <script>
     var sf = new Snowflakes({
         color: "#54affa",
         count: 200,
         speed: 1
     });
-</script> -->
+</script> 
 
 	<!-- <div id="mySidenav" class="sidenav">
   <a>Profile</a>
