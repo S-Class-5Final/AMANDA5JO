@@ -13,7 +13,6 @@
 		<typeAlias type="com.fianl.AMANDA.member.model.vo.MemberImg" alias="MemberImg"/>
 		
 		<!-- Matching -->
-		<typeAlias type="com.fianl.AMANDA.match.model.vo.Member" alias="Member2"/>
 		<typeAlias type="com.fianl.AMANDA.match.model.vo.MemberImg" alias="MemberImg2"/>
 		<typeAlias type="com.fianl.AMANDA.match.model.vo.Match" alias="Match"/>
 		

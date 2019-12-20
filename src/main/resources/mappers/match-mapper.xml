@@ -65,13 +65,15 @@
 	</resultMap>
 	
 	<!-- 좋아요 매칭 -->
-<!-- 	<resultMap type="Match" id="MatchResultMap">
+ <!-- 	<resultMap type="Match" id="MatchResultMap">
 		<id property="likeNo" column="LIKENO" />
-		<result property="likeSender" column="LIKESENDER" />
-		<result property="likeReceiver" column="LIKERECEIVER" />
+		<result property="u_mid" column="U_MID" />
+		<result property="likeSender" column="SENDER" />
+		<result property="likeReceiver" column="RECEIVER" />
 		<result property="likeCount" column="LIKECOUNT" />
-	</resultMap>
- -->
+		<result property="likeSusin" column="LIKESUSIN" />
+	</resultMap> -->
+ 
 <!-- 		
 		SELECT *
 		FROM MEMBER 
@@ -234,7 +236,7 @@
 	
 	<!-- 좋아요 삽입 -->
 	<insert id="likeInsert" parameterType="Match">
-	 	INSERT INTO MLIKE VALUES(SEQ_MATCH.NEXTVAL, #{likeSender}, #{likeReceiver}, 'Y', DEFAULT)
+	 	INSERT INTO MLIKE VALUES(SEQ_MATCH.NEXTVAL, #{u_mid}, #{likeSender}, #{likeReceiver}, 'Y', DEFAULT)
 	</insert>
 	
 	<!-- 싫어요 삽입 -->
