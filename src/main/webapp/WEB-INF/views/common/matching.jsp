@@ -672,9 +672,6 @@
                            "     <button id=infoBtn type=button onclick=infoBtnn()><img src='${contextPath }/resources/images/info5.png'></button>"+
                            "     <input type='hidden' id='connChat"+ index +"' value='"+ testlist[index].memberlist.u_mid +"'>"+
                          /*   "     <button id=infoBtn type=button onclick=infoBtnn("+ index +")><img src='${contextPath }/resources/images/info5.png'></button>"+ */
-
-                           "     <input type='hidden' id='connChat"+ index +"' value='"+ testlist[index].memberlist.u_mid +"'>"+
-                         /*   "     <button id=infoBtn type=button onclick=infoBtnn("+ index +")><img src='${contextPath }/resources/images/info5.png'></button>"+ */
                         "</div>";
                        $(".tinder--cards").append(str);
                        //$("#mySlides1").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
@@ -1087,8 +1084,8 @@
        $("#superLike").on('click', function() {
     	 var chatIndex = $(".tinder--card.removed").length+1;
     	 
-    	 var chatConnIndex = $(".tinder--card:nth-child("+chatIndex+")").children("input").val();
-    	 console.log(chatConnIndex);
+    	 var chatConnIndex = $(".tinder--card:nth-child("+chatIndex+")").children("input").last().val();
+    	 console.log("hhh"+chatConnIndex);
          
          if(chatConnIndex > 0){
 	         newWindow("${loginUser.u_mid}", chatConnIndex);	        	 
