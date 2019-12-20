@@ -167,11 +167,14 @@ public class MatchController {
    @RequestMapping("mLike.do")
    public String matchLike(@RequestParam("sender") String sender,
 		   				   @RequestParam("receiver") String receiver,
+		   				   @RequestParam("u_mid") int u_mid,
 		   				   Match ml) {
 	   System.out.println("sender : " + sender + "\n" + "receiver : " + receiver);
 	   
 	   ml.setLikeSender(sender); // Session값임.
 	   ml.setLikeReceiver(receiver);
+	   ml.setU_mid(u_mid);
+	   
 	   System.out.println(ml);
 	   
 	   int likeResult = matchService.likeInsert(ml);

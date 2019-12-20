@@ -27,6 +27,10 @@ public interface LikeService {
 
 	ArrayList<MemberImg> selectMatchImg(Member m);
 
+	int selectLikeAlram(Like lk);
+
+	int updateLike(Like lk);
+
 
 
 }

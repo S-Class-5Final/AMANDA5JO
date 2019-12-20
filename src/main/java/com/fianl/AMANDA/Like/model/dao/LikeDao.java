@@ -51,5 +51,13 @@ public class LikeDao {
 		return (ArrayList)sqlSession.selectList("likeMapper.selectMatchImg", m);
 	}
 
+	public int selectLikeAlram(Like lk) {
+		return sqlSession.selectOne("likeMapper.selectLikeAlram", lk);
+	}
+
+	public int updateLike(Like lk) {
+		return sqlSession.update("likeMapper.LikeReDi", lk);
+	}
+
 	 
 }
