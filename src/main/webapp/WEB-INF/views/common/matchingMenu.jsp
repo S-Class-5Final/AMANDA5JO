@@ -324,8 +324,6 @@ body {
 					<button class="btn button__top" style="margin-left: 108px;"
 						onclick="location.href='Mlogout.do'">Logout</button>
 				</div>
-<<<<<<< HEAD
-=======
 				
 				<br>
 				      <c:url var="myListbtn" value="myupdatememberlist.do">
@@ -349,7 +347,6 @@ body {
 	               onclick="location.href='${myChatListbtn}'">ChatList</button>
 	         </div>
            
->>>>>>> refs/remotes/origin/master
 			</div>
 		</div>
 
