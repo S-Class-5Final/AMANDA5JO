@@ -52,22 +52,32 @@
   	</resultMap> 
  
 
-  <insert id="myReportInsert" parameterType="Report2">
+ <!--  <insert id="myReportInsert" parameterType="Report2">
   INSERT INTO REPORT
   VALUES(SEQ_RKEY.NEXTVAL, #{u_mid}, #{r_user_id},#{r_type},#{r_contents},SYSDATE,'Y')
-  </insert>
+  </insert> -->
   
-  <select id="getmychatListCount" resultType="_int">
-  SELECT COUNT(*)
-  FROM CHATINFO
-  WHERE USER_ID=#{user_id}
-  </select>
-  
-  <select id="selectmychatList" resultMap="chatResultMap">
+<!--  <select id="getmychatListCount" resultType="_int" parameterType="String">
   SELECT *
   FROM CHATINFO
-   ORDER BY CHATID ASC
+  WHERE USER_ID=#{user_id} AND STATUS='Y'
+  </select>  -->
+  
+  
+  
+  
+    <select id="getmychatList" resultType="_int" parameterType="String">
+  SELECT count(*)
+  FROM CHATINFO
+  WHERE USER_ID = #{user_id} OR USER_ID2 = #{user_id} AND STATUS='Y'
   </select>
+  
+  <select id="selectmychatList" parameterType="string" resultType="ChatInfo2">
+  SELECT *
+  FROM CHATINFO
+	WHERE USER_ID=#{user_id} OR USER_ID2 = #{user_id} AND STATUS='Y'
+   ORDER BY CHATID DESC
+  </select> 
   
   <update id="myReportUpdate" parameterType="String">
   UPDATE CHATINFO
@@ -75,6 +85,34 @@
   WHERE USER_ID=#{user_id}
   </update>
   
+  
+  
+<!--   <select id="mylistAll" resultType="ChatInfo">
+  
+  <include refid="paging_header" />
+  SELECT *
+  FROM ChatInfo
+  WHERE USER_ID = #{user_id}
+  ORDER BY user_id DESC
+  <include refid="paging_footer"/>
+  
+  </select>
+  
+  <sql id="paging_header">
+  SELECT *
+  FROM(
+  	SELECT ROWNUM AS RN, A.*
+  FROM (
+  </sql>
+  
+  
+  <sql id="paging_footer">
+  	) A
+  	) WHERE RN BETWEEN #{start} and #{end}
+  </sql> -->
+  
+  
+
   
 </mapper>
 

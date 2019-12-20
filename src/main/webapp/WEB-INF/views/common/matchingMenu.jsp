@@ -224,7 +224,6 @@ body {
 	-webkit-transform:translateX(0);
 	transition-duration: 0.5s;
 }
-
 </style>
 </head>
 <body id="bodyAl">
@@ -234,10 +233,10 @@ body {
 <script>
     var sf = new Snowflakes({
         color: "#54affa",
-        count: 200,
+        count: 100,
         speed: 1
     });
-</script> 
+</script>
 
 	<!-- <div id="mySidenav" class="sidenav">
   <a>Profile</a>
@@ -249,7 +248,7 @@ body {
   <a class="menuBtn" href="#">Contact</a>
 </div> -->
 	
-		<div id="mySidenav" class="sidenav" >
+		<div id="mySidenav" class="sidenav" style="padding: 0; border: 0;">
 			<div id="pAll" style="width: 500px; height: 70px; margin-left: 10%;">
 				<a href="LikeLists.do" id="lArea">
 					<img src="resources/images/heart.png" class="mgIcon2" id="lAreass">			
@@ -258,24 +257,23 @@ body {
 					<img src="resources/images/mgicon.png" class="mgIcon">
 				</a>
 			</div>
-			<a>Profile</a> <a href="javascript:void(0)" class="closebtn"
-				onclick="closeNav()">&times;</a>
+			<!-- <a>Profile</a> <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
 			<!-- <img alt="사진없음" src="me.jpg" style="width: 400px; height: 400px; margin-left: 22px; border-radius: 100px;"> -->
 			<img alt="사진없음" src="resources/userface/${loginImg[0].renameFileName}"
-				style="width: 370px; height: 400px; margin-left: 22px; border-radius: 100px;">
+				style="width: 370px; height: 400px; margin-left: 22px; border-radius: 100px; margin-top: 30px;">
 			
 			<div id="but" align="center">
 				<div class="button button--flip">
 					<button class="btn button__face"
 						onclick="location.href='SuccessReturn.do'">Matching</button>
-					<button class="btn button__top" style="margin-left: 137px;"
+					<button class="btn button__top" style="margin-left: 98px;"
 						onclick="location.href='SuccessReturn.do'">Matching</button>
 				</div>
 				<br>
 				<div class="button button--flip">
 					<button class="btn button__face"
 						onclick="location.href='OrderPage.do'">Payment</button>
-					<button class="btn button__top" style="margin-left: 137px;"
+					<button class="btn button__top" style="margin-left: 101px;"
 						onclick="location.href='OrderPage.do'">Payment</button>
 				</div>
 				<br class="br">
@@ -283,44 +281,49 @@ body {
 					<button class="btn button__face" id="msgBtns1"
 						onclick="location.href='SendMsg.do'">Message</button>
 					<button class="btn button__top" onclick="location.href='SendMsg.do'"
-						id="msgBtns2" style="margin-left: 128px;">Message</button>
+						id="msgBtns2" style="margin-left: 101px;">Message</button>
 				</div>
 				<br class="br">
 				<div class="button button--flip">
 					<button class="btn button__face" id="likeBtns1"
 						onclick="location.href='LikeLists.do'">Like List</button>
-					<button class="btn button__top" style="margin-left: 133px;" id="likeBtns2"
+					<button class="btn button__top" style="margin-left: 104px;" id="likeBtns2"
 						onclick="location.href='LikeLists.do'">Like List</button>
 				</div>
+				
+				<br>
+				
+				
+				   <c:url var="myListbtn" value="myupdatememberlist.do">
+	            		<c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
+		           </c:url>
+		         <div class="button button--flip">
+		            <button class="btn button__face"
+		               onclick="location.href='${myListbtn}'">MyPage</button>
+		            <button class="btn button__top" style="margin-left: 104px;"
+		               onclick="location.href='${myListbtn}'">MyPage</button>
+		         </div>
+		         <br>
+		         
+		         <c:url var="myChatListbtn" value="blist.do">
+		            <c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
+		         </c:url>
+		         <div class="button button--flip">
+		            <button class="btn button__face"
+		               onclick="location.href='${myChatListbtn}'">ChatList</button>
+		            <button class="btn button__top" style="margin-left: 102px;"
+		               onclick="location.href='${myChatListbtn}'">ChatList</button>
+		         </div>
+				<br>
+				<br>
+				<br>
 				<br>
 				<div class="button button--flip">
 					<button class="btn button__face"
 						onclick="location.href='Mlogout.do'">Logout</button>
-					<button class="btn button__top" style="margin-left: 133px;"
+					<button class="btn button__top" style="margin-left: 108px;"
 						onclick="location.href='Mlogout.do'">Logout</button>
 				</div>
-				
-				<br>
-				   <c:url var="myListbtn" value="myupdatememberlist.do">
-	            <c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
-	         </c:url>
-	         <div class="button button--flip">
-	            <button class="btn button__face"
-	               onclick="location.href='${myListbtn}'">MyPage</button>
-	            <button class="btn button__top" style="margin-left: 133px;"
-	               onclick="location.href='${myListbtn}'">MyPage</button>
-	         </div>
-	         <br>
-	         
-	         <c:url var="myChatListbtn" value="blist.do">
-	            <c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
-	         </c:url>
-	         <div class="button button--flip">
-	            <button class="btn button__face"
-	               onclick="location.href='${myChatListbtn}'">ChatList</button>
-	            <button class="btn button__top" style="margin-left: 133px;"
-	               onclick="location.href='${myChatListbtn}'">ChatList</button>
-	         </div>
 			</div>
 		</div>
 
@@ -504,9 +507,7 @@ body {
 			});
 		}
 	</script>
-	
 	<script>
-	
 	function payChechs() {
 		$.ajax({
 			url:"payCheck2.do",

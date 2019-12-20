@@ -23,7 +23,8 @@
       }
       
       body {
-        background: #CCFBFE;
+       /*  background: #CCFBFE; */
+        background: white;
         overflow: hidden;
         font-family: sans-serif;
       }
@@ -379,8 +380,6 @@
       </div>
    </div>
 
-
-   
          <!-- MODAL창 -->
           <div id="myModal" class="modal" style="z-index: 101">
            <div class="modal-content" style="background: #ff6464;">
@@ -610,7 +609,7 @@
 
          
     // ajax 카드만들기 함수.
-    var indexsize = null;
+      var indexsize = null;
     var chatIndex = 0;
     function makeCard(parameter) {
        $.ajax({
@@ -637,17 +636,12 @@
               console.log(testlist[0]);
               console.log(testlist[1]);
               console.log(Object.keys(testlist).length);
-              
               chatConnList = testlist;
-
-              infoView = testlist;
-              
-
-              
+              infoView = testlist;           
               var listsize = Object.keys(testlist).length;
              $.each(testlist, function(index, value) {
-            	indexsize = index;
-				
+               indexsize = index;
+            
                 var str = 
                            "<div id = card"+(index)+" class=tinder--card >"+
                            "      <div class=mySlides" +index+" id='Slides1' style='pointer-events: none;'>"+
@@ -671,17 +665,24 @@
                            "      <p id=tUser-umid>"+testlist[index].memberlist.u_mid +"</p>"+
                            "      <input type=hidden id=tUser-email value=" + testlist[index].memberlist.user_id + ">"+
                            "      <br>"+
+                           "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
+                           "      <p id=tUser-umid>"+testlist[index].memberlist.u_mid +"</p>"+
+                           "      <input type=hidden id=tUser-email value=" + testlist[index].memberlist.user_id + ">"+
+                           "      <br>"+
                            "     <button id=infoBtn type=button onclick=infoBtnn()><img src='${contextPath }/resources/images/info5.png'></button>"+
                            "     <input type='hidden' id='connChat"+ index +"' value='"+ testlist[index].memberlist.u_mid +"'>"+
                          /*   "     <button id=infoBtn type=button onclick=infoBtnn("+ index +")><img src='${contextPath }/resources/images/info5.png'></button>"+ */
-                           "</div>";
+
+                           "     <input type='hidden' id='connChat"+ index +"' value='"+ testlist[index].memberlist.u_mid +"'>"+
+                         /*   "     <button id=infoBtn type=button onclick=infoBtnn("+ index +")><img src='${contextPath }/resources/images/info5.png'></button>"+ */
+                        "</div>";
                        $(".tinder--cards").append(str);
                        //$("#mySlides1").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
                        //$("#mySlides2").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName);
                        //$("#mySlides3").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName);
        $(".mySlides"+(index)).eq(0).css("display","block");
        $(".mySlides"+(index)).eq(1).css("display","none");
-       $(".mySlides"+(index)).eq(2).css("display","none");	
+       $(".mySlides"+(index)).eq(2).css("display","none");   
                   /* 
                       $(".mySlides"+(index)).eq(0).css("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
                        $(".mySlides"+(index)).eq(1).attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName);
@@ -698,6 +699,7 @@
     } 
        
 </script>
+       
              <%-- 
                 <h2  style="color: black;">사진 : ${plist[0].user_nick }</h2>           
                 <h2  style="color: black;">사진 : ${plist[0].renameFileName }</h2>   
@@ -1237,5 +1239,5 @@
      
      
 </body>
-   <jsp:include page="matchingFooter.jsp"/>
+   <%-- <jsp:include page="matchingFooter.jsp"/> --%>
 </html>

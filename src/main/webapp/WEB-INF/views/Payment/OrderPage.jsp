@@ -193,7 +193,6 @@ input[type="radio"]:not(old):checked + label {
 <body>
 <!-- <a href="SuccessReturn.do">메인이동</a> -->
 <jsp:include page="../common/matchingMenu.jsp"/>
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">☰ AMANDA</span>
 <br>
 	<form action="payment.do" method="post" id="payForm">
 		<div class="Payment">
@@ -643,5 +642,6 @@ input[type="radio"]:not(old):checked + label {
 		}
 	</script>
 	<br><br><br>
+	<%-- <jsp:include page="../common/matchingFooter.jsp"/> --%>
 </body>
 </html>

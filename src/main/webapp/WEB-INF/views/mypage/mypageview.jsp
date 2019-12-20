@@ -73,26 +73,30 @@
    <img class="myUpdateMemberImg" id="mytitleImg" data-order=0; style="margin-top:100px;" src="resources/userface/${mymImgList[0].renameFileName}">
    <input type="file" style="display:none" id="mythumbnailImg1" class="mythumbnailImg" multiple="multiple" name="mythumbnailImg" onchange="LoadImg(this,1)">
    <input type="hidden" name = "imgorginname" value="${mymImgList[0].originalFileName}">
+   <input type="hidden" name = "imgrename" value="${mymImgList[0].renameFileName}">
    </div>
     <div id="myFileListDiv2">
      <img  class="myUpdateMemberImg" id="mytitleImg1" data-order=1; style="margin-top:100px;" src="resources/userface/${mymImgList[1].renameFileName}">
    <input type="file" style="display:none" id="mythumbnailImg2"  class="mythumbnailImg"  multiple="multiple" name="mythumbnailImg" onchange="LoadImg(this,2)">
    <input type="hidden" name = "imgorginname" value="${mymImgList[1].originalFileName}">
+   <input type="hidden" name = "imgrename" value="${mymImgList[1].renameFileName}">
     </div>
     <div id="myFileListDiv3">
     <img  class="myUpdateMemberImg" id="mytitleImg2" data-order=2; style="margin-top:100px;" src="resources/userface/${mymImgList[2].renameFileName}">
    <input type="file" style="display:none" id="mythumbnailImg3"  class="mythumbnailImg"  multiple="multiple" name="mythumbnailImg" onchange="LoadImg(this,3)" >
    <input type="hidden" name = "imgorginname" value="${mymImgList[2].originalFileName}">
+   <input type="hidden" name = "imgrename" value="${mymImgList[2].renameFileName}">
+   
    </div>
   </div> 
 
    
    <!-- 이미지 삭제 버튼 -->
-    <div id="myImagefileDelete">
+ <!--    <div id="myImagefileDelete">
     <button type="button" id="myUpdateMemberImgDelete">삭제합니다</button>
     <button type="button" id="myUpdateMemberImgDelete2">삭제합니다</button>
     <button type="button" id="myUpdateMemberImgDelete3">삭제합니다</button>
-    </div>
+    </div> -->
   </div>
 
    
@@ -407,8 +411,8 @@
 
    <script>
    // 내용 작성 부분의 공간을 클릭할 때 파일 첨부 창이 뜨도록 설정하는 부분
-   /*      $(function(){
-   $(".mythumbnailImg").hide();   */ 
+       $(function(){
+   $(".mythumbnailImg").show();   
                    
    $("#mytitleImg").click(function(){
    $("#mythumbnailImg1").click();
@@ -422,7 +426,7 @@
       $("#mythumbnailImg3").click();
       });
    
-/*    }); */
+    }); 
    // 이미지 업로드 
    function LoadImg(value,num){
                   if(value.files[0]!=undefined){   
@@ -448,7 +452,7 @@
    </script>
 
 	<!-- 이미지 삭제 -->
-	<script type="text/javascript">
+<!-- 	<script type="text/javascript">
 	$(document).on('click', "#myUpdateMemberImgDelete", function(){
 		$("#mytitleImg").attr("src","resources/images/test.png");
 		$("#mythumbnailImg1").val("");
@@ -461,9 +465,7 @@
 		$("#mytitleImg2").attr("src","resources/images/test.png");
 		$("#mythumbnailImg3").val("");
 	});
-
-	
-	</script>
+	</script> -->
 
 
             <!-- 주소 api -->

@@ -154,7 +154,8 @@ public class MypageController {
 	public ModelAndView myMemberUpdate(Member mym, MemberImg mymImg, ModelAndView mv, Hobby myh, String user_id,
 			HttpServletRequest myrequest, @RequestParam("phone1") String myp1, @RequestParam("phone2") String myp2,
 			@RequestParam("phone3") String myp3, @RequestParam(value =  "imgorginname", required = false) ArrayList<String> imgorignname,
-			@RequestParam(value = "mythumbnailImg", required = false) ArrayList<MultipartFile> myMultipartFile) {
+			@RequestParam(value = "mythumbnailImg", required = false) ArrayList<MultipartFile> myMultipartFile,
+			@RequestParam(value =  "imgrename", required = false) ArrayList<String> imgrename) {
 		
 		int myresult = mypageService.myresult(user_id);
 		System.out.println("myresult : "+ myresult);
@@ -166,26 +167,33 @@ public class MypageController {
 		System.out.println("img의 객체 명 : " + myMemberImgList);
 		MemberImg updateImg = null;
 		
-		
 		  int addcount = -1; 
 		  
 		  for(int i = 0 ; i <myMultipartFile.size();i++) {
+			  
 			  addcount++;
 			  updateImg = new MemberImg();
-			  String myrenameFileName = mysaveFile(myMultipartFile.get(i) , myrequest, addcount,imgorignname.get(i));
+			  String myrenameFileName = "";
+			  if(myMultipartFile.get(i).getSize() > 0) {
+				  myrenameFileName = mysaveFile(myMultipartFile.get(i) , myrequest, addcount,imgorignname.get(i));
+				  if(myrenameFileName != null) {
+					  System.out.println("원본파일명 " + myMultipartFile.get(i).getOriginalFilename());
+					  updateImg.setOriginalFileName(myMultipartFile.get(i).getOriginalFilename());
+					  updateImg.setUser_id(mymImg.getUser_id());
+					  updateImg.setRenameFileName(myrenameFileName);
+					  updateImg.setImg_count(addcount);
+				  }
+			  }else {
+				  updateImg.setOriginalFileName(imgorignname.get(i));
+				  updateImg.setUser_id(mymImg.getUser_id());
+				  updateImg.setRenameFileName(imgrename.get(i));
+				  updateImg.setImg_count(addcount);
+			  }
 			  System.out.println(imgorignname.get(i));
 			  System.out.println("변경값:" + myrenameFileName);
 			  
-			  if(myrenameFileName != null) {
-				  
-				  updateImg.setOriginalFileName(imgorignname.get(i));
-				  updateImg.setUser_id(mymImg.getUser_id());
-				  updateImg.setRenameFileName(myrenameFileName);
-				  updateImg.setImg_count(addcount);
+			  System.out.println("이름수정 : "+myrenameFileName);
 			  
-			  
-			  
-			  }
 
 			  myMemberImgList.add(updateImg); 
 		  }
@@ -205,12 +213,12 @@ public class MypageController {
 			  addObject("myHobby", myh).
 			  addObject("mymImgList", myMemberImgList).
 			  setViewName("common/matchingMenu"); 
-			  return mv;
 		  
 		  }else { 
 			  throw new MypageException("정보수정을 실패하셨습니다."); 
 			  }
 	
+		  return mv;
 			
 
 	}
@@ -226,7 +234,7 @@ public class MypageController {
 		if (!myfolder.exists()) {
 			myfolder.mkdirs();
 		}
-
+		
 		SimpleDateFormat mysdf = new SimpleDateFormat("yyyyMMddHHmmss" + i);
 		String originFileName = orginname;
 		String renameFileName = mysdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
