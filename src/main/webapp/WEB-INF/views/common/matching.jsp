@@ -522,9 +522,9 @@
       
           card.classList.add('removed');
           
-          var latest = $(".removed #tUser-name").last().text(); // 가장 최근 카드 선택자
+          var latest = $(".removed #tUser-email").last().val(); // 가장 최근 카드 선택자
           if (love) { // 좋아요 누를시 카드 움직임.
-           
+           alert(latest);
                 card.style.transform = 'translate(' + moveOutWidth + 'px, -100px) rotate(-30deg)';
                 
                 $.ajax({
@@ -664,6 +664,7 @@
                            "      </div>"+
                            "      <h3 id=tUser-name>"+testlist[index].memberlist.user_nick +"</h3>"+
                            "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
+                           "      <input type=hidden id=tUser-email value=" + testlist[index].memberlist.user_id + ">"+
                            "      <br>"+
                          /*   "     <button id=infoBtn type=button onclick=infoBtnn("+ index +")><img src='${contextPath }/resources/images/info5.png'></button>"+ */
                            "</div>";
