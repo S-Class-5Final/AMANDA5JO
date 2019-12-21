@@ -1088,7 +1088,7 @@
     	 console.log("hhh"+chatConnIndex);
          
          if(chatConnIndex > 0){
-	         newWindow("${loginUser.u_mid}", chatConnIndex);	        	 
+	         newWindow("${loginUser.u_mid}", chatConnIndex);	      
          }
       
       });
