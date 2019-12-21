@@ -662,17 +662,9 @@
                            "      </div>"+
                            "      <h3 id=tUser-name>"+testlist[index].memberlist.user_nick +"</h3>"+
                            "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
-                           "      <p id=tUser-umid>"+testlist[index].memberlist.u_mid +"</p>"+
-                           "      <input type=hidden id=tUser-email value=" + testlist[index].memberlist.user_id + ">"+
+                           "      <input type='hidden' id= tUser-email value =" + testlist[index].memberlist.user_id + ">"+
                            "      <br>"+
-                           "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
-                           "      <p id=tUser-umid>"+testlist[index].memberlist.u_mid +"</p>"+
-                           "      <input type=hidden id=tUser-email value=" + testlist[index].memberlist.user_id + ">"+
-                           "      <br>"+
-                           "     <button id=infoBtn type=button onclick=infoBtnn()><img src='${contextPath }/resources/images/info5.png'></button>"+
-                           "     <input type='hidden' id='connChat"+ index +"' value='"+ testlist[index].memberlist.u_mid +"'>"+
-                         /*   "     <button id=infoBtn type=button onclick=infoBtnn("+ index +")><img src='${contextPath }/resources/images/info5.png'></button>"+ */
-                        "</div>";
+                           "</div>";
                        $(".tinder--cards").append(str);
                        //$("#mySlides1").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
                        //$("#mySlides2").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName);
@@ -1146,7 +1138,6 @@
     	
      
    </script> -->
-       </script>
      
     <!-- 이미지 슬라이드 관련 --> 
     <script>

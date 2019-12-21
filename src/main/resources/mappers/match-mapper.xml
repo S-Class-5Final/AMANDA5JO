@@ -89,8 +89,7 @@
 
 	   	SELECT *
 		FROM MEMBER
-        WHERE GRADE = '1'
-              AND STATUS= 'Y'
+        WHERE STATUS= 'Y'
     		  AND NOT USER_NICK=#{user.user_nick}
     		  AND NOT GENDER=#{user.gender}
       		  AND USER_NICK NOT IN (SELECT H_RECEIVER 
@@ -104,8 +103,7 @@
 	<select id="selectMFlist" resultMap="MemberResultMap" resultType="Member" parameterType="hashMap">
 		SELECT *
 		FROM MEMBER
-        WHERE GRADE = '1'
-              AND STATUS= 'Y'
+        WHERE STATUS= 'Y'
               AND NOT USER_NICK=#{user.user_nick}
               AND GENDER = 'F'
               AND GAY = 'N'
@@ -118,8 +116,7 @@
  	<select id="selectMFYlist" resultMap="MemberResultMap" resultType="Member" parameterType="hashMap">
 		SELECT *
 		FROM MEMBER
-        WHERE GRADE = '1'
-              AND STATUS= 'Y'
+        WHERE STATUS= 'Y'
               AND NOT USER_NICK=#{user.user_nick}
               AND GENDER = 'F'
               AND GAY = 'Y'
@@ -132,8 +129,7 @@
 	<select id="selectMMlist" resultMap="MemberResultMap" resultType="Member" parameterType="hashMap">
 		SELECT *
 		FROM MEMBER
-        WHERE GRADE = '1'
-              AND STATUS= 'Y'
+        WHERE STATUS= 'Y'
               AND NOT USER_NICK=#{user.user_nick}
               AND GENDER = 'M'
               AND GAY = 'N'
@@ -146,8 +142,7 @@
 	<select id="selectMMYlist" resultMap="MemberResultMap" resultType="Member" parameterType="hashMap">
 		SELECT *
 		FROM MEMBER
-        WHERE GRADE = '1'
-              AND STATUS= 'Y'
+        WHERE STATUS= 'Y'
               AND NOT USER_NICK=#{user.user_nick}
               AND GENDER = 'M'
               AND GAY = 'Y'
@@ -162,8 +157,7 @@
 		FROM MEMBERIMG MI
 	   JOIN (SELECT *
 		FROM MEMBER
-        WHERE GRADE = '1'
-              AND STATUS= 'Y'
+        WHERE STATUS= 'Y'
               AND GAY = 'N'
     		  AND NOT USER_NICK=#{user.user_nick}
     		  AND NOT GENDER=#{user.gender}
@@ -177,8 +171,7 @@
 		FROM MEMBERIMG MI
 	   JOIN (SELECT *
 		FROM MEMBER
-        WHERE GRADE = '1'
-              AND STATUS= 'Y'
+        WHERE STATUS= 'Y'
               AND NOT USER_NICK=#{user.user_nick}
               AND GENDER = 'F'
               AND GAY = 'N'
@@ -192,8 +185,7 @@
 		FROM MEMBERIMG MI
 	   JOIN (SELECT *
 		FROM MEMBER
-        WHERE GRADE = '1'
-              AND STATUS= 'Y'
+        WHERE STATUS= 'Y'
               AND NOT USER_NICK=#{user.user_nick}
               AND GENDER = 'F'
               AND GAY = 'Y'
@@ -207,8 +199,7 @@
 		FROM MEMBERIMG MI
 	   JOIN (SELECT *
 		FROM MEMBER
-        WHERE GRADE = '1'
-              AND STATUS= 'Y'
+        WHERE STATUS= 'Y'
               AND NOT USER_NICK=#{user.user_nick}
               AND GENDER = 'M'
               AND GAY = 'N'
@@ -222,8 +213,7 @@
 		FROM MEMBERIMG MI
 	   JOIN (SELECT *
 		FROM MEMBER
-        WHERE GRADE = '1'
-              AND STATUS= 'Y'
+        WHERE STATUS= 'Y'
               AND NOT USER_NICK=#{user.user_nick}
               AND GENDER = 'M'
               AND GAY = 'Y'
