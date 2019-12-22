@@ -69,7 +69,7 @@
 	<select id="myupdateMemberlist" parameterType="String" resultMap="myMemberResultMap">
 	SELECT *
 	FROM MEMBER
-	WHERE USER_ID = #{user_id}
+	WHERE USER_ID =#{user_id}
 	</select>	
 	
 	<select id="myupdateHobbylist" parameterType="String" resultMap="myHobbyResultMap">

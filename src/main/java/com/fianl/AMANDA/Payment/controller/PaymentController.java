@@ -78,7 +78,7 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("SuccessReturn.do")
-	public String SuccessReturn() {
+	public String SuccessReturn(HttpSession session) {
 		return "common/matching";
 	}
 	@RequestMapping("Mlogout.do")
@@ -92,6 +92,13 @@ public class PaymentController {
 		Member result = pService.payCheck(m);
 		String pay = result.getPay_status();
 		
+		Gson gson = new GsonBuilder().create();
+		gson.toJson(pay, response.getWriter());
+	}
+	@RequestMapping("payCheck2.do")
+	public void payCheck2(Member m, HttpServletResponse response) throws JsonIOException, IOException{
+		Member result = pService.payCheck(m);
+		String pay = result.getPay_status();
 		Gson gson = new GsonBuilder().create();
 		gson.toJson(pay, response.getWriter());
 	}

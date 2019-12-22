@@ -193,7 +193,6 @@ input[type="radio"]:not(old):checked + label {
 <body>
 <!-- <a href="SuccessReturn.do">메인이동</a> -->
 <jsp:include page="../common/matchingMenu.jsp"/>
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">☰ AMANDA</span>
 <br>
 	<form action="payment.do" method="post" id="payForm">
 		<div class="Payment">
@@ -306,32 +305,7 @@ input[type="radio"]:not(old):checked + label {
 						</tr>
 					</table>
 				</div>
-				<div class="infos">
-					<table style="width: 600px; height: 100px; margin-top: 3%;">
-						<tr>
-							<td style="width: 100px; height: 100px; text-align: center;">
-								<img src="resources/images/photo.png"
-								style="width: 55px; height: 55px; margin-left: 1.2%; margin-top: 5%">
-							</td>
-							<td>
-								<table>
-									<tr>
-										<td style="width: 600px;">
-											<h3
-												style="height: 0px; font-size: 2.3rem; color: #22e5a6; font-weight: 600;">사진
-												더보기</h3>
-											<br>
-										</td>
-									</tr>
-									<tr>
-										<td><font size="2em" color="#757575">마음의 드는 상대의
-												프로필 사진을 더 많이 감상하세요 !</font></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</table>
-				</div>
+				
 				<div class="infos">
 					<table style="width: 600px; height: 100px; margin-top: 3%;">
 						<tr>
@@ -668,5 +642,6 @@ input[type="radio"]:not(old):checked + label {
 		}
 	</script>
 	<br><br><br>
+	<%-- <jsp:include page="../common/matchingFooter.jsp"/> --%>
 </body>
 </html>
