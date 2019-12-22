@@ -692,7 +692,7 @@ text-align: center;
                </tr>
                <tr>
                   <td>
-                  
+                  <!-- 체크박스 체크 -->
                   <div id = "hobby" type="hidden">
                      <input type="checkbox" id="movie" name = "movie" value = "Y">영화 &nbsp;
                      <input type="checkbox" id="sing" name = "sing" value = "Y">노래 &nbsp;
