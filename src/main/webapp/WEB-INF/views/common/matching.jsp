@@ -295,9 +295,6 @@
         text-decoration: none;
         cursor: pointer;
       }
-      
-      
-      
       .containerHobby {
             height: auto;
            width:auto;
@@ -386,7 +383,7 @@
               <span class="closeModal">&times;</span> 
              <h2 align="center" style="margin-top: -8px;margin-bottom: 10px;"></h2>
              <h2 align="center">PHOTOS</h2>
-             <div style="width:auto; height:62%; background: white;">
+             <div class="user_infoView" style="width:auto; height:62%; background: white; color: black">
                 
              </div>
              <p align="center" style="font-size:35px">TOP3</p>
@@ -400,13 +397,15 @@
          
 </div>
  
-           <script>
+<!--            <script>
                var modal = document.getElementById("myModal");
                var btn = document.getElementById("infoBtn");
                var span = document.getElementsByClassName("closeModal")[0];
    
-               function infoBtnn() {
+               function infoBtnn(a) {
                  modal.style.display = "block";
+                 console.log(a);
+                 
                }
                
                span.onclick = function() {
@@ -418,7 +417,7 @@
                    modal.style.display = "none";
                  }
                } 
-         </script> 
+         </script>  -->
 <script>
    // ajax의 작업을 먼저 완료하고, 그다음에 다큐먼트들을 긁어온다음, 카드들을 생성해야되.
 
@@ -574,41 +573,8 @@
       love.addEventListener('click', loveListener);
     });
 
-    
-    
-       /* function makeAfterCard(parameter){
-         $.ajax({
-             url:"mList.do",
-             type:"get",
-             data: {
-                       loginUser: "${loginUser2.user_nick }",
-                       genderSelect: parameter
-                   },
-             dataType: "json",
-             async: false,
-             contentType:"application/json;charset=utf-8",
-             success: function(data) {
-                $.each(data.list, function(index, value) {
-               console.log(".mySlides"+(index+1));             
-                   $(".mySlides"+(index+1)).eq(0).find("img").attr("src","${contextPath }/resources/userface/201912172026120.jpg");
-                   $(".mySlides"+(index+1)).eq(1).find("img").attr("src","${contextPath }/resources/userface/${sessionScope.plist[1].renameFileName}");
-                   $(".mySlides"+(index+1)).eq(2).find("img").attr("src","${contextPath }/resources/userface/${plist[2].renameFileName}");
-                });
-             },
-             error:function(request, status, errorData){
-                alert("매칭 에이젝스 error code: " + request.status + "\n"
-                      +"message: " + request.responseText
-                      +"error: " + errorData);
-             }
-          });  
-         }  */
-    
 
-         
-    // ajax 카드만들기 함수.
-    // ajax 카드만들기 함수.
-    var indexsize = null;
-    function makeCard(parameter) {
+    function makeCard(parameter){
        $.ajax({
           url:"mList.do",
           type:"get",
@@ -616,7 +582,6 @@
                     loginUser: "${loginUser2.user_nick }",
                     genderSelect: parameter
                 },
-          dataType: "json",
           async: false,
           contentType:"application/json;charset=utf-8",
           success: function(testlist) {
@@ -633,11 +598,9 @@
               console.log(testlist[0]);
               console.log(testlist[1]);
               console.log(Object.keys(testlist).length);
-              
+  
               var listsize = Object.keys(testlist).length;
              $.each(testlist, function(index, value) {
-            	indexsize = index;
-
                 var str = 
                            "<div id = card"+(index)+" class=tinder--card >"+
                            "      <div class=mySlides" +index+" id='Slides1' style='pointer-events: none;'>"+
@@ -659,53 +622,48 @@
                            "      <h3 id=tUser-name>"+testlist[index].memberlist.user_nick +"</h3>"+
                            "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
                            "      <br>"+
-                           "     <button id=infoBtn type=button onclick=infoBtnn()><img src='${contextPath }/resources/images/info5.png'></button>"+
+                           "     <button id=infoBtn type=button onclick=infoBtnn("+ this.testlist +")><img src='${contextPath }/resources/images/info5.png'></button>"+
                            "</div>";
                        $(".tinder--cards").append(str);
-                       //$("#mySlides1").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
-                       //$("#mySlides2").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName);
-                       //$("#mySlides3").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName);
-       $(".mySlides"+(index)).eq(0).css("display","block");
-       $(".mySlides"+(index)).eq(1).css("display","none");
-       $(".mySlides"+(index)).eq(2).css("display","none");	
-                  /* 
-                      $(".mySlides"+(index)).eq(0).css("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
-                       $(".mySlides"+(index)).eq(1).attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName);
-                     $(".mySlides"+(index)).eq(2).attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[2].renameFileName); */
-             });
+                  var info = 
+                	  testlist  + "<br>";
+                       $(".user_infoView").append(info);
+                       
+                    $(".mySlides"+(index)).eq(0).css("display","block");
+                       $(".mySlides"+(index)).eq(1).css("display","none");
+                       $(".mySlides"+(index)).eq(2).css("display","none");	
+               });
            
           },
           error:function(request, status, errorData){
              alert("매칭 에이젝스 error code: " + request.status + "\n"
                    +"message: " + request.responseText
                    +"error: " + errorData);
-          },
+          }
        });
-    } 
-       
-</script>
-             <%-- 
-                <h2  style="color: black;">사진 : ${plist[0].user_nick }</h2>           
-                <h2  style="color: black;">사진 : ${plist[0].renameFileName }</h2>   
-             --%>
- <!--     <script type="text/javascript">
-        // n번째 카드의 아이디 값 가져오기.
-        for(var i = 1; i < ${mlist.size()}; i ++){
-           //console.log("닉네임 :"+ ${plist[i].user_nick});
-           //alert(${sessionScope.plist});
-           alert(${plist[i]});
-           alert(${plist[i].user_nick});
-           //alert($("#tUser-name").text());
-           //alert($("#card"+i).find("#tUser-name").text());
-           aa = $("#card"+i).find("#tUser-name").text();
-         alert(aa);
-          /* while(aa != ${plist}){
-            alert("불일치");
-         }   */
-           
-        }
-     </script> -->
+    }
+    
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("infoBtn");
+    var span = document.getElementsByClassName("closeModal")[0];
 
+    function infoBtnn(a) {
+      modal.style.display = "block";
+      console.log(a);
+      
+    }
+    
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    } 
+    
+</script>
 
     <!-- selectGay 버튼  -->
     <script>
@@ -1010,6 +968,7 @@
                 if (event.deltaX === 0) return;
                 if (event.center.x === 0 && event.center.y === 0) return;
             
+                
                 // event.delta(X,Y) : 지금까지 드래그한 거리값을 가져옴.
                 // event.deltaX > 0 : x축방향 즉, 0을기준으로 오른쪽(양수)일때 값을 love로 지정한다는거.
                 // event.deltaX > 0 : x축방향 즉, 0을기준으로 오른쪽(음수)일때 값을 nope로 지정한다는거.
@@ -1126,8 +1085,7 @@
     	
      
    </script> -->
-       </script>
-     
+
     <!-- 이미지 슬라이드 관련 --> 
     <script>
         // 1. 슬라이드가 1(처음)일 때,,,
