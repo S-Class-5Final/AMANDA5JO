@@ -313,16 +313,20 @@
         }
        
        .HobbyButton {
-        flex: 1 1 auto;
-        margin: 10px;
-        padding: 20px;
-        border: 2px solid #f7f7f7;
-        text-align: center;
-        text-transform: uppercase;
-        position: relative;
-        overflow:hidden;
-        transition: .3s;
+	        flex: 1 1 auto;
+	        margin: 10px;
+	        padding: 20px;
+	        border: 2px solid #f7f7f7;
+	        text-align: center;
+	        text-transform: uppercase;
+	        position: relative;
+	        overflow:hidden;
+	        transition: .3s;
         }
+        .footerImg{
+			margin-left: 70%;
+			margin-top: -8%;
+		}
         /* :after {
           position: absolute;
           transition: .3s;
@@ -406,7 +410,7 @@
                var span = document.getElementsByClassName("closeModal")[0];
    
                function infoBtnn(e) {
-            	   console.log(infoView[e]);
+                  console.log(infoView[e]);
                  modal.style.display = "block";
                }
                
@@ -662,17 +666,9 @@
                            "      </div>"+
                            "      <h3 id=tUser-name>"+testlist[index].memberlist.user_nick +"</h3>"+
                            "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
-                           "      <p id=tUser-umid>"+testlist[index].memberlist.u_mid +"</p>"+
-                           "      <input type=hidden id=tUser-email value=" + testlist[index].memberlist.user_id + ">"+
+                           "      <input type='hidden' id= tUser-email value =" + testlist[index].memberlist.user_id + ">"+
                            "      <br>"+
-                           "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
-                           "      <p id=tUser-umid>"+testlist[index].memberlist.u_mid +"</p>"+
-                           "      <input type=hidden id=tUser-email value=" + testlist[index].memberlist.user_id + ">"+
-                           "      <br>"+
-                           "     <button id=infoBtn type=button onclick=infoBtnn()><img src='${contextPath }/resources/images/info5.png'></button>"+
-                           "     <input type='hidden' id='connChat"+ index +"' value='"+ testlist[index].memberlist.u_mid +"'>"+
-                         /*   "     <button id=infoBtn type=button onclick=infoBtnn("+ index +")><img src='${contextPath }/resources/images/info5.png'></button>"+ */
-                        "</div>";
+                           "</div>";
                        $(".tinder--cards").append(str);
                        //$("#mySlides1").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName);
                        //$("#mySlides2").eq(0).find("img").attr("src","${contextPath }/resources/userface/" + testlist[index].imglist[1].renameFileName);
@@ -1082,13 +1078,13 @@
     <script>
     var chatConnList;
        $("#superLike").on('click', function() {
-    	 var chatIndex = $(".tinder--card.removed").length+1;
-    	 
-    	 var chatConnIndex = $(".tinder--card:nth-child("+chatIndex+")").children("input").last().val();
-    	 console.log("hhh"+chatConnIndex);
+        var chatIndex = $(".tinder--card.removed").length+1;
+        
+        var chatConnIndex = $(".tinder--card:nth-child("+chatIndex+")").children("input").last().val();
+        console.log("hhh"+chatConnIndex);
          
          if(chatConnIndex > 0){
-	         newWindow("${loginUser.u_mid}", chatConnIndex);	      
+            newWindow("${loginUser.u_mid}", chatConnIndex);         
          }
       
       });
@@ -1102,51 +1098,50 @@
       console.log("처음슬라이드 갯수 : " + slideIndex);
 
        function plusSlides(n) {
-    	   var size = slideIndex+=n;
-    	   if(size < 0){
-    		   console.log(size);
-    	   }
-    	   if(size == 0){
-    		   console.log(size);
-       		$("#Slides1").attr("display","none");
-   			$("#Slides2").attr("display","none");
-   			$("#Slides3").attr("display","block");
-    		   slideIndex = 3;
-    	   }
-    	   if(size == 4){
-    		   console.log(size);
-      			$("#Slides1").css("display","block");
-     			$("#Slides2").css("display","none");
-     			$("#Slides3").css("display","none");
-    		   slideIndex = 1;
-    	   }
-    	   if(size == 1){
-    		   console.log(size);
-       		$("#Slides1").css("display","block");
-      		$("#Slides2").css("display","none");
-      		$("#Slides3").css("display","none");	
-       	   }
-    	   if(size == 2){
-    		   console.log(size);
-       		$("#Slides1").css("display","none");
-      		$("#Slides2").css("display","block");
-      		$("#Slides3").css("display","none");
-       	   }
-    	   if(size == 3){
-    		   console.log(size);
-    		$("#Slides1").css("display","none");
-   			$("#Slides2").css("display","none");
-   			$("#Slides3").css("display","block");
-   			
-    	   }
-    	   console.log("다음 슬라이드를 눌렀을때 n 값: " +size);
+          var size = slideIndex+=n;
+          if(size < 0){
+             console.log(size);
+          }
+          if(size == 0){
+             console.log(size);
+             $("#Slides1").attr("display","none");
+            $("#Slides2").attr("display","none");
+            $("#Slides3").attr("display","block");
+             slideIndex = 3;
+          }
+          if(size == 4){
+             console.log(size);
+               $("#Slides1").css("display","block");
+              $("#Slides2").css("display","none");
+              $("#Slides3").css("display","none");
+             slideIndex = 1;
+          }
+          if(size == 1){
+             console.log(size);
+             $("#Slides1").css("display","block");
+            $("#Slides2").css("display","none");
+            $("#Slides3").css("display","none");   
+             }
+          if(size == 2){
+             console.log(size);
+             $("#Slides1").css("display","none");
+            $("#Slides2").css("display","block");
+            $("#Slides3").css("display","none");
+             }
+          if(size == 3){
+             console.log(size);
+          $("#Slides1").css("display","none");
+            $("#Slides2").css("display","none");
+            $("#Slides3").css("display","block");
+            
+          }
+          console.log("다음 슬라이드를 눌렀을때 n 값: " +size);
       }
       
-    	  
-    	
+         
+       
      
    </script> -->
-       </script>
      
     <!-- 이미지 슬라이드 관련 --> 
     <script>
@@ -1175,40 +1170,40 @@
           console.log("현재 index:" +e + s.eq(2));
           console.log("현재 n값 : " + n);
        if(n == 0){
-   		   console.log(n);
-   		s.eq(0).css("display","none");
-   		s.eq(1).css("display","none");
-   		s.eq(2).css("display","block");
-   		   slideIndex = 3;
-   	   }
-   	   if(n == 4){
-   		   console.log(n);
-   		s.eq(0).css("display","block");
-   		s.eq(1).css("display","none");
-   		s.eq(2).css("display","none");
-   		   slideIndex = 1;
-   	   }
-   	   if(n == 1){
-   		   console.log(n);
-   		s.eq(0).css("display","block");
-   		s.eq(1).css("display","none");
-   		s.eq(2).css("display","none");	
-      	   }
-   	   if(n == 2){
-   		   console.log(n);
-   		s.eq(0).css("display","none");
-   		s.eq(1).css("display","block");
-   		s.eq(2).css("display","none");
-      	   }
-   	   if(n == 3){
-   		   console.log(n);
-   		s.eq(0).css("display","none");
-   		s.eq(1).css("display","none");
-   		s.eq(2).css("display","block");
-  			
-   	   }   
+            console.log(n);
+         s.eq(0).css("display","none");
+         s.eq(1).css("display","none");
+         s.eq(2).css("display","block");
+            slideIndex = 3;
+         }
+         if(n == 4){
+            console.log(n);
+         s.eq(0).css("display","block");
+         s.eq(1).css("display","none");
+         s.eq(2).css("display","none");
+            slideIndex = 1;
+         }
+         if(n == 1){
+            console.log(n);
+         s.eq(0).css("display","block");
+         s.eq(1).css("display","none");
+         s.eq(2).css("display","none");   
+            }
+         if(n == 2){
+            console.log(n);
+         s.eq(0).css("display","none");
+         s.eq(1).css("display","block");
+         s.eq(2).css("display","none");
+            }
+         if(n == 3){
+            console.log(n);
+         s.eq(0).css("display","none");
+         s.eq(1).css("display","none");
+         s.eq(2).css("display","block");
+           
+         }   
 
-		}
+      }
         // var slides = document.getElementsByClassName("mySlides"); // 사진부분.
 /*             for(var num = 1; num <= 3; num++){ 
         //   var slides = $("#card"+num+" .mySlides"+num);
@@ -1234,7 +1229,9 @@
       
    </script>
      
-     
+     <div class="footerImg">
+		<img src="resources/images/al.gif">
+	</div>
 </body>
    <%-- <jsp:include page="matchingFooter.jsp"/> --%>
 </html>

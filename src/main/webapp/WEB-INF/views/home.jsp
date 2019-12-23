@@ -31,6 +31,9 @@
 #interview {
 	background: blue;
 }
+::-webkit-scrollbar {
+	display: none;
+}
 /* 모달 css */
 .modal {
 	display: none; /* Hidden by default */

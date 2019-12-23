@@ -47,6 +47,7 @@
 		WHERE USER_ID IN (SELECT SENDER
                           FROM MLIKE
                           WHERE RECEIVER = #{user_id} AND LIKESTATUS = 'Y')
+                          ORDER BY U_MID ASC
 	</select>
 	
 	<select id="selectReceiver" parameterType="Member" resultMap="MemberResultMap" >
@@ -55,6 +56,7 @@
 		WHERE USER_ID IN (SELECT RECEIVER
                           FROM MLIKE
                           WHERE SENDER = #{user_id} AND LIKESTATUS = 'Y')
+                          ORDER BY U_MID ASC
 	</select>
 	
 	<select id="selectSenderImg" parameterType="MemberImg" resultMap="MemberImgResultMap">
@@ -64,6 +66,7 @@
                           FROM MLIKE
                           WHERE RECEIVER = #{user_id} AND LIKESTATUS = 'Y')
         AND IMG_COUNT = 0
+        ORDER BY USER_ID ASC
 	</select>
 	
 	<select id="selectReceiverImg" parameterType="MemberImg" resultMap="MemberImgResultMap">
@@ -73,6 +76,7 @@
                           FROM MLIKE
                           WHERE SENDER = #{user_id} AND LIKESTATUS = 'Y') 
        	AND IMG_COUNT =0
+       	ORDER BY USER_ID ASC
 	</select>
 	
 	<insert id="insertLike" parameterType="Like">
@@ -113,6 +117,7 @@
                     AND A.SENDER = #{user_id} AND B.RECEIVER = #{user_id}
                     AND A.LIKESTATUS ='Y' AND B.LIKESTATUS='Y')
         AND STATUS = 'Y' AND IMG_COUNT=0
+        ORDER BY USER_ID ASC
 	</select>
 	
 	<select id="selectLikeAlram" parameterType="Like" resultType="_int">
