@@ -41,7 +41,7 @@ body {
 #chat_box {
 	width: 100%;
 	min-width: 350px;
-	height: 70%;
+	height: 60%;
 	min-height: 450px;
 	border: 1px solid black;
 	margin: 0;
@@ -150,13 +150,13 @@ body {
 	float: right;
     max-width: 55%;
     border-spacing: 0px;
-    margin-right: 1em;
+    margin-right: 0.5em;
 }
 .opponentChat_table {
 	float: left;
-	max-width: 70%;
-	border-spacing: 0px;
-    margin-right: 1em;
+    max-width: 70%;
+    border-spacing: 0px;
+    margin-left: 0.5em;
 }
 /* chat message line */
 .chatLine {
@@ -231,13 +231,13 @@ body {
     background-color: yellow;
     border: 1px solid lightgray;
     margin: 0.5em;
-    width: 4em;
+    width: 5em;
 }
 .chatModalClose {
 	color: black;
     font-size: 15px;
     margin: 0.5em;
-	width: 4em;
+	width: 5em;
     border-radius: 5px;
     background-color: white;
     border: 1px solid lightgray;
@@ -385,23 +385,27 @@ body {
 }
 #backModalImg{
 	position: absolute;
+    width: 2em;
+    height: 3em;
 	top:50%;
 	left:3em;
 	cursor:pointer;
 	z-index:1003;
 	border: 0px;
-	opacity :0.5;
+	opacity :0.7;
 	background-image: url('resources/images/leftChatArrow.png');
 	background-size: 100% 100%;
 }
 #nextModalImg{
 	position: absolute;
+	width: 2em;
+    height: 3em;
 	top:50%;
 	right:3em;
 	cursor:pointer;
 	z-index:1003;
 	border: 0px;
-	opacity :0.5;
+	opacity :0.7;
 	background-image: url('resources/images/rightChatArrow.png');
 	background-size: 100% 100%;
 }
@@ -435,9 +439,6 @@ body {
 .innerImgDiv>img{
 	width: 90%;
     height: 100%;
-}
-.innerUserImg{
-	
 }
 .chatIDModal-footer{
 	height: 10%;
@@ -474,9 +475,8 @@ body {
 	background-color: lightgray;
 }
 .diclarModalDiv{
-	background-color: red;
     width: 100%;
-    height: 65%;
+    height: 67%;
     margin-bottom: 3%;
     text-align: center;
 }
@@ -490,6 +490,13 @@ body {
     margin-right: auto;
     background-color: white;
 }
+.declarCategory div{
+	display: inline-block;
+    vertical-align: top;
+    padding-top: 0.5em;
+    padding-left: 1em;
+    font-size: large;
+}
 #declarMsg{
 	width: 90%;
     border: 0px;
@@ -500,7 +507,22 @@ body {
     vertical-align: top;
 }
 .declarImg{
-
+	width: 2.5em;
+    height: 2.5em;
+    padding: 3px;
+    border-radius: 25% 25% 25% 25%;
+}
+.declarImg.chatPhoto{
+	background-color: cornflowerblue;
+}
+.declarImg.chatRobot{
+	background-color: limegreen;
+}
+.declarImg.chatbadM{
+	background-color: orangered;
+}
+.declarImg.chatOther{
+	background-color: darkgray;
 }
 #img_button{
 	width: 2em;
@@ -510,6 +532,35 @@ body {
 	border: 0;
 	opacity: 0.7;
 	cursor: pointer;
+}
+#oppName{
+    font-size: 1.5em;
+    vertical-align: top;
+    text-align: left;
+    margin: 0;
+    display: inline-block;
+    padding-left: 0.5em;
+    padding-top: 0.5em;
+}
+.oppMainImg{
+	width: 3em;
+    height: 3em;
+    margin: 5px;
+    border-radius: 50% 50% 50% 50%;
+}
+#chat_header{
+	display: inline-block;
+    vertical-align: middle;
+    background-color: rgba(168, 202, 220, 0.72);
+    width: 100%;
+    height: 10%;
+    border: 0;
+}
+#declarForm textarea{
+	border: 1px solid black;
+}
+#imgInputUl li{
+	float:left;
 }
 </style>
 </head>
@@ -525,6 +576,19 @@ body {
 	
 	<div id="chatView">
 		<!-- 채팅 내용 div -->
+		<div id="chat_header">
+			<img id="oppMainImg" src="resources/userface/${userImg[0].renameFileName}" class="oppMainImg">
+			<div id="oppName">
+				<c:choose>
+					<c:when test="${chat.userName ne loginUser.user_nick}">
+						${chat.userName }
+					</c:when>
+					<c:when test="${chat.userName2 ne loginUser.user_nick }">
+						${chat.userName }
+					</c:when>
+				</c:choose>
+			</div>
+		</div>
 		<div id="chat_box"></div>
 		<div id="chat_msg">
 			<div id="msg-div">
@@ -555,9 +619,18 @@ body {
 				<div id="chatImgDivBox">
 					<div class="innerUserImg">
 						<c:forEach var="cImg" items="${userImg}" varStatus="status">
-								<div class="innerImgDiv">
-									<img alt="first" src="resources/userface/${cImg.renameFileName}">
-								</div>
+							<c:choose>
+								<c:when test="${status.index eq 0}">
+									<div class="innerImgDiv active">
+										<img  src="resources/userface/${cImg.renameFileName}">
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div class="innerImgDiv">
+										<img  src="resources/userface/${cImg.renameFileName}">
+									</div>
+								</c:otherwise>
+							</c:choose>
 						</c:forEach>
 						<ul class="slideUl">
 							<li id="slideImg1" class="activeImg"></li>
@@ -581,23 +654,23 @@ body {
 					<form id="declarForm" name="declearForm" method="post">
 						<div class="diclarModalDiv">
 							<div class="declarCategory" onclick="declarCategory('1')">
-								<img class="declarImg" src="#">
-								<span>부적절한 사진</span>
+								<img class="declarImg chatPhoto" src="resources/images/chatPhoto.png">
+								<div>부적절한 사진</div>
 							</div>
 							<div class="declarCategory" onclick="declarCategory('2')">
-								<img class="declarImg" src="#">
-								<span>스팸으로 의심됨</span>
+								<img class="declarImg chatRobot" src="resources/images/chatRobot.png">
+								<div>스팸으로 의심됨</div>
 							</div>
 							<div class="declarCategory" onclick="declarCategory('3')">
-								<img class="declarImg" src="#">
-								<span>부적절한 메시지</span>
+								<img class="declarImg chatbadM" src="resources/images/chatbadM.png">
+								<div>부적절한 메시지</div>
 							</div>
 							<div class="declarCategory" onclick="declarCategory('4')">
-								<img class="declarImg" src="#">
-								<span>기타</span>
+								<img class="declarImg chatOther" src="resources/images/chatOther.png">
+								<div>기타</div>
 							</div>
-							<textarea id="declarMsg" rows="5"></textarea>
-							<input type="hidden" name="#" id="r_Type">
+							<textarea id="declarMsg" rows="3"></textarea>
+							<input type="hidden" name="r_Type" id="r_Type">
 						</div>
 						<div style="vertical-align: bottom; text-align:center">
 						<!-- class="declarDivOpen"  -->
@@ -625,7 +698,7 @@ body {
 						<input type="hidden" name="chatUser" value="${loginUser.user_nick }"> 
 						<input type="hidden" name="img_status" value="Y">
 					</div>
-					<div style="vertical-align: bottom; text-align:center">
+					<div style="vertical-align: bottom; text-align:center; margin-top:1em;">
 					<input id="sendImgBtn" class="sendModalBtn" type="button" value="확인">
 					<input class="chatModalClose" onclick="deleteFile();" type="button" value="취소">
 					</div>
@@ -634,9 +707,11 @@ body {
 		</div>
 	</div>
 	<!-- ip 주소값 수정 -->
-	<script src="http://192.168.219.102:80/socket.io/socket.io.js"></script>
+	<script src="http://172.30.1.13:80/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
-	const socket = io("http://192.168.219.102:80");
+
+	const socket = io("http://172.30.1.13:80");
+
 	var room = "${chat.chatRoom}";
 	var name = '${loginUser.user_nick }';
 	var userCount = 0;
@@ -877,8 +952,7 @@ body {
 	        dropZone.on('drop',function(e){
 	            e.preventDefault();
 	            // 모달창 열림
-	            /* $("#myModal").css("display", "block"); */
-	            $("#chatIdModal").css("display", "block");
+	            $("#myModal").css("display", "block");
 	            var files = e.originalEvent.dataTransfer.files;
 	            if(files != null){
 	                if(files.length < 1){
@@ -1250,8 +1324,14 @@ body {
 				});				
 			}
 		}
+		/* $("#chatIdModal").css("display", "block"); */
+		$(document).on("click", "#oppMainImg", function(){
+			$("#chatIdModal").css("display", "block");
+		});
 		
-		
+		$(document).on("click", ".chatImg-box", function(){
+			$("#chatIdModal").css("display", "block");
+		});
 		
 	</script>
 </body>

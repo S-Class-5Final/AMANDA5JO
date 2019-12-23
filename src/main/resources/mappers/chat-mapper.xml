@@ -121,7 +121,7 @@
 	<update id="updateConfirm" parameterType="_int">
 		UPDATE CHATROOM
 		SET CONFIRM = 0
-		WHERE CR_ID = #{crId} AND CONFIRM = 1
+		WHERE CHATID = #{chatId}
 	</update>
 	
 	<!-- 이미지 데이터 insert -->
