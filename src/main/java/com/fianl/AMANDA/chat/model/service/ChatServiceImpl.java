@@ -52,9 +52,9 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public int updateConfirm(int crId) {
+	public int updateConfirm(int chatId) {
 		
-		return chDao.updateConfirm(crId);
+		return chDao.updateConfirm(chatId);
 	}
 
 	@Override

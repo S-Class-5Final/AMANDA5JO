@@ -26,7 +26,7 @@ public interface ChatService {
 	
 	public int updateChat(int chatId);		// 채팅방 차단
 	
-	public int updateConfirm(int crId);		// 채팅 확인 시
+	public int updateConfirm(int chatId);		// 채팅 확인 시
 	
 	public int insertImgChat(ArrayList<ChatRoom> chatRoom);	// 이미지 저장
 	
@@ -34,9 +34,9 @@ public interface ChatService {
 	
 	public int insertReport(Report re);	// 신고
 	
-	public ArrayList<ChatUser> findMainImg(ArrayList<ChatUser> cu);
+	public ArrayList<ChatUser> findMainImg(ArrayList<ChatUser> cu);	// 상대방 메인 이미지 가져오기
 	
-	public ArrayList<MemberImg> findAllImg(String chat);
+	public ArrayList<MemberImg> findAllImg(String chat);	// 상대방 이미지 가져오기
 	
 	
 }

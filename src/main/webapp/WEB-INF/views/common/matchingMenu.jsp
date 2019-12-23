@@ -161,7 +161,7 @@ body {
     height: 80%;
     margin-top: 10%;
     margin-bottom: 10%;
-    border: 1px solid black;
+    background-color: white;
     z-index: 1000;
     text-align: center;
     border-radius: 0.5em;
@@ -224,6 +224,7 @@ body {
 	-webkit-transform:translateX(0);
 	transition-duration: 0.5s;
 }
+
 </style>
 </head>
 <body id="bodyAl">
@@ -233,10 +234,10 @@ body {
 <script>
     var sf = new Snowflakes({
         color: "#54affa",
-        count: 100,
+        count: 200,
         speed: 1
     });
-</script>
+</script> 
 
 	<!-- <div id="mySidenav" class="sidenav">
   <a>Profile</a>
@@ -248,7 +249,7 @@ body {
   <a class="menuBtn" href="#">Contact</a>
 </div> -->
 	
-		<div id="mySidenav" class="sidenav" style="padding: 0; border: 0;">
+		<div id="mySidenav" class="sidenav" >
 			<div id="pAll" style="width: 500px; height: 70px; margin-left: 10%;">
 				<a href="LikeLists.do" id="lArea">
 					<img src="resources/images/heart.png" class="mgIcon2" id="lAreass">			
@@ -257,23 +258,24 @@ body {
 					<img src="resources/images/mgicon.png" class="mgIcon">
 				</a>
 			</div>
-			<!-- <a>Profile</a> <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
+			<a>Profile</a> <a href="javascript:void(0)" class="closebtn"
+				onclick="closeNav()">&times;</a>
 			<!-- <img alt="사진없음" src="me.jpg" style="width: 400px; height: 400px; margin-left: 22px; border-radius: 100px;"> -->
 			<img alt="사진없음" src="resources/userface/${loginImg[0].renameFileName}"
-				style="width: 370px; height: 400px; margin-left: 22px; border-radius: 100px; margin-top: 30px;">
+				style="width: 370px; height: 400px; margin-left: 22px; border-radius: 100px;">
 			
 			<div id="but" align="center">
 				<div class="button button--flip">
 					<button class="btn button__face"
 						onclick="location.href='SuccessReturn.do'">Matching</button>
-					<button class="btn button__top" style="margin-left: 98px;"
+					<button class="btn button__top" style="margin-left: 137px;"
 						onclick="location.href='SuccessReturn.do'">Matching</button>
 				</div>
 				<br>
 				<div class="button button--flip">
 					<button class="btn button__face"
 						onclick="location.href='OrderPage.do'">Payment</button>
-					<button class="btn button__top" style="margin-left: 101px;"
+					<button class="btn button__top" style="margin-left: 137px;"
 						onclick="location.href='OrderPage.do'">Payment</button>
 				</div>
 				<br class="br">
@@ -281,49 +283,45 @@ body {
 					<button class="btn button__face" id="msgBtns1"
 						onclick="location.href='SendMsg.do'">Message</button>
 					<button class="btn button__top" onclick="location.href='SendMsg.do'"
-						id="msgBtns2" style="margin-left: 101px;">Message</button>
+						id="msgBtns2" style="margin-left: 128px;">Message</button>
 				</div>
 				<br class="br">
 				<div class="button button--flip">
 					<button class="btn button__face" id="likeBtns1"
 						onclick="location.href='LikeLists.do'">Like List</button>
-					<button class="btn button__top" style="margin-left: 104px;" id="likeBtns2"
+					<button class="btn button__top" style="margin-left: 133px;" id="likeBtns2"
 						onclick="location.href='LikeLists.do'">Like List</button>
 				</div>
-				
-				<br>
-				
-				
-   <c:url var="myListbtn" value="myupdatememberlist.do">
-            <c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
-         </c:url>
-         <div class="button button--flip">
-            <button class="btn button__face"
-               onclick="location.href='${myListbtn}'">MyPage</button>
-            <button class="btn button__top" style="margin-left: 133px;"
-               onclick="location.href='${myListbtn}'">MyPage</button>
-         </div>
-         <br>
-         
-         <c:url var="myChatListbtn" value="mylist.do">
-            <c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
-         </c:url>
-         <div class="button button--flip">
-            <button class="btn button__face"
-               onclick="location.href='${myChatListbtn}'">ChatList</button>
-            <button class="btn button__top" style="margin-left: 133px;"
-               onclick="location.href='${myChatListbtn}'">ChatList</button>
-         </div>
-				<br>
-				<br>
-				<br>
 				<br>
 				<div class="button button--flip">
 					<button class="btn button__face"
 						onclick="location.href='Mlogout.do'">Logout</button>
-					<button class="btn button__top" style="margin-left: 108px;"
+					<button class="btn button__top" style="margin-left: 133px;"
 						onclick="location.href='Mlogout.do'">Logout</button>
 				</div>
+				
+				<br>
+				      <c:url var="myListbtn" value="myupdatememberlist.do">
+            <c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
+	         </c:url>
+	         <div class="button button--flip">
+	            <button class="btn button__face"
+	               onclick="location.href='${myListbtn}'">MyPage</button>
+	            <button class="btn button__top" style="margin-left: 133px;"
+	               onclick="location.href='${myListbtn}'">MyPage</button>
+	         </div>
+	         <br>
+	         
+	         <c:url var="myChatListbtn" value="mylist.do">
+	            <c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
+	         </c:url>
+	         <div class="button button--flip">
+	            <button class="btn button__face"
+	               onclick="location.href='${myChatListbtn}'">ChatList</button>
+	            <button class="btn button__top" style="margin-left: 133px;"
+	               onclick="location.href='${myChatListbtn}'">ChatList</button>
+	         </div>
+           
 			</div>
 		</div>
 
@@ -435,6 +433,7 @@ body {
 			<input type="hidden" name="user1" id="user1">
 			<input type="hidden" name="user2" id="user2">
 			<input type="hidden" name="userId" value="${loginUser.user_id }">
+			<input type="hidden" name="userchCount" id="userchCount">
 		</form>
 		
 	</div>
@@ -452,15 +451,19 @@ body {
 
 		function newWindow(user1, user2){
 			$("#user1").val(user1);
-			console.log($("#user1").val());
 			$("#user2").val(user2);
-			console.log($("#user2").val());
+			var count = $('#count'+"${loginUser.u_mid}_"+user2+'').val();
+			
+			if(count > 0 && count != null){
+				$("#userchCount").val(count);
+			}
+			
 			var popForm = document.popForm;
 			if(chatView != null){
 				chatView.close();
 			}
 			chatView = window.open("", "Amanda", "left=100, top=100, location=0, resizable=0, menubar=0, status=0, titlebar=0, toolbar=0", true);
-			chatView.resizeTo("370", "600");
+			chatView.resizeTo("370", "660");
 			chatView.resizeBy("0", "0");
 			
 			popForm.action = "chChat.do";
@@ -499,15 +502,21 @@ body {
 						var addSignal = $("<p></p>").appendTo(countPTag);
 						if(data[i].conSum > 0){
 							addSignal.addClass("signalChat").text(data[i].conSum);
+							$("<input>").attr({"type":"hidden","id":"count${loginUser.u_mid}_"+data[i].uMid, "value":data[i].conSum}).appendTo(addRoom);
+						}else{
+							$("<input>").attr({"type":"hidden","id":"count${loginUser.u_mid}_"+data[i].uMid}).appendTo(addRoom);
 						}
 						var chatImg = $("<img>").attr("src", "resources/userface/"+data[i].renameFileName).addClass("chatUserImg").appendTo(countPTag);
 						var userName = $("<p></p>").text(data[i].userNick).addClass("chatUserName").appendTo(countPTag);
+						
 					}
 				}
 			});
 		}
 	</script>
+	
 	<script>
+	
 	function payChechs() {
 		$.ajax({
 			url:"payCheck2.do",

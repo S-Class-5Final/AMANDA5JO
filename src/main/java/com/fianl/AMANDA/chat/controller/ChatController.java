@@ -37,10 +37,10 @@ public class ChatController {
 	@SuppressWarnings("null")
 	@RequestMapping(value = "chChat.do")
 	public ModelAndView connectChatView(ModelAndView mv, @RequestParam("user1") Integer u_mId,
-			@RequestParam("user2") Integer u_mId2, String userId) {
+			@RequestParam("user2") Integer u_mId2, String userId, 
+			@RequestParam(value="userchCount") Integer userchCount) {
 		String chatRoom;
-		System.out.println("u_mId "+u_mId);
-		System.out.println("u_mId2 "+u_mId2);
+		
 		// 번호가 빠른순이 앞에 존재해야 하기 때문에
 		if (u_mId > u_mId2) {
 			chatRoom = u_mId2 + "," + u_mId;
@@ -51,6 +51,9 @@ public class ChatController {
 		ArrayList<MemberImg> chatImg = new ArrayList<MemberImg>();
 		String findOpp = "";
 		if (chat != null) {
+			if(userchCount != null && userchCount > 0) {
+				chService.updateConfirm(chat.getChatId());
+			}
 			if(chat.getUser_Id().equals(userId)) {
 				findOpp = chat.getUser_Id2();
 			}else {
@@ -76,7 +79,6 @@ public class ChatController {
 		if(chat.getStatus().equals("N")){
 			mv.addObject("fail", "fail").setViewName("Chat/chatView");
 		}
-		System.out.println("시발 왜 안되냐"+chatImg);
 		return mv;
 	}
 
@@ -128,7 +130,6 @@ public class ChatController {
 	@RequestMapping(value = "chAllContent.do")
 	public void allChatContent(HttpServletResponse response, int chatId) throws JsonIOException, IOException {
 		response.setContentType("application/json;charset=utf-8");
-		System.out.println("이거맞니?" + chatId);
 		ArrayList<ChatRoom> chatroom = chService.allChatContent(chatId);
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
@@ -148,7 +149,6 @@ public class ChatController {
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		ArrayList<ChatRoom> chat = new ArrayList<ChatRoom>();
 		
-		System.out.println(files);
 		// 파일 저장
 		int addIndex = 0;
 		for(MultipartFile mf : files) {
@@ -211,7 +211,6 @@ public class ChatController {
 	
 	@RequestMapping("declarUser.do")
 	public void declarUser(HttpServletResponse response, Report re, int chatId) throws JsonIOException, IOException {
-		System.out.println(re);
 		
 		int result = chService.insertReport(re);
 		Gson gson = new Gson();
@@ -232,7 +231,6 @@ public class ChatController {
 		response.setContentType("application/json;charset=utf-8");
 		ArrayList<ChatInfo> chatList = chService.selectAllChat(userName);
 		ArrayList<ChatUser> cu = new ArrayList<ChatUser>();
-		System.out.println(chatList);
 		if(chatList != null && chatList.size() > 0) {
 			for(ChatInfo c : chatList) {
 				ChatUser user = new ChatUser();

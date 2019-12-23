@@ -35,9 +35,9 @@ public class ChatDao {
 		return sqlSession.insert("ChatMapper.insertChatRoom", room);
 	}
 
-	public int updateChatRoom(int crId) {
+	public int updateChatRoom(int chatId) {
 		
-		return sqlSession.update("ChatMapper.updateChatRoom",crId);
+		return sqlSession.update("ChatMapper.updateChatRoom",chatId);
 	}
 
 	public int updateChat(int chatId) {
@@ -45,9 +45,9 @@ public class ChatDao {
 		return sqlSession.update("ChatMapper.updateChat",chatId);
 	}
 
-	public int updateConfirm(int crId) {
+	public int updateConfirm(int chatId) {
 		
-		return sqlSession.update("ChatMapper.updateConfirm",crId);
+		return sqlSession.update("ChatMapper.updateConfirm",chatId);
 	}
 
 	public ChatInfo selectChat(String chatRoom) {
