@@ -396,33 +396,7 @@
          </div> 
          
 </div>
- 
-<!--            <script>
-               var modal = document.getElementById("myModal");
-               var btn = document.getElementById("infoBtn");
-               var span = document.getElementsByClassName("closeModal")[0];
-   
-<<<<<<< HEAD
-               function infoBtnn(a) {
-=======
-               function infoBtnn(e) {
-            	   console.log(infoView[e]);
->>>>>>> refs/remotes/origin/master
-                 modal.style.display = "block";
-                 console.log(a);
-                 
-               }
-               
-               span.onclick = function() {
-                 modal.style.display = "none";
-               }
-               
-               window.onclick = function(event) {
-                 if (event.target == modal) {
-                   modal.style.display = "none";
-                 }
-               } 
-         </script>  -->
+
 <script>
 
  var infoView;
@@ -581,15 +555,11 @@
     });
 
 
-<<<<<<< HEAD
-    function makeCard(parameter){
-=======
-         
+
     // ajax 카드만들기 함수.
       var indexsize = null;
     var chatIndex = 0;
     function makeCard(parameter) {
->>>>>>> refs/remotes/origin/master
        $.ajax({
           url:"mList.do",
           type:"get",
@@ -651,10 +621,6 @@
                        $(".mySlides"+(index)).eq(2).css("display","none");	
                });
            
-       $(".mySlides"+(index)).eq(0).css("display","block");
-       $(".mySlides"+(index)).eq(1).css("display","none");
-       $(".mySlides"+(index)).eq(2).css("display","none");   
-               });
             console.log(chatConnList);
 
           },
@@ -1129,7 +1095,7 @@
   			
    	   }   
 
-		}
+	}
 
    </script>
      

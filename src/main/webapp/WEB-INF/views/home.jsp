@@ -509,7 +509,7 @@ text-align: center;
    <div class="section visual" id="visual">
       <div class="video_wrap">
          <video id="video" autoplay loop muted>
-            <source src="resources/video/video.mp4" type="video/mp4">
+            <source src="resources/video/AMANDA.mp4" type="video/mp4">
          </video>
       </div>
       
