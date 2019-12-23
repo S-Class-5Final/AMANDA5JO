@@ -707,17 +707,11 @@ body {
 		</div>
 	</div>
 	<!-- ip 주소값 수정 -->
-<<<<<<< HEAD
 	<script src="http://172.30.1.13:80/socket.io/socket.io.js"></script>
-=======
-	<script src="http://192.168.219.102:80/socket.io/socket.io.js"></script>
->>>>>>> refs/remotes/origin/master
 	<script type="text/javascript">
-<<<<<<< HEAD
+
 	const socket = io("http://172.30.1.13:80");
-=======
-	const socket = io("http://192.168.219.102:80");
->>>>>>> refs/remotes/origin/master
+
 	var room = "${chat.chatRoom}";
 	var name = '${loginUser.user_nick }';
 	var userCount = 0;

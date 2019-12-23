@@ -249,7 +249,6 @@ public class ChatController {
 		 * HashMap<String, ArrayList> map = new HashMap<String, ArrayList>();
 		 * map.put("chatRoom", chatList); map.put("user", cu);
 		 */
-		System.out.println("확인용 "+cu);
 		Gson gson = new Gson();
 		gson.toJson(cu, response.getWriter());
 		
