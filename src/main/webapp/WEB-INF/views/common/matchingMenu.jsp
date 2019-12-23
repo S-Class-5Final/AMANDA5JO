@@ -352,10 +352,12 @@ body {
 				success : function(data) {
 					if(data>0){
 						$("#pArea").fadeIn( 'slow' );
-						$("<p class='alramMsgcss' id='alMsg'>" + data 
+						$("<p class='alramMsgcss' id='alMsgs'>" + data 
 						+ "</p>").appendTo("#pArea");
 					}else{
-						$("#alMsg").hide();
+						$(".alramMsgcss").hide();
+						$(".alramMsgcss").show();
+						$(".alramMsgcss").hide();
 					}
 				}
 			});
@@ -365,7 +367,7 @@ body {
 			alramMsg();
 			setInterval(function() {
 				alramMsg();
-			}, 3000);
+			}, 5000);
 		});
 	</script>
 	
@@ -437,6 +439,8 @@ body {
 		</form>
 		
 	</div>
+	
+	
 <!-- 채팅목록 스크립트 -->
 <script type="text/javascript">
 		var chatView;
@@ -554,9 +558,9 @@ body {
 	};
 	$(function(){
 		payChechs();
-		/* setInterval(function(){
+		  setInterval(function(){
 			payChechs();
-		}, 2000); */
+		}, 5000);
 	});
 	</script>
 </body>
