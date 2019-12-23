@@ -188,8 +188,8 @@ body {
 }
 .signalChat{
 	position: absolute;
-    right: 1em;
-    top: 0.7em;
+    right: 0;
+    top: 0;
     background-color: red;
     border-radius: 50% 50% 50% 50%;
     width: 1.5em;
@@ -466,14 +466,27 @@ body {
 			if(chatView != null){
 				chatView.close();
 			}
-			chatView = window.open("", "Amanda", "left=100, top=100, location=0, resizable=0, menubar=0, status=0, titlebar=0, toolbar=0", true);
-			chatView.resizeTo("370", "660");
-			chatView.resizeBy("0", "0");
 			
-			popForm.action = "chChat.do";
-			popForm.method = "post";
-			popForm.target = "Amanda";
-			popForm.submit();
+			$.ajax({
+				url:"payCheck2.do",
+				dataType:"json",
+				data:{user_id : "${sessionScope.loginUser.user_id}"},
+				success:function(data){
+					if(data == 'Y'){
+						chatView = window.open("", "Amanda", "left=100, top=100, location=0, resizable=0, menubar=0, status=0, titlebar=0, toolbar=0", true);
+						chatView.resizeTo("370", "660");
+						chatView.resizeBy("0", "0");
+						
+						popForm.action = "chChat.do";
+						popForm.method = "post";
+						popForm.target = "Amanda";
+						popForm.submit();
+					}else{
+						alert("결제후 이용가능합니다!");
+					}
+				}
+			});
+			
 			
 		}
 		
@@ -502,7 +515,7 @@ body {
 						/* 수정 */
 						console.log(data[i]);
 						var addRoom = $("<div></div>").attr("onclick", "newWindow('${loginUser.u_mid}','"+data[i].uMid+"')").addClass("chatRoomImg").appendTo(roomDiv);
-						var countPTag = $("<p></p>").appendTo(addRoom);
+						var countPTag = $("<p></p>").css({"position": "relative", "padding-top":"0.5em"}).appendTo(addRoom);
 						var addSignal = $("<p></p>").appendTo(countPTag);
 						if(data[i].conSum > 0){
 							addSignal.addClass("signalChat").text(data[i].conSum);

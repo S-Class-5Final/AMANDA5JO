@@ -617,6 +617,7 @@
                            "      <h3 id=tUser-name>"+testlist[index].memberlist.user_nick +"</h3>"+
                            "      <p id=tUser-summary>"+testlist[index].memberlist.user_into +"</p>"+
                            "      <input type='hidden' id= tUser-email value =" + testlist[index].memberlist.user_id + ">"+
+                           "      <input type='hidden' value =" + testlist[index].memberlist.u_mid + ">"+
                            "      <br>"+
                            "</div>";
                        $(".tinder--cards").append(str);
