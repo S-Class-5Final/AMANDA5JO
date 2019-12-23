@@ -9,7 +9,8 @@
 body {
 	font-family: "Lato", sans-serif;
 }
-.LikeAl{
+
+.LikeAl {
 	width: 100px;
 	height: 100px;
 	border: 1px solid;
@@ -53,6 +54,7 @@ body {
 	transform-origin: center;
 	transform: rotateX(90deg);
 }
+
 ::-webkit-scrollbar {
 	display: none;
 }
@@ -128,7 +130,8 @@ body {
 	margin-top: 2%;
 	position: absolute;
 }
-.alramLike{
+
+.alramLike {
 	background-color: red;
 	border-radius: 50% 50% 50% 50%;
 	width: 30px;
@@ -148,6 +151,7 @@ body {
 	margin-left: 55%;
 	margin-bottom: 10%;
 }
+
 .mgIcon2 {
 	width: 80px;
 	height: 80px;
@@ -156,88 +160,96 @@ body {
 	margin-top: 5%;
 }
 /* 채팅 css */
-.chatListView{
-    width: auto;
-    height: 80%;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    background-color: white;
-    z-index: 1000;
-    text-align: center;
-    border-radius: 0.5em;
-    overflow-x: hidden;
-    overflow-y: auto;
-    margin-left: 1em;
+.chatListView {
+	width: auto;
+	height: 80%;
+	margin-top: 10%;
+	margin-bottom: 10%;
+	border: 1px solid black;
+	z-index: 1000;
+	text-align: center;
+	border-radius: 0.5em;
+	overflow-x: hidden;
+	overflow-y: auto;
+	margin-left: 1em;
 }
+
 .chatListView::-webkit-scrollbar {
 	display: none;
 }
-.chatRoomImg{
-	margin:1em;
+
+.chatRoomImg {
+	margin: 1em;
 }
-.chatUserImg{
+
+.chatUserImg {
 	width: 4em;
-    height: 4em;
-    border-radius: 50% 50% 50% 50%;
-    border: 1px solid lightgray;
+	height: 4em;
+	border-radius: 50% 50% 50% 50%;
+	border: 1px solid lightgray;
 }
-.chatUserName{
+
+.chatUserName {
 	margin: 0;
-    font-size: smaller;
-    font-weight: bold;
+	font-size: smaller;
+	font-weight: bold;
 }
-.signalChat{
+
+.signalChat {
 	position: absolute;
-    right: 0;
-    top: 0;
-    background-color: red;
-    border-radius: 50% 50% 50% 50%;
-    width: 1.5em;
-    height: 1.5em;
-    font-size: small;
-    color: white;
+	right: 0;
+	top: 0;
+	background-color: red;
+	border-radius: 50% 50% 50% 50%;
+	width: 1.5em;
+	height: 1.5em;
+	font-size: small;
+	color: white;
 }
-.scViewBtn{
+
+.scViewBtn {
 	position: fixed;
-    right: 7em;
-    border-radius: 10%;
-    background-color: white;
-    width: 2em;
-    height: 4em;
-    top: 37%;
-    z-index: 100;
-    border: 1px solid lightgray;
+	right: 7em;
+	border-radius: 10%;
+	background-color: white;
+	width: 2em;
+	height: 4em;
+	top: 37%;
+	z-index: 100;
+	border: 1px solid lightgray;
 }
-.crShowView{
+
+.crShowView {
 	position: fixed;
-    right: 0;
-    width: 7em;
-    height: 70%;
-    z-index: 1000;
-    margin-top: 5%;
+	right: 0;
+	width: 7em;
+	height: 70%;
+	z-index: 1000;
+	margin-top: 5%;
 }
-.crShowView.hidecView{
-	-webkit-transform:translateX(6em);
-	transition-duration: 0.5s;
-}
-.crShowView.showView{
-	-webkit-transform:translateX(0);
+
+.crShowView.hidecView {
+	-webkit-transform: translateX(6em);
 	transition-duration: 0.5s;
 }
 
+.crShowView.showView {
+	-webkit-transform: translateX(0);
+	transition-duration: 0.5s;
+}
 </style>
 </head>
 <body id="bodyAl">
 
-<!-- Snow효과 -->
- <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
-<script>
-    var sf = new Snowflakes({
-        color: "#54affa",
-        count: 200,
-        speed: 1
-    });
-</script> 
+	<!-- Snow효과 -->
+	<script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+	<script>
+		var sf = new Snowflakes({
+			color : "#54affa",
+			count : 100,
+			speed : 1
+		});
+	</script>
 
 	<!-- <div id="mySidenav" class="sidenav">
   <a>Profile</a>
@@ -248,82 +260,82 @@ body {
   <a class="menuBtn" href="#">Clients</a>
   <a class="menuBtn" href="#">Contact</a>
 </div> -->
-	
-		<div id="mySidenav" class="sidenav" >
-			<div id="pAll" style="width: 500px; height: 70px; margin-left: 10%;">
-				<a href="LikeLists.do" id="lArea">
-					<img src="resources/images/heart.png" class="mgIcon2" id="lAreass">			
-				</a>
-				<a href="SendMsg.do" id="pArea">
-					<img src="resources/images/mgicon.png" class="mgIcon">
-				</a>
+
+	<div id="mySidenav" class="sidenav" style="padding: 0; border: 0;">
+		<div id="pAll" style="width: 500px; height: 70px; margin-left: 10%;">
+			<a href="LikeLists.do" id="lArea"> <img
+				src="resources/images/heart.png" class="mgIcon2" id="lAreass">
+			</a> <a href="SendMsg.do" id="pArea"> <img
+				src="resources/images/mgicon.png" class="mgIcon">
+			</a>
+		</div>
+		<!-- <a>Profile</a> <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
+		<!-- <img alt="사진없음" src="me.jpg" style="width: 400px; height: 400px; margin-left: 22px; border-radius: 100px;"> -->
+		<img alt="사진없음" src="resources/userface/${loginImg[0].renameFileName}"
+			style="width: 370px; height: 400px; margin-left: 22px; border-radius: 100px; margin-top: 30px;">
+
+		<div id="but" align="center">
+			<div class="button button--flip">
+				<button class="btn button__face"
+					onclick="location.href='SuccessReturn.do'">Matching</button>
+				<button class="btn button__top" style="margin-left: 98px;"
+					onclick="location.href='SuccessReturn.do'">Matching</button>
 			</div>
-			<a>Profile</a> <a href="javascript:void(0)" class="closebtn"
-				onclick="closeNav()">&times;</a>
-			<!-- <img alt="사진없음" src="me.jpg" style="width: 400px; height: 400px; margin-left: 22px; border-radius: 100px;"> -->
-			<img alt="사진없음" src="resources/userface/${loginImg[0].renameFileName}"
-				style="width: 370px; height: 400px; margin-left: 22px; border-radius: 100px;">
-			
-			<div id="but" align="center">
-				<div class="button button--flip">
-					<button class="btn button__face"
-						onclick="location.href='SuccessReturn.do'">Matching</button>
-					<button class="btn button__top" style="margin-left: 137px;"
-						onclick="location.href='SuccessReturn.do'">Matching</button>
-				</div>
-				<br>
-				<div class="button button--flip">
-					<button class="btn button__face"
-						onclick="location.href='OrderPage.do'">Payment</button>
-					<button class="btn button__top" style="margin-left: 137px;"
-						onclick="location.href='OrderPage.do'">Payment</button>
-				</div>
-				<br class="br">
-				<div class="button button--flip">
-					<button class="btn button__face" id="msgBtns1"
-						onclick="location.href='SendMsg.do'">Message</button>
-					<button class="btn button__top" onclick="location.href='SendMsg.do'"
-						id="msgBtns2" style="margin-left: 128px;">Message</button>
-				</div>
-				<br class="br">
-				<div class="button button--flip">
-					<button class="btn button__face" id="likeBtns1"
-						onclick="location.href='LikeLists.do'">Like List</button>
-					<button class="btn button__top" style="margin-left: 133px;" id="likeBtns2"
-						onclick="location.href='LikeLists.do'">Like List</button>
-				</div>
-				<br>
-				<div class="button button--flip">
-					<button class="btn button__face"
-						onclick="location.href='Mlogout.do'">Logout</button>
-					<button class="btn button__top" style="margin-left: 133px;"
-						onclick="location.href='Mlogout.do'">Logout</button>
-				</div>
-				
-				<br>
-				      <c:url var="myListbtn" value="myupdatememberlist.do">
-            <c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
-	         </c:url>
-	         <div class="button button--flip">
-	            <button class="btn button__face"
-	               onclick="location.href='${myListbtn}'">MyPage</button>
-	            <button class="btn button__top" style="margin-left: 133px;"
-	               onclick="location.href='${myListbtn}'">MyPage</button>
-	         </div>
-	         <br>
-	         
-	         <c:url var="myChatListbtn" value="mylist.do">
-	            <c:param name="user_id" value="${sessionScope.loginUser.user_id }"/>
-	         </c:url>
-	         <div class="button button--flip">
-	            <button class="btn button__face"
-	               onclick="location.href='${myChatListbtn}'">ChatList</button>
-	            <button class="btn button__top" style="margin-left: 133px;"
-	               onclick="location.href='${myChatListbtn}'">ChatList</button>
-	         </div>
-           
+			<br>
+			<div class="button button--flip">
+				<button class="btn button__face"
+					onclick="location.href='OrderPage.do'">Payment</button>
+				<button class="btn button__top" style="margin-left: 101px;"
+					onclick="location.href='OrderPage.do'">Payment</button>
+			</div>
+			<br class="br">
+			<div class="button button--flip">
+				<button class="btn button__face" id="msgBtns1"
+					onclick="location.href='SendMsg.do'">Message</button>
+				<button class="btn button__top" onclick="location.href='SendMsg.do'"
+					id="msgBtns2" style="margin-left: 101px;">Message</button>
+			</div>
+			<br class="br">
+			<div class="button button--flip">
+				<button class="btn button__face" id="likeBtns1"
+					onclick="location.href='LikeLists.do'">Like List</button>
+				<button class="btn button__top" style="margin-left: 104px;"
+					id="likeBtns2" onclick="location.href='LikeLists.do'">Like
+					List</button>
+			</div>
+
+			<br>
+
+
+			<c:url var="myListbtn" value="myupdatememberlist.do">
+				<c:param name="user_id" value="${sessionScope.loginUser.user_id }" />
+			</c:url>
+			<div class="button button--flip">
+				<button class="btn button__face"
+					onclick="location.href='${myListbtn}'">MyPage</button>
+				<button class="btn button__top" style="margin-left: 133px;"
+					onclick="location.href='${myListbtn}'">MyPage</button>
+			</div>
+			<br>
+
+			<c:url var="myChatListbtn" value="mylist.do">
+				<c:param name="user_id" value="${sessionScope.loginUser.user_id }" />
+			</c:url>
+			<div class="button button--flip">
+				<button class="btn button__face"
+					onclick="location.href='${myChatListbtn}'">ChatList</button>
+				<button class="btn button__top" style="margin-left: 133px;"
+					onclick="location.href='${myChatListbtn}'">ChatList</button>
+			</div>
+			<br> <br> <br> <br>
+			<div class="button button--flip">
+				<button class="btn button__face"
+					onclick="location.href='Mlogout.do'">Logout</button>
+				<button class="btn button__top" style="margin-left: 108px;"
+					onclick="location.href='Mlogout.do'">Logout</button>
 			</div>
 		</div>
+	</div>
 
 
 	<!-- <div id="main">
@@ -344,23 +356,26 @@ body {
 
 	<script>
 		function alramMsg() {
-			$.ajax({
-				url : "alramMsg.do",
-				data : {
-					user_id : "${sessionScope.loginUser.user_id}"
-				},
-				success : function(data) {
-					if(data>0){
-						$("#pArea").fadeIn( 'slow' );
-						$("<p class='alramMsgcss' id='alMsgs'>" + data 
-						+ "</p>").appendTo("#pArea");
-					}else{
-						$(".alramMsgcss").hide();
-						$(".alramMsgcss").show();
-						$(".alramMsgcss").hide();
-					}
-				}
-			});
+			$
+					.ajax({
+						url : "alramMsg.do",
+						data : {
+							user_id : "${sessionScope.loginUser.user_id}"
+						},
+						success : function(data) {
+							if (data > 0) {
+								$("#pArea").fadeIn('slow');
+								$(
+										"<p class='alramMsgcss' id='alMsgs'>"
+												+ data + "</p>").appendTo(
+										"#pArea");
+							} else {
+								$(".alramMsgcss").hide();
+								$(".alramMsgcss").show();
+								$(".alramMsgcss").hide();
+							}
+						}
+					});
 		};
 
 		$(function() {
@@ -370,7 +385,7 @@ body {
 			}, 5000);
 		});
 	</script>
-	
+
 	<script>
 		function alramLike() {
 			$.ajax({
@@ -379,11 +394,11 @@ body {
 					receiver : "${sessionScope.loginUser.user_id}"
 				},
 				success : function(data) {
-					if(data > 0){
-						$("#lArea").fadeIn( 'slow' );
-						$("<p class='alramLike' id='alLike'>" + "N"
-						+ "</p>").appendTo("#lArea");
-					}else{
+					if (data > 0) {
+						$("#lArea").fadeIn('slow');
+						$("<p class='alramLike' id='alLike'>" + "N" + "</p>")
+								.appendTo("#lArea");
+					} else {
 						$("#alLike").hide();
 					}
 				}
@@ -398,7 +413,7 @@ body {
 		});
 	</script>
 
- 
+
 	<!-- like용 node script -->
 	<!-- <script src="http://192.168.219.105:80/socket.io/socket.io.js"></script>
 	<script>
@@ -428,153 +443,156 @@ body {
 	<!-- 채팅 목록 -->
 	<div id="crShowViewDiv" class="crShowView hidecView">
 		<input type="button" id="scViewBtn" class="scViewBtn" value="<">
-		<div id="chatListView" class="chatListView">
-			
-		</div>
+		<div id="chatListView" class="chatListView"></div>
 		<form name="popForm" method="get">
-			<input type="hidden" name="user1" id="user1">
-			<input type="hidden" name="user2" id="user2">
+			<input type="hidden" name="user1" id="user1"> 
+			<input type="hidden" name="user2" id="user2"> 
 			<input type="hidden" name="userId" value="${loginUser.user_id }">
 			<input type="hidden" name="userchCount" id="userchCount">
 		</form>
-		
+
 	</div>
-	
-	
-<!-- 채팅목록 스크립트 -->
-<script type="text/javascript">
+
+
+	<!-- 채팅목록 스크립트 -->
+	<script type="text/javascript">
 		var chatView;
-		
-		$(function(){
+
+		$(function() {
 			findChatRoom();
+			setInterval(function() {
+				$("#chatListView").html("");
+				findChatRoom();
+			}, 5000);
 		});
-		
-		window.addEventListener("beforeunload", function (event) {
+
+		window.addEventListener("beforeunload", function(event) {
 			chatView.close();
 		});
 
 		function newWindow(user1, user2){
-			$("#user1").val(user1);
-			$("#user2").val(user2);
-			var count = $('#count'+"${loginUser.u_mid}_"+user2+'').val();
-			
-			if(count > 0 && count != null){
-				$("#userchCount").val(count);
-			}
-			
-			var popForm = document.popForm;
-			if(chatView != null){
-				chatView.close();
-			}
-			
-			$.ajax({
-				url:"payCheck2.do",
-				dataType:"json",
-				data:{user_id : "${sessionScope.loginUser.user_id}"},
-				success:function(data){
-					if(data == 'Y'){
-						chatView = window.open("", "Amanda", "left=100, top=100, location=0, resizable=0, menubar=0, status=0, titlebar=0, toolbar=0", true);
-						chatView.resizeTo("370", "660");
-						chatView.resizeBy("0", "0");
-						
-						popForm.action = "chChat.do";
-						popForm.method = "post";
-						popForm.target = "Amanda";
-						popForm.submit();
-					}else{
-						alert("결제후 이용가능합니다!");
-					}
-				}
-			});
-			
-			
-		}
-		
-		$("#scViewBtn").click(function(){
-			if($("#crShowViewDiv").hasClass("hidecView") == true){
-				$("#crShowViewDiv").removeClass("hidecView");
-				$("#crShowViewDiv").addClass("showView");
-				$("#scViewBtn").val(">");
-			}else{
-				$("#crShowViewDiv").addClass("hidecView");
-				$("#crShowViewDiv").removeClass("showView");
-				$("#scViewBtn").val("<");
-			}
-		});
-		// 채팅 목록 가져오기
-		function findChatRoom(){
-			$.ajax({
-				url:"chfindChat.do",
-				type:"post",
-				data:{userName : "${loginUser.user_nick}"},
-				dataType:"json",
-				success:function(data){
-					var roomDiv = $("#chatListView");
-					console.log(data);
-					for(var i in data){
-						/* 수정 */
-						console.log(data[i]);
-						var addRoom = $("<div></div>").attr("onclick", "newWindow('${loginUser.u_mid}','"+data[i].uMid+"')").addClass("chatRoomImg").appendTo(roomDiv);
-						var countPTag = $("<p></p>").css({"position": "relative", "padding-top":"0.5em"}).appendTo(addRoom);
-						var addSignal = $("<p></p>").appendTo(countPTag);
-						if(data[i].conSum > 0){
-							addSignal.addClass("signalChat").text(data[i].conSum);
-							$("<input>").attr({"type":"hidden","id":"count${loginUser.u_mid}_"+data[i].uMid, "value":data[i].conSum}).appendTo(addRoom);
-						}else{
-							$("<input>").attr({"type":"hidden","id":"count${loginUser.u_mid}_"+data[i].uMid}).appendTo(addRoom);
-						}
-						var chatImg = $("<img>").attr("src", "resources/userface/"+data[i].renameFileName).addClass("chatUserImg").appendTo(countPTag);
-						var userName = $("<p></p>").text(data[i].userNick).addClass("chatUserName").appendTo(countPTag);
-						
-					}
-				}
-			});
-		}
+	         $("#user1").val(user1);
+	         $("#user2").val(user2);
+	         var count = $('#count'+"${loginUser.u_mid}_"+user2+'').val();
+	         
+	         if(count >= 1 && count != null){
+	            $("#userchCount").val(count);
+	         }
+	         
+	         var popForm = document.popForm;
+	         if(chatView != null){
+	            chatView.close();
+	         }
+	         
+	         $.ajax({
+	            url:"payCheck2.do",
+	            dataType:"json",
+	            data:{user_id : "${sessionScope.loginUser.user_id}"},
+	            success:function(data){
+	               if(data == 'Y'){
+	                  chatView = window.open("", "Amanda", "left=100, top=100, location=0, resizable=0, menubar=0, status=0, titlebar=0, toolbar=0", true);
+	                  chatView.resizeTo("370", "660");
+	                  chatView.resizeBy("0", "0");
+	                  
+	                  popForm.action = "chChat.do";
+	                  popForm.method = "post";
+	                  popForm.target = "Amanda";
+	                  popForm.submit();
+	               }else{
+	                  alert("결제후 이용가능합니다!");
+	               }
+	            }
+	         });
+	         
+	         
+	      }
+	      
+	      $("#scViewBtn").click(function(){
+	         if($("#crShowViewDiv").hasClass("hidecView") == true){
+	            $("#crShowViewDiv").removeClass("hidecView");
+	            $("#crShowViewDiv").addClass("showView");
+	            $("#scViewBtn").val(">");
+	         }else{
+	            $("#crShowViewDiv").addClass("hidecView");
+	            $("#crShowViewDiv").removeClass("showView");
+	            $("#scViewBtn").val("<");
+	         }
+	      });
+	      // 채팅 목록 가져오기
+	      function findChatRoom(){
+	         $.ajax({
+	            url:"chfindChat.do",
+	            type:"post",
+	            data:{userName : "${loginUser.user_nick}"},
+	            dataType:"json",
+	            success:function(data){
+	               var roomDiv = $("#chatListView");
+	               console.log(data);
+	               for(var i in data){
+	                  /* 수정 */
+	                  console.log(data[i]);
+	                  var addRoom = $("<div></div>").attr("onclick", "newWindow('${loginUser.u_mid}','"+data[i].uMid+"')").addClass("chatRoomImg").appendTo(roomDiv);
+	                  var countPTag = $("<p></p>").css({"position": "relative", "padding-top":"0.5em"}).appendTo(addRoom);
+	                  var addSignal = $("<p></p>").appendTo(countPTag);
+	                  if(data[i].conSum > 0){
+	                     addSignal.addClass("signalChat").text(data[i].conSum);
+	                     $("<input>").attr({"type":"hidden","id":"count${loginUser.u_mid}_"+data[i].uMid, "value":data[i].conSum}).appendTo(addRoom);
+	                  }else{
+	                     $("<input>").attr({"type":"hidden","id":"count${loginUser.u_mid}_"+data[i].uMid}).appendTo(addRoom);
+	                  }
+	                  var chatImg = $("<img>").attr("src", "resources/userface/"+data[i].renameFileName).addClass("chatUserImg").appendTo(countPTag);
+	                  var userName = $("<p></p>").text(data[i].userNick).addClass("chatUserName").appendTo(countPTag);
+	                  
+	               }
+	            }
+	         });
+	      }
 	</script>
-	
 	<script>
-	
-	function payChechs() {
-		$.ajax({
-			url:"payCheck2.do",
-			dataType:"json",
-			data:{user_id : "${sessionScope.loginUser.user_id}"},
-			success:function(data){
-				if(data != 'Y'){
-					document.getElementById('lArea').onclick = function () {
-							$("#lArea").attr("href", "#");
-						  	alert("결제후 이용가능합니다!");
-						};
-					document.getElementById('pArea').onclick = function () {
-							$("#pArea").attr("href", "#");
-						  	alert("결제후 이용가능합니다!");
-						};
-					document.getElementById('msgBtns1').onclick = function () {
-							$(".msgBtns1").attr("onclick", "");
-						  	alert("결제후 이용가능합니다!");
-						};
-					document.getElementById('msgBtns2').onclick = function () {
-							$(".msgBtns2").attr("onclick", "");
-						  	alert("결제후 이용가능합니다!");
-						};
-					document.getElementById('likeBtns1').onclick = function () {
-							$(".likeBtns1").attr("onclick", "");
-						  	alert("결제후 이용가능합니다!");
-						};
-					document.getElementById('likeBtns2').onclick = function () {
-							$(".likeBtns2").attr("onclick", "");
-						  	alert("결제후 이용가능합니다!");
-						};
-				}
-			}
-		});
-	};
-	$(function(){
-		payChechs();
-		  setInterval(function(){
+		function payChechs() {
+			$
+					.ajax({
+						url : "payCheck2.do",
+						dataType : "json",
+						data : {
+							user_id : "${sessionScope.loginUser.user_id}"
+						},
+						success : function(data) {
+							if (data != 'Y') {
+								document.getElementById('lArea').onclick = function() {
+									$("#lArea").attr("href", "#");
+									alert("결제후 이용가능합니다!");
+								};
+								document.getElementById('pArea').onclick = function() {
+									$("#pArea").attr("href", "#");
+									alert("결제후 이용가능합니다!");
+								};
+								document.getElementById('msgBtns1').onclick = function() {
+									$(".msgBtns1").attr("onclick", "");
+									alert("결제후 이용가능합니다!");
+								};
+								document.getElementById('msgBtns2').onclick = function() {
+									$(".msgBtns2").attr("onclick", "");
+									alert("결제후 이용가능합니다!");
+								};
+								document.getElementById('likeBtns1').onclick = function() {
+									$(".likeBtns1").attr("onclick", "");
+									alert("결제후 이용가능합니다!");
+								};
+								document.getElementById('likeBtns2').onclick = function() {
+									$(".likeBtns2").attr("onclick", "");
+									alert("결제후 이용가능합니다!");
+								};
+							}
+						}
+					});
+		};
+		$(function() {
 			payChechs();
-		}, 5000);
-	});
+			setInterval(function() {
+				payChechs();
+			}, 5000);
+		});
 	</script>
 </body>
 
