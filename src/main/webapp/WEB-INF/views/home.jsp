@@ -425,7 +425,7 @@ a.sm-link{
 
 #Imglist #first, #second, #third {
    float: left;
-   border: 1px solid black;
+       margin-right: 2px;
 }
 
 /* 다음 버튼 */
@@ -479,7 +479,7 @@ a.sm-link{
 margin-right: 40px;
 margin-bottom : 10px;
 color : white;
-background: black;
+background: #A6A6A6;
 display: inline-block;
 font-weight: bold;
 border-radius: 7px;
@@ -495,6 +495,8 @@ cursor: pointer;
 margin-top: 5px;
 text-align: center;
 }
+
+
 </style>
 </head>
 <body>
@@ -677,7 +679,6 @@ text-align: center;
                
                <tr>
                		<td align="center">
-               		취미 선택!
                		<div class="hobbybox">
                		<div class="hobbystyle" id="moviediv" onclick = "hobbybtn(this,1)">&nbsp;영화 보기&nbsp;</div>
                		<div class="hobbystyle" id="singdiv" onclick = "hobbybtn(this,2)">&nbsp;노래부르기&nbsp;</div>
@@ -729,9 +730,11 @@ text-align: center;
                      <div id="first">
                         <img id = "firstImg" src="resources/images/image.png" onerror="this.src='resources/images/image.png'" width="300" height="300">
                      </div>
+                     &nbsp;
                      <div id = "second">
                         <img id= "secondImg" src="resources/images/image.png" width ="300" height = "300">
                      </div>
+                     &nbsp;
                      <div id = "third">
                         <img id= "thirdImg" src="resources/images/image.png" width ="300" height = "300">
                      </div>
@@ -954,8 +957,9 @@ function kakaologout(){
               //로그인 버튼
               myimg.onclick = function() {
                   modal.style.display = "block";
-                  loginview.style.display = "block";
+                 loginview.style.display = "block";
                  infoView.style.display = "none";
+                 pwdCheckView.style.display = "none";
               }
               //회원가입 시작 버튼
               insertmemberview.onclick = function(){
@@ -964,6 +968,7 @@ function kakaologout(){
                  infoView1.style.display = "block";
                  infoView2.style.display = "none";
                  infoView3.style.display = "none";
+                 pwdCheckView.style.display = "none";
               }
               //회원가입 첫페이지 유효성 검사 및 두번째 페이지로 넘어가는 버튼
               nextpage1.onclick=function(){
@@ -1044,6 +1049,7 @@ function kakaologout(){
                  infoView1.style.display = "none";
                  infoView2.style.display = "block";
                  infoView3.style.display = "none";
+                 pwdCheckView.style.display = "none";
               }
               //비밀번호 찾기
               pwdCheck.onclick=function(){
@@ -1183,14 +1189,15 @@ function kakaologout(){
             	switch (e) {
 				case 1:
 					if(moviebl == false){
-						$("#moviediv").css("background","rgb(255,255,0)");
+						$("#moviediv").css("background","#A3A0ED");
 						$("#movie").prop("checked",true);
 	                 	Hobbycount = Hobbycount +1;
 	                 	$("#movie").val('Y');
 	                 	alert($("#movie").val());
 	            		moviebl = !moviebl;
+	                    alert(Hobbycount);
 					}else{
-						$("#moviediv").css("background","rgb(0,0,0)");
+						$("#moviediv").css("background","#A6A6A6");
 						$("#movie").prop("checked",false);
 					  	Hobbycount = Hobbycount -1;
 		                $("#movie").val('N');
@@ -1200,13 +1207,13 @@ function kakaologout(){
 					break;
 				case 2:
 					if(singbl == false){
-						$("#singdiv").css("background","rgb(255,255,0)");
+						$("#singdiv").css("background","#A3A0ED");
 						$("#sing").prop("checked",true);
 	                 	Hobbycount = Hobbycount +1;
 	                 	$("#sing").val('Y');
 						singbl = !singbl;
 					}else{
-						$("#singdiv").css("background","rgb(0,0,0)");
+						$("#singdiv").css("background","#A6A6A6");
 						$("#sing").prop("checked",false);
 					  	Hobbycount = Hobbycount -1;
 		                $("#sing").val('N');
@@ -1215,13 +1222,13 @@ function kakaologout(){
 					break;
 				case 3:
 					if(gamebl == false){
-						$("#gamediv").css("background","rgb(255,255,0)");
+						$("#gamediv").css("background","#A3A0ED");
 						$("#game").prop("checked",true);
 	                 	Hobbycount = Hobbycount +1;
 	                 	$("#game").val('Y');
 						gamebl = !gamebl;
 					}else{
-						$("#gamediv").css("background","rgb(0,0,0)");
+						$("#gamediv").css("background","#A6A6A6");
 						$("#game").prop("checked",false);
 					  	Hobbycount = Hobbycount -1;
 		                $("#game").val('N');
@@ -1230,13 +1237,13 @@ function kakaologout(){
 					break;
 				case 4:
 					if(jmtbl == false){
-						$("#jmtdiv").css("background","rgb(255,255,0)");
+						$("#jmtdiv").css("background","#A3A0ED");
 						$("#jmt").prop("checked",true);
 	                 	Hobbycount = Hobbycount +1;
 	                 	$("#jmt").val('Y');
 						jmtbl = !jmtbl;
 					}else{
-						$("#jmtdiv").css("background","rgb(0,0,0)");
+						$("#jmtdiv").css("background","#A6A6A6");
 						$("#jmt").prop("checked",false);
 					  	Hobbycount = Hobbycount -1;
 		                $("#jmt").val('N');
@@ -1245,13 +1252,13 @@ function kakaologout(){
 					break;
 				case 5:
 					if(petbl == false){
-						$("#petdiv").css("background","rgb(255,255,0)");
+						$("#petdiv").css("background","#A3A0ED");
 						$("#pet").prop("checked",true);
-					  	Hobbycount = Hobbycount -1;
+					  	Hobbycount = Hobbycount +1;
 		                $("#pet").val('Y');
 						petbl = !petbl;
 					}else{
-						$("#petdiv").css("background","rgb(0,0,0)");
+						$("#petdiv").css("background","#A6A6A6");
 						$("#pet").prop("checked",false);
 					  	Hobbycount = Hobbycount -1;
 		                $("#pet").val('N');
@@ -1260,13 +1267,13 @@ function kakaologout(){
 					break;
 				case 6:
 					if(cafebl == false){
-						$("#cafediv").css("background","rgb(255,255,0)");
+						$("#cafediv").css("background","#A3A0ED");
 						$("#cafe").prop("checked",true);
-					  	Hobbycount = Hobbycount -1;
+					  	Hobbycount = Hobbycount +1;
 		                $("#cafe").val('Y');
 						cafebl = !cafebl;
 					}else{
-						$("#cafediv").css("background","rgb(0,0,0)");
+						$("#cafediv").css("background","#A6A6A6");
 						$("#cafe").prop("checked",false);
 					  	Hobbycount = Hobbycount -1;
 		                $("#cafe").val('N');
@@ -1275,13 +1282,13 @@ function kakaologout(){
 					break;
 				case 7:
 					if(workingbl == false){
-						$("#workingdiv").css("background","rgb(255,255,0)");
+						$("#workingdiv").css("background","#A3A0ED");
 						$("#working").prop("checked",true);
-					  	Hobbycount = Hobbycount -1;
+					  	Hobbycount = Hobbycount +1;
 		                $("#working").val('Y');
 						workingbl = !workingbl;
 					}else{
-						$("#workingdiv").css("background","rgb(0,0,0)");
+						$("#workingdiv").css("background","#A6A6A6");
 						$("#working").prop("checked",false);
 					  	Hobbycount = Hobbycount -1;
 		                $("#working").val('N');
@@ -1290,13 +1297,13 @@ function kakaologout(){
 					break;
 				case 8:
 					if(potobl == false){
-						$("#potodiv").css("background","rgb(255,255,0)");
+						$("#potodiv").css("background","#A3A0ED");
 						$("#poto").prop("checked",true);
-					  	Hobbycount = Hobbycount -1;
+					  	Hobbycount = Hobbycount +1;
 		                $("#poto").val('Y');
 						potobl = !potobl;
 					}else{
-						$("#potodiv").css("background","rgb(0,0,0)");
+						$("#potodiv").css("background","#A6A6A6");
 						$("#poto").prop("checked",false);
 					  	Hobbycount = Hobbycount -1;
 		                $("#poto").val('N');
@@ -1305,13 +1312,13 @@ function kakaologout(){
 					break;
 				case 9:
 					if(travelbl == false){
-						$("#traveldiv").css("background","rgb(255,255,0)");
+						$("#traveldiv").css("background","#A3A0ED");
 						$("#travel").prop("checked",true);
-					  	Hobbycount = Hobbycount -1;
+					  	Hobbycount = Hobbycount +1;
 		                $("#travel").val('Y');
 						travelbl = !travelbl;
 					}else{
-						$("#traveldiv").css("background","rgb(0,0,0)");
+						$("#traveldiv").css("background","#A6A6A6");
 						$("#travel").prop("checked",false);
 					  	Hobbycount = Hobbycount -1;
 		                $("#travel").val('N');
@@ -1767,6 +1774,7 @@ $(function() {
                 Hobbycount = Hobbycount +1;
                 $("#movie").val('Y');
                 alert($("#movie").val());
+
             }else{
                Hobbycount = Hobbycount -1;
                $("#movie").val('N');

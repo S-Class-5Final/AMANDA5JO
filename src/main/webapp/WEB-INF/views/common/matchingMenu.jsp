@@ -139,7 +139,7 @@ body {
 	font-size: 60;
 	color: white;
 	text-align: center;
-	margin-left: 48%;
+	margin-left: 51%;
 	margin-top: 6%;
 	position: absolute;
 }
@@ -148,16 +148,16 @@ body {
 	width: 100px;
 	height: 100px;
 	position: absolute;
-	margin-left: 55%;
-	margin-bottom: 10%;
+    margin-left: 55%;
+    margin-top: -1%;
 }
 
 .mgIcon2 {
-	width: 80px;
-	height: 80px;
+	width: 60px;
+    height: 60px;
 	position: absolute;
-	margin-left: 35%;
-	margin-top: 5%;
+    margin-left: 41%;
+    margin-top: 7%;
 }
 /* 채팅 css */
 .chatListView {
@@ -260,11 +260,11 @@ body {
   <a class="menuBtn" href="#">Clients</a>
   <a class="menuBtn" href="#">Contact</a>
 </div> -->
-
 	<div id="mySidenav" class="sidenav" style="padding: 0; border: 0;">
+			<a style="position: absolute; font-weight: 900" onclick="location.href='SuccessReturn.do'">AMANDA</a>
 		<div id="pAll" style="width: 500px; height: 70px; margin-left: 10%;">
 			<a href="LikeLists.do" id="lArea"> <img
-				src="resources/images/heart.png" class="mgIcon2" id="lAreass">
+				src="resources/images/heart2.png" class="mgIcon2" id="lAreass">
 			</a> <a href="SendMsg.do" id="pArea"> <img
 				src="resources/images/mgicon.png" class="mgIcon">
 			</a>

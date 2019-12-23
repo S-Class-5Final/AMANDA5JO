@@ -301,6 +301,7 @@
             height: auto;
            width:auto;
          /* background:black; */
+
            display: flex;
           flex-wrap: wrap;
       }
@@ -515,32 +516,23 @@
                         if(data == "success"){
                            alert("데이터 삽입 성공");
                         }
-                     },
-                     error:function(request, status, errorData){
-                         alert("매칭 에이젝스 error code: " + request.status + "\n"
-                               +"message: " + request.responseText
-                               +"error: " + errorData);
                      }
                 });
                 
           } else { // 취소 누를 시 카드 움직임
-            alert("취소 클릭됨");
+            alert("싫어요 하시겠습니까?");
+            var latest2 = $(".removed #tUser-name").last().text(); // 가장 최근 카드 선택자
                card.style.transform = 'translate(-' + moveOutWidth + 'px, -100px) rotate(30deg)';
                $.ajax({
                     url:"mHate.do",
                      type:"get",
                      data: {sender: "${loginUser2.user_nick }",
-                            receiver: latest,
+                            receiver: latest2,
                             userNo: "${loginUser2.u_mid }" },
                      success: function(data) {
                         if(data == "success"){
                            alert("데이터 삽입 성공");
                         }
-                     },
-                     error:function(request, status, errorData){
-                         alert("매칭 에이젝스 error code: " + request.status + "\n"
-                               +"message: " + request.responseText
-                               +"error: " + errorData);
                      }
                 });  
           }
@@ -576,17 +568,6 @@
           success: function(testlist) {
              $(".tinder--cards").html(""); // 앞의 카드 비워주기.
           //   alert(testlist[0].memberlist[user_id]);
-            console.log("상대 ID: " + testlist[0].memberlist.user_id);
-            console.log(testlist[0].memberlist.user_id + " 의 첫번째 사진 " +testlist[0].imglist[0].renameFileName);
-            console.log(testlist[0].memberlist.user_id + " 의 두번째 사진 " +testlist[0].imglist[1].renameFileName);
-            console.log(testlist[0].memberlist.user_id + " 의 세번째 사진 " +testlist[0].imglist[2].renameFileName);
-            console.log("상대 ID: " + testlist[1].memberlist.user_id);
-            console.log(testlist[1].memberlist.user_id + " 의 첫번째 사진 " +testlist[1].imglist[0].renameFileName);
-            console.log(testlist[1].memberlist.user_id + " 의 두번째 사진 " +testlist[1].imglist[1].renameFileName);
-            console.log(testlist[1].memberlist.user_id + " 의 세번째 사진 " +testlist[1].imglist[2].renameFileName);
-              console.log(testlist[0]);
-              console.log(testlist[1]);
-
               console.log(Object.keys(testlist).length);
               chatConnList = testlist;
               infoView = testlist;           
@@ -629,10 +610,8 @@
             console.log(chatConnList);
 
           },
-          error:function(request, status, errorData){
-             alert("매칭 에이젝스 error code: " + request.status + "\n"
-                   +"message: " + request.responseText
-                   +"error: " + errorData);
+          error:function(){
+         		alert("일치하는 맴버가 없습니다.");
           }
        });
 
