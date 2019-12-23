@@ -461,7 +461,6 @@ body {
 		$(function() {
 			findChatRoom();
 			setInterval(function() {
-				$("#chatListView").html("");
 				findChatRoom();
 			}, 5000);
 		});
@@ -523,7 +522,7 @@ body {
 	         $.ajax({
 	            url:"chfindChat.do",
 	            type:"post",
-	            data:{userName : "${loginUser.user_nick}"},
+	            data:{userName : "${sessionScope.loginUser.user_nick}"},
 	            dataType:"json",
 	            success:function(data){
 	               var roomDiv = $("#chatListView");

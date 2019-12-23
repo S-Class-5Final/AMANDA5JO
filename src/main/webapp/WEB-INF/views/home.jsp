@@ -425,6 +425,9 @@ a.sm-link{
 
 #Imglist #first, #second, #third {
    float: left;
+
+}
+#first, #second{
        margin-right: 2px;
 }
 
@@ -724,6 +727,17 @@ text-align: center;
                
                <div id = "infoView3">
                <table class= "infoView3table">
+               <tr>
+               	<td align="center">
+               		<h5 style="font-weight: 900">사진등록 시 유의사항</h5>
+               		<p style="color:#ff6464">
+               			1. 사람 사진만 등록하세요<br>
+               			2. 과도한 포토샵은 인식 불가능 합니다<br>
+               			3. 눈, 코, 입이 또렷하게 보이는 사진을 등록해주세요<br>
+               			4. 사진 도용은 제재를 당할 수 있습니다<br>
+               		</p>
+               	<td>
+               </tr>
                <tr>
                   <td>
                   <div id="Imglist"> 

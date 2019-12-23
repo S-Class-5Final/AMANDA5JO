@@ -127,6 +127,7 @@ public class MatchController {
               memberObject.put("kakao",mlist.get(i).getKakao());
               mlistArray.add(memberObject);
               plistArray = new JSONArray();
+              System.out.println("전체 가져온 회원의 수" + i);
            for(int j = 0; j < plist.size(); j++) {
               JSONObject imgObject =  new JSONObject();
               if(mlist.get(i).getUser_id().equals(plist.get(j).getUser_id())) {
