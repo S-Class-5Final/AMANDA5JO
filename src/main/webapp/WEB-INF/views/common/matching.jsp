@@ -340,6 +340,10 @@
     #Slides3{
     display: none;
     }  */
+    .footerImg{
+			margin-left: 70%;
+			margin-top: -8%;
+		}
   </style>
 </head>
    <jsp:include page="matchingMenu.jsp"/>
@@ -1098,7 +1102,9 @@
 	}
 
    </script>
-     
+     <div class="footerImg">
+		<img src="resources/images/al.gif">
+	</div>
      
 </body>
    <%-- <jsp:include page="matchingFooter.jsp"/> --%>

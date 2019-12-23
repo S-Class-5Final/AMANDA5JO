@@ -60,7 +60,7 @@
 .front, .back {
 	position: absolute;
 	width: 200px; height: 300px;
-	transition: transform 1.3s;
+	transition: transform 1.5s;
 	backface-visibility:hidden;
 	border-radius: 20px;
 	text-align: center;
@@ -88,7 +88,7 @@
 .front2, .back2 {
 	position: absolute;
 	width: 200px; height: 300px;
-	transition: transform 1.3s;
+	transition: transform 1.5s;
 	backface-visibility:hidden;
 	border-radius: 20px;
 	text-align: center;
@@ -122,7 +122,7 @@
 .front3, .back3 {
 	position: absolute;
 	width: 200px; height: 300px;
-	transition: transform 1.3s;
+	transition: transform 1.5s;
 	backface-visibility:hidden;
 	border-radius: 20px;
 	text-align: center;
@@ -155,7 +155,7 @@
 	display: none;
 }
 .allArea{
-	width: 860px; 
+	width: 860px;
 	height: 700px; 
 	margin-left:37%; 
 	border: 1px solid #e8e8e8; 
@@ -223,20 +223,38 @@
 	font-size: 20px;
 }
 .msgInput{
-	margin-top: 65%;
+	margin-top: 58%;
 	margin-left: 3%;
 	border-radius: 5px;
 	background: #FF4848;
 	outline: none;
 	border: 1px solid #FF4848;
 }
+.msgInputs{
+	margin-top: 1%;
+	margin-left: 3%;
+	border-radius: 5px;
+	background: #FF4848;
+	outline: none;
+	border: 1px solid #FF4848;
+	width: 150px;
+}
 .msgInput2{
-	margin-top: 65%;
+	margin-top: 58%;
 	margin-left: 3%;
 	border-radius: 5px;
 	background: #4978FF;
 	outline: none;
 	border: 1px solid #4978FF;
+}
+.msgInputs2{
+	margin-top: 1%;
+	margin-left: 3%;
+	border-radius: 5px;
+	background: #4978FF;
+	outline: none;
+	border: 1px solid #4978FF;
+	width: 150px;
 }
 .tdInfo2{
 	width: 120px;
@@ -403,18 +421,19 @@
 							+"</table>"
 							+"<br>"
 							+"<p class='oneline' style='margin-right:30%; margin-bottom:1%'>＊ 한줄 소개 ＊</p> <br>" 
-							+"<p class='oneline2' style='margin-right:30%; margin-top:1%'>"
+							+"<p class='oneline2' style='margin-right:30%; margin-top:-3%'>"
 							+ data.info[i].user_into
 							+"</p>"
 							+"</div>"
 							+"<input id='gogo' value='쪽지 보내기' class='msgInput' type='button' onclick='messageGo("+'"'+data.info[i].user_id+'"'+")'>"
 							+"<input id='gogo' value='좋아요' class='msgInput' type='button' onclick='LikeGo("+'"'+data.info[i].user_id+'"'+")'>"
+							+"<input value='채팅하기' type='button' class='msgInputs' onclick='chatGo("+data.info[i].u_mid+")'>"
 							+"</div>"
 							+"</div>").prependTo("#List");
 					}
-				},
-			});
-		}
+				}
+			})
+		};
 	
 		 $(function(){
 			likeList();
@@ -462,18 +481,19 @@
 						+"</table>"
 						+"<br>"
 						+"<p class='oneline' style='margin-right:30%; margin-bottom:1%'>＊ 한줄 소개 ＊</p> <br>" 
-						+"<p class='oneline2' style='margin-right:30%; margin-top:1%'>"
+						+"<p class='oneline2' style='margin-right:30%; margin-top:-3%'>"
 						+ data.info1[i].user_into
 						+"</p>"
 						+"</div>"
 						+"<input id='gogo' value='쪽지 보내기' class='msgInput2' type='button' onclick='messageGo("+'"'+data.info1[i].user_id+'"'+")'>"
 						+"<input id='gogo' value='좋아요 취소' class='msgInput2' type='button' onclick='LikeBack("+'"'+data.info1[i].user_id+'"'+")'>"
+						+"<input value='채팅하기' type='button' class='msgInputs2' onclick='chatGo("+data.info1[i].u_mid+")'>"
 						+"</div>"
 						+"</div>").prependTo("#List2");
+					}
 				}
-				},
-			});
-		}
+			})
+		};
 		  $(function(){
 			 setInterval(function(){
 				likeList2();
@@ -523,7 +543,7 @@
 					}else{
 						alert("이미 좋아요를 누른 회원입니다.");
 					}
-				},
+				}
 			});
 		}
 		
@@ -583,18 +603,19 @@
 						+"</table>"
 						+"<br>"
 						+"<p class='oneline' style='margin-right:30%; margin-bottom:1%'>＊ 한줄 소개 ＊</p> <br>" 
-						+"<p class='oneline2' style='margin-right:30%; margin-top:1%'>"
+						+"<p class='oneline2' style='margin-right:30%; margin-top:-3%'>"
 						+ data.match[i].user_into
 						+"</p>"
 						+"</div>"
 						+"<input id='gogo' value='쪽지 보내기' class='msgInput2' type='button' onclick='messageGo("+'"'+data.match[i].user_id+'"'+")'>"
 						+"<input id='gogo' value='매칭 끊기' class='msgInput2' type='button' onclick='LikeBack("+'"'+data.match[i].user_id+'"'+")'>"
+						+"<input value='채팅하기' type='button' class='msgInputs2' onclick='chatGo("+data.match[i].u_mid+")'>"
 						+"</div>"
 						+"</div>").appendTo("#matchList");
+					}
 				}
-				},
-			});
-		}
+			})
+		};
 		
 		  $(function(){
 			 setInterval(function(){
@@ -613,6 +634,12 @@
 			});
 		}); */
 	</script>
-	
+	<script>
+		function chatGo(umid) {
+			var myUmid = ${loginUser.u_mid};
+			var youUmid = umid;
+			newWindow(myUmid, + youUmid);
+		};
+	</script>
 </body>
 </html>
