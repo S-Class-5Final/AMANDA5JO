@@ -4,7 +4,7 @@
 
 
 
-/*¸®¼Â CSS*/
+/*ï¿½ï¿½ï¿½ï¿½ CSS*/
 html,body,
 p,div,select,
 ul,dl,ol,dd,li,
@@ -28,8 +28,8 @@ form {display:inline;}
 fieldset {padding:0;margin:0;border:none;}
 
 body{padding:0;margin:0;font-family:"NanumSquareR","Noto Sans KR","Dotum", "arial", "sans-serif"; font-weight:400; font-size:16px; line-height:1; letter-spacing:-0.02em; color:#000;}
-input{font-family:"NanumSquareR,Nanum Gothic","Noto Sans KR", "³ª´®°íµñ", "sans-serif";}
-input[type="password"]{font-family:"µ¸¿ò","dotum", "sans-serif";}
+input{font-family:"NanumSquareR,Nanum Gothic","Noto Sans KR", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "sans-serif";}
+input[type="password"]{font-family:"ï¿½ï¿½ï¿½ï¿½","dotum", "sans-serif";}
 select{font-family:"NanumSquareR,Noto Sans KR","arial", "sans-serif"; font-size:16px;}
 option{font-family:"NanumSquareR,Noto Sans KR","arial", "sans-serif"; font-size:16px;}
 textarea{font-family:"NanumSquareR,Noto Sans KR","arial", "sans-serif"; font-size:16px;}
@@ -67,7 +67,7 @@ b {font-weight:400;}
 .slider_ar .count .length {font-size:17px; color:#fff; font-weight:700;}
 .slider_ar .count2 .idx {color:#333;}
 .slider_ar .count2 .length {color:#888;}
-.slick-slider .slick-track, .slick-slider .slick-list {height:100%; outline:none;}
+.slick-slider .slick-track, .slick-slider .slick-list {height:100%; outline:none; width: 100%; background: black;}
 
 /*all text style*/
 .title_st1 {background:url("../images/eng_title_bar.png") no-repeat center left; padding-left:30px; font-size:20px;}
