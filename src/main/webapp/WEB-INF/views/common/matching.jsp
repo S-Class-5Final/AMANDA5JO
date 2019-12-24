@@ -504,40 +504,52 @@
           card.classList.add('removed');
           
           var latest = $(".removed #tUser-email").last().val(); // 가장 최근 카드 선택자
-          if (love) { // 좋아요 누를시 카드 움직임.
-                card.style.transform = 'translate(' + moveOutWidth + 'px, -100px) rotate(-30deg)';
-                
-                $.ajax({
-                    url:"mLike.do",
-                     type:"get",
-                     data: {u_mid: "${loginUser2.u_mid }",sender: "${loginUser2.user_id }", receiver: latest},
-                     success: function(data) {
-                        if(data == "success"){
-                           alert("데이터 삽입 성공");
-                        }
-                     }
-                });
+          if (love) {
+        	  var l_check = confirm("이 사람에게 호감을 표시 하겠습니까?")
+        	  // 좋아요 누를시 카드 움직임.
+        	  if(l_check == true){
+                  card.style.transform = 'translate(' + moveOutWidth + 'px, -100px) rotate(-30deg)';
+                  
+                  $.ajax({
+                      url:"mLike.do",
+                       type:"get",
+                       data: {u_mid: "${loginUser2.u_mid }",sender: "${loginUser2.user_id }", receiver: latest},
+                       success: function(data) {
+                          if(data == "success"){
+                             alert("데이터 삽입 성공");
+                          }
+                       }
+                  });
+                  initCards();
+        	  }else{
+        		  alert("호감표시를 하시지 않으셨어요");
+        	  }
+
                 
           } else { // 취소 누를 시 카드 움직임
-            alert("싫어요 하시겠습니까?");
-            var latest2 = $(".removed #tUser-name").last().text(); // 가장 최근 카드 선택자
-               card.style.transform = 'translate(-' + moveOutWidth + 'px, -100px) rotate(30deg)';
-               $.ajax({
-                    url:"mHate.do",
-                     type:"get",
-                     data: {sender: "${loginUser2.user_nick }",
-                            receiver: latest2,
-                            userNo: "${loginUser2.u_mid }" },
-                     success: function(data) {
-                        if(data == "success"){
-                           alert("데이터 삽입 성공");
-                        }
-                     }
-                });  
+        	var h_check = confirm("싫어요 하시겠습니까?");
+          if(h_check == true){
+              var latest2 = $(".removed #tUser-name").last().text(); // 가장 최근 카드 선택자
+              card.style.transform = 'translate(-' + moveOutWidth + 'px, -100px) rotate(30deg)';
+              $.ajax({
+                   url:"mHate.do",
+                    type:"get",
+                    data: {sender: "${loginUser2.user_nick }",
+                           receiver: latest2,
+                           userNo: "${loginUser2.u_mid }" },
+                    success: function(data) {
+                       if(data == "success"){
+                          alert("데이터 삽입 성공");
+                       }
+                    }
+               });  
+              initCards();
+          }else{
+			alert("좋은 선택이에요!"); 
           }
-          
-          initCards();
-      
+
+          }
+
           event.preventDefault();
         };
       }

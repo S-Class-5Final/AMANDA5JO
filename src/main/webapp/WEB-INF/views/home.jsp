@@ -859,7 +859,6 @@ $(function(){
                         alert("고객님의 카카오톡 E-mail을 누군가가 사용중입니다. 새로 이메일을 만들어 주세요");
                         insertmemberview.onclick();
                         $("#kakao").val(kakaoid);
-                        alert(kakaoid);
                         break; 
                      case '1':
                         alert("로그인 완료");
@@ -867,7 +866,6 @@ $(function(){
                         break;
                      case '2':
                         alert("회원가입 시작 합니다.");
-                        alert(kakao);
                         insertmemberview.onclick();
                         var kakaoemail = kakaoEmail.split('@');
                         $("#user_id").val(kakaoemail[0]);
@@ -912,7 +910,7 @@ $(function(){
                 })
       },
       fail: function(err) {
-      alert("에러");
+      alert("죄송합니다 오류가 있네요 ㅠ");
       }
     });
     
@@ -934,7 +932,6 @@ $(function(){
       success: function(data){
          var jsonObj = JSON.parse(data);
          var faceCount = jsonObj.info.faceCount;
-         alert(faceCount);
          /* var landmark = jsonObj.faces[0].landmark; */
          if(faceCount == '0' ){
             alert("얼굴이 제대로 안나온 사진이네요 ㅠㅠ");
@@ -1282,9 +1279,7 @@ function kakaologout(){
 						$("#movie").prop("checked",true);
 	                 	Hobbycount = Hobbycount +1;
 	                 	$("#movie").val('Y');
-	                 	alert($("#movie").val());
 	            		moviebl = !moviebl;
-	                    alert(Hobbycount);
 					}else{
 						$("#moviediv").css("background","#A6A6A6");
 						$("#movie").prop("checked",false);
@@ -1467,9 +1462,15 @@ function kakaologout(){
                                        $("#firstImg").attr("src", "resources/images/image.png");
                                        imgtitle = false;
                                     }else{
-                                       alert("첫번째 사진 등록 완료");
-                                       $("#firstImg").attr("src", e.target.result);
-                                       imgtitle = true;
+                                      	if(imgcheck1 == imgcheck2 || imgcheck1 == imgcheck3){
+                                     		alert("중복사진 금지 입니다.");
+                                     		$("#firstImg").attr("src", "resources/images/image.png");
+                                     		imgtitle = false;
+                                      	}else{
+                                     		alert("첫번째 사진 등록 완료");
+                                             $("#firstImg").attr("src", e.target.result);
+                                             imgtitle = true;
+                                     	}
                                     }   
                               }
                               },
@@ -1505,7 +1506,7 @@ function kakaologout(){
                                        alert("눈 코 입이 제대로 보이질 않아요 ");
                                        imgsub = false;
                                     }else{
-                                    	if(imgcheck1 == imgcheck2){
+                                    	if(imgcheck2 == imgcheck1 || imgcheck2 == imgcheck3){
                                     		alert("중복사진 금지 입니다.");
                                     		$("#secondImg").attr("src", "resources/images/image.png");
                                     		imgsub = false;
@@ -1550,7 +1551,7 @@ function kakaologout(){
                                        alert("눈 코 입이 제대로 보이질 않아요 ");
                                        imgsp = false;
                                     }else{
-                                    	if(imgcheck1 == imgcheck3 || imgcheck2 == imgcheck3){
+                                    	if(imgcheck3 == imgcheck1 || imgcheck3 == imgcheck2){
                                     		alert("중복사진은 안되요");
                                     		$("#thirdImg").attr("src", "resources/images/image.png");
                                     		imgsp = false;
@@ -1879,12 +1880,10 @@ $(function() {
              if($("#movie").is(":checked")){
                 Hobbycount = Hobbycount +1;
                 $("#movie").val('Y');
-                alert($("#movie").val());
 
             }else{
                Hobbycount = Hobbycount -1;
                $("#movie").val('N');
-               alert($("#movie").val());
             }  
          });
          
@@ -2142,10 +2141,13 @@ $(function() {
                   </div>
                   <div class="content">
                      <p class="title_st1 eng">INTERVIEW</p>
-                     <a href="/career#interview">
+                     <a href="">
                         <p class="cont">
-                           만족스런 주문 경험을 제공할 수 있는<br />서비스를 기획합니다. <span class="team">기술연구소,
-                              Consumer Product팀</span> <span class="name">박소희</span>
+                                                    아무나 만나는 당신 지금 당장 여기로 !<br />
+                           <span class="team">이제 더이상 현실에서 찾지마세요!<br><br>
+									당신이 바라던만남 바로 여기서!<br><br>
+									아만다가 당신의 짝을 찾아드립니다!</span>
+                            <span class="name">안상재</span>
                         </p>
                      </a>
                      <div class="slider_ar">
@@ -2165,10 +2167,13 @@ $(function() {
                   </div>
                   <div class="content">
                      <p class="title_st1 eng">INTERVIEW</p>
-                     <a href="/career#interview">
+                     <a href="">
                         <p class="cont">
-                                                    지랄하지마<br />서비스를 기획합니다. <span class="team">기술연구소,
-                              Consumer Product팀</span> <span class="name">박소희</span>
+                                                    아무나 만나는 당신 지금 당장 여기로 !<br />
+                           <span class="team">이제 더이상 현실에서 찾지마세요!<br><br>
+									당신이 바라던만남 바로 여기서!<br><br>
+									아만다가 당신의 짝을 찾아드립니다!</span>
+                            <span class="name">박상훈</span>
                         </p>
                      </a>
                      <div class="slider_ar">
@@ -2189,10 +2194,15 @@ $(function() {
                   </div>
                   <div class="content">
                      <p class="title_st1 eng">INTERVIEW</p>
-                     <a href="/career#interview">
+                     <a href="">
                         <p class="cont">
-                           고객들에게 맛있는 즐거움을 선사할 수 있는<br />푸드테크를 고민합니다. <span class="team">기술연구소,
-                              ios 개발팀</span> <span class="name">백호근</span>
+                                                   운명처럼 당신에게 다가올것입니다<br />
+                           <span class="team">
+							당신이 아만다에 첫발을 디디는 순간<br><br>
+							당신은 더 이상 혼자가 아닙니다.<br><br>
+							아만다와 함께 하세요!
+									</span>
+                            <span class="name">임재윤</span>
                         </p>
                      </a>
                      <div class="slider_ar">
@@ -2214,10 +2224,15 @@ $(function() {
                   </div>
                   <div class="content">
                      <p class="title_st1 eng">INTERVIEW</p>
-                     <a href="/career#interview">
+                     <a href="">
                         <p class="cont">
-                           딜리버리히어로 코리아를 이끌어 나갈<br />‘슈퍼히어로’를 찾습니다.<br /> <span
-                              class="team">인재문화본부, Talent팀</span> <span class="name">김지수</span>
+                                                    당신의 운명을 테스트하세요<br />
+                           <span class="team">
+								더이상의 커플지옥 솔로천국은 그만!<br><br>
+								당신도 커플이될수있습니다<br><br>
+								바로 여기 아만다에서
+									</span>
+                            <span class="name">박진형</span>
                         </p>
                      </a>
                      <div class="slider_ar">
@@ -2239,10 +2254,14 @@ $(function() {
                   </div>
                   <div class="content">
                      <p class="title_st1 eng">INTERVIEW</p>
-                     <a href="/career#interview">
+                     <a href="">
                         <p class="cont">
-                           맛있는 이야기가 담긴 딜리버리 서비스를<br />끊임없이 고민합니다. <span class="team">푸드플라이,
-                              PB기획팀</span> <span class="name">김희제</span>
+                                                    아무나 만나는 당신 지금 당장 여기로 !<br />
+                           <span class="team">
+                           			이제 더이상 현실에서 찾지마세요!<br><br>
+									당신이 바라던만남 바로 여기서!<br><br>
+									아만다가 당신의 짝을 찾아드립니다!</span>
+                            <span class="name">장준하</span>
                         </p>
                      </a>
                      <div class="slider_ar">
@@ -2264,11 +2283,13 @@ $(function() {
                   </div>
                   <div class="content">
                      <p class="title_st1 eng">INTERVIEW</p>
-                     <a href="/career#interview">
+                     <a href="">
                         <p class="cont">
-                           더 맛있고 편리한 주문 경험을<br />선사할 수 있도록! 요기요 프렌차이즈<br />입점 및 동반 성장을
-                           고민합니다. <span class="team">세일즈본부, B2B영업실</span> <span
-                              class="name">김성회</span>
+                                                    AMANDA는 항상 당신을 응원 합니다.<br />
+                           <span class="team">
+                           
+                           </span>
+                            <span class="name">AMANDA</span>
                         </p>
                      </a>
                      <div class="slider_ar">
