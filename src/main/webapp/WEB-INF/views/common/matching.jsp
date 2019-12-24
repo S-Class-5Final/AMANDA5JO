@@ -568,15 +568,8 @@
           success: function(testlist) {
              $(".tinder--cards").html(""); // 앞의 카드 비워주기.
           //   alert(testlist[0].memberlist[user_id]);
-              console.log(Object.keys(testlist).length);
-              chatConnList = testlist;
-              infoView = testlist;           
-
-              var listsize = Object.keys(testlist).length;
+              chatConnList = testlist;      
              $.each(testlist, function(index, value) {
-
-               indexsize = index;
-
                 var str = 
                            "<div id = card"+(index)+" class=tinder--card >"+
                            "      <div class=mySlides" +index+" id='Slides1' style='pointer-events: none;'>"+

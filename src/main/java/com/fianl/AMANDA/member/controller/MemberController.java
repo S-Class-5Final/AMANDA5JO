@@ -156,9 +156,14 @@ public class MemberController {
 		Member loginUser = mService.loginMember(m);
 		ArrayList<MemberImg> loginImg = mService.loginMemberImg(m);
 		
+
 		System.out.println("로그인시 이미지" + loginImg);
-		session.setAttribute("loginImg", loginImg);
-		session.setAttribute("loginUser2", loginUser);  //
+		
+		
+		 session.setAttribute("loginImg", loginImg);
+		 session.setAttribute("loginUser2", loginUser); //
+		 		
+		
 		if (bcryptPasswordEncoder.matches(m.getUser_pwd(), loginUser.getUser_pwd())) {
 			model.addAttribute("loginUser", loginUser);
 			

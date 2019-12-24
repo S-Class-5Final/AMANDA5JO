@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -155,8 +156,7 @@ public class MypageController {
 			HttpServletRequest myrequest, @RequestParam("phone1") String myp1, @RequestParam("phone2") String myp2,
 			@RequestParam("phone3") String myp3, @RequestParam(value =  "imgorginname", required = false) ArrayList<String> imgorignname,
 			@RequestParam(value = "mythumbnailImg", required = false) ArrayList<MultipartFile> myMultipartFile,
-			@RequestParam(value =  "imgrename", required = false) ArrayList<String> imgrename) {
-		
+			@RequestParam(value =  "imgrename", required = false) ArrayList<String> imgrename, HttpSession Session) {
 		int myresult = mypageService.myresult(user_id);
 		System.out.println("myresult : "+ myresult);
 		String myphone = myp1 + "-" + myp2 + "-" + myp3;
@@ -209,11 +209,17 @@ public class MypageController {
 		  
 		  
 		  if((myMemberResult>0) && (myhobbyResult > 0) && (myMemberImgResult>0) ) {
+			  Member loginUser = mypageService.myUpdate(user_id);
+			  ArrayList<MemberImg> loginImg = mypageService.ImgUpdate(user_id);
+			  System.out.println(loginUser);
 			  mv.addObject("myMember", mym).
 			  addObject("myHobby", myh).
 			  addObject("mymImgList", myMemberImgList).
-			  setViewName("common/matchingMenu"); 
-		  
+			  setViewName("common/matching");
+			  
+			  Session.setAttribute("loginUser", loginUser);
+			  Session.setAttribute("loginImg", loginImg);
+			  
 		  }else { 
 			  throw new MypageException("정보수정을 실패하셨습니다."); 
 			  }
@@ -253,20 +259,6 @@ public class MypageController {
 		return renameFileName;
 	}
 	
-	
-	
-	
-	/*
-	 * public void mydeleteFile(String myfileName, HttpServletRequest myrequest) {
-	 * String myroot =
-	 * myrequest.getSession().getServletContext().getRealPath("resources"); String
-	 * mysavePath = myroot + "\\userface";
-	 * 
-	 * File myFile = new File(mysavePath + "\\" + myfileName); if (myFile.exists())
-	 * myFile.delete();
-	 * 
-	 * }
-	 */
 
 
 }

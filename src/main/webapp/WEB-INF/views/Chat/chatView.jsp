@@ -584,7 +584,7 @@ body {
 						${chat.userName }
 					</c:when>
 					<c:when test="${chat.userName2 ne loginUser.user_nick }">
-						${chat.userName }
+						${chat.userName2 }
 					</c:when>
 				</c:choose>
 			</div>
@@ -707,10 +707,18 @@ body {
 		</div>
 	</div>
 	<!-- ip 주소값 수정 -->
+<<<<<<< HEAD
 	<script src="http://192.168.130.169:80/socket.io/socket.io.js"></script>
+=======
+	<script src="http://192.168.130.121:80/socket.io/socket.io.js"></script>
+>>>>>>> refs/remotes/origin/master
 	<script type="text/javascript">
 
+<<<<<<< HEAD
 	const socket = io("http://192.168.130.169:80");
+=======
+	const socket = io("http://192.168.130.121:80");
+>>>>>>> refs/remotes/origin/master
 
 	var room = "${chat.chatRoom}";
 	var name = '${loginUser.user_nick }';
