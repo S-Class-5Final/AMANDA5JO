@@ -19,6 +19,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <style>
+    .slick-slider .slick-track, .slick-slider .slick-list {height:100%; outline:none; width: 145%; background: black;}
 .tImg {
    margin-left: 400px;
    margin-top: 300px;

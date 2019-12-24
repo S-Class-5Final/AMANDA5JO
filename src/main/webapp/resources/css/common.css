@@ -67,7 +67,7 @@ b {font-weight:400;}
 .slider_ar .count .length {font-size:17px; color:#fff; font-weight:700;}
 .slider_ar .count2 .idx {color:#333;}
 .slider_ar .count2 .length {color:#888;}
-.slick-slider .slick-track, .slick-slider .slick-list {height:100%; outline:none; width: 145%; background: black;}
+.slick-slider .slick-track, .slick-slider .slick-list {height:100%; outline:none; width: 100%; background: black;}
 
 /*all text style*/
 .title_st1 {background:url("../images/eng_title_bar.png") no-repeat center left; padding-left:30px; font-size:20px;}
