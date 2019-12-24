@@ -9,9 +9,9 @@ import com.fianl.AMANDA.member.model.vo.MemberImg;
 
 public interface LikeService {
 
-	ArrayList<Member> selectSender(Member m);
+	ArrayList<Member> selectSender(ArrayList<MemberImg> result, String user_id);
 
-	ArrayList<Member> selectReceiver(Member m);
+	ArrayList<Member> selectReceiver(ArrayList<MemberImg> result, String user_id);
 
 	ArrayList<MemberImg> selectSenderImg(Member m);
 
@@ -23,7 +23,7 @@ public interface LikeService {
 
 	int selectLike(Like l);
 
-	ArrayList<Member> selectMatchList(Member m);
+	ArrayList<Member> selectMatchList(ArrayList<MemberImg> result, String user_id);
 
 	ArrayList<MemberImg> selectMatchImg(Member m);
 

@@ -686,8 +686,8 @@ text-align: center;
                      <option value="017">017</option>
                      <option value="019">019</option>
                   </select> -
-                  <input type="text" name= "phone2" id="phone2" class="textboxra"> - 
-                  <input type="text" name = "phone3" id="phone3" class="textboxra"><br>
+                  <input type="text" name= "phone2" id="phone2" class="textboxra" placeholder="000 or 0000"> - 
+                  <input type="text" name = "phone3" id="phone3" class="textboxra" placeholder="0000" ><br>
                   <div id ="phonetext">예시 ) 010-000-0000 혹은  010-0000-0000</div>
                      </td>
                   </tr>
@@ -706,8 +706,8 @@ text-align: center;
                <table class="infoView2table">   
                   <tr>
                      <td>
-               키 : <input type="number" name="height" id= "height">&nbsp;
-               나이 : <input type ="number" name="age" id = "age">&nbsp;
+               키 : <input type="number" name="height" id= "height" placeholder = "ex) 180, 165">&nbsp;
+               나이 : <input type ="number" name="age" id = "age" placeholder = "ex) 20 ,21">&nbsp;
                사는곳 : <input type="text" name="address" id = "address">
                      </td>
                   </tr>
@@ -719,7 +719,7 @@ text-align: center;
                </tr>
                <tr>
                   <td>
-                    자기소개 한마디 : <input type= "text" name="user_into" size="60px"><br>
+                    자기소개 한마디 : <input type= "text" name="user_into" size="60px" placeholder="어필해보세요!"><br>
                   </td>
                </tr>
                
@@ -962,7 +962,11 @@ function kakaologout(){
 }
 
 
-
+			//같은 이미지 인지 비교 하기
+			var imgcheck1;
+			var imgcheck2;
+			var imgcheck3;
+			
             // Get the modal
               var modal = document.getElementById('myModal');
             
@@ -1117,6 +1121,33 @@ function kakaologout(){
               // When the user clicks on <span> (x), close the modal
               span.onclick = function() {
                   modal.style.display = "none";
+                  idUsable = false;
+                  pwdUsable = false;
+                  nickUsable = false;
+                  phoneUsable = false;
+                  heightUsable = false;
+                  ageUsable = false;
+                  addressUsable = false;
+                  imgtitle = false;
+                  imgsub = false;
+                  imgsp = false;
+                  imgcount = 0;
+                  Hobbycount = 0;
+                  $("#checkIdtext").css("color","rgb(0,0,0)");
+                  $("#checkIdtext").html('아이디를 입력 해주세요');
+                  
+        	   	$("#checkPwdtext").css("color","rgb(0,0,0)");
+       			$("#checkPwdtext").html("비밀번호를 입력 해 주세요!");
+       			
+              	  $("#checkNicktext").css("color","rgb(0,0,0)");
+          	      $("#checkNicktext").html("닉네임을 입력해주세요");
+                  $("#SerchPwdForm").each(function(){
+                	 this.reset(); 
+                  });
+                  $("#memberjoinForm").each(function(){
+                 	 this.reset(); 
+                   });
+                 
               }
               // When the user clicks anywhere outside of the modal, close it
 /*               window.onclick = function(event) {
@@ -1404,7 +1435,7 @@ function kakaologout(){
                
                });
                   // 이미지 업로드 
-
+		
                function LoadImg(value, num) {
                   if (value.files[0] != undefined) {
                      var reader = new FileReader();
@@ -1421,6 +1452,7 @@ function kakaologout(){
                               type:'POST',
                               dataType:'JSON',
                               success: function(data){
+                            	  imgcheck1 = data;
                                  var jsonObj = JSON.parse(data);
                                  var faceCount = jsonObj.info.faceCount;
                                  /* var landmark = jsonObj.faces[0].landmark; */
@@ -1434,7 +1466,7 @@ function kakaologout(){
                                        $("#firstImg").attr("src", "resources/images/image.png");
                                        imgtitle = false;
                                     }else{
-                                       alert("사람임");
+                                       alert("첫번째 사진 등록 완료");
                                        $("#firstImg").attr("src", e.target.result);
                                        imgtitle = true;
                                     }   
@@ -1458,6 +1490,7 @@ function kakaologout(){
                               type:'POST',
                               dataType:'JSON',
                               success: function(data){
+                            	  imgcheck2 = data;
                                  var jsonObj = JSON.parse(data);
                                  var faceCount = jsonObj.info.faceCount;
                                  /* var landmark = jsonObj.faces[0].landmark; */
@@ -1471,9 +1504,16 @@ function kakaologout(){
                                        alert("눈 코 입이 제대로 보이질 않아요 ");
                                        imgsub = false;
                                     }else{
-                                       alert("사람임");
-                                       $("#secondImg").attr("src", e.target.result);
-                                       imgsub = true;
+                                    	if(imgcheck1 == imgcheck2){
+                                    		alert("중복사진 금지 입니다.");
+                                    		$("#secondImg").attr("src", "resources/images/image.png");
+                                    		imgsub = false;
+                                    	}else{
+                                    		alert("두번째 사진 등록 완료");
+                                            $("#secondImg").attr("src", e.target.result);
+                                            imgsub = true;	
+                                    	}
+                                    
                                     }   
                               }
                               },
@@ -1486,7 +1526,7 @@ function kakaologout(){
                            break;
                         case 3:
                            var formData = new FormData();
-                           formData.append("imgtest",$("#thumbnailImg2")[0].files[0]); 
+                           formData.append("imgtest",$("#thumbnailImg3")[0].files[0]); 
                            $.ajax({
                               url: "imgCheckTest.do",
                               data : formData,
@@ -1495,6 +1535,7 @@ function kakaologout(){
                               type:'POST',
                               dataType:'JSON',
                               success: function(data){
+                            	  imgcheck3 = data;
                                  var jsonObj = JSON.parse(data);
                                  var faceCount = jsonObj.info.faceCount;
                                  /* var landmark = jsonObj.faces[0].landmark; */
@@ -1508,9 +1549,16 @@ function kakaologout(){
                                        alert("눈 코 입이 제대로 보이질 않아요 ");
                                        imgsp = false;
                                     }else{
-                                       alert("사람임");
-                                       $("#thirdImg").attr("src", e.target.result);
-                                       imgsp = true;
+                                    	if(imgcheck1 == imgcheck3 || imgcheck2 == imgcheck3){
+                                    		alert("중복사진은 안되요");
+                                    		$("#thirdImg").attr("src", "resources/images/image.png");
+                                    		imgsp = false;
+                                    	}else{
+                                    		alert("사람임");
+                                            $("#thirdImg").attr("src", e.target.result);
+                                            imgsp = true;	
+                                    	}
+                                       
                                     }   
                               }
                               },

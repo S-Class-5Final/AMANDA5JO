@@ -36,6 +36,7 @@ body {
 	/* transform: translateZ(1.5em); */
 	transform: translateZ(0.5em);
 	/*  background-color: black;  */
+	color: #fd6584;
 }
 
 .button--flip .button__top {
@@ -242,14 +243,14 @@ body {
 <body id="bodyAl">
 
 	<!-- Snow효과 -->
-	<script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+	<!-- <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
 	<script>
 		var sf = new Snowflakes({
 			color : "#54affa",
 			count : 100,
 			speed : 1
 		});
-	</script>
+	</script> -->
 
 	<!-- <div id="mySidenav" class="sidenav">
   <a>Profile</a>
@@ -320,7 +321,7 @@ body {
 			<div class="button button--flip">
 				<button class="btn button__face"
 					onclick="location.href='${myListbtn}'">MyPage</button>
-				<button class="btn button__top" style="margin-left: 133px;"
+				<button class="btn button__top" style="margin-left: 103px;"
 					onclick="location.href='${myListbtn}'">MyPage</button>
 			</div>
 			<br>
@@ -331,7 +332,7 @@ body {
 			<div class="button button--flip">
 				<button class="btn button__face"
 					onclick="location.href='${myChatListbtn}'">ChatList</button>
-				<button class="btn button__top" style="margin-left: 133px;"
+				<button class="btn button__top" style="margin-left: 103px;"
 					onclick="location.href='${myChatListbtn}'">ChatList</button>
 			</div>
 			<br> <br> <br> <br>
@@ -468,6 +469,7 @@ body {
 		$(function() {
 			findChatRoom();
 			setInterval(function() {
+				$("#chatListView").html("");
 				findChatRoom();
 			}, 5000);
 		});

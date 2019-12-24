@@ -60,5 +60,15 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 
+	@Override
+	public Member myUpdate(String user_id) {
+		return mypageDao.myUpdate(user_id);
+	}
+
+	@Override
+	public ArrayList<MemberImg> ImgUpdate(String user_id) {
+		return mypageDao.ImgUpdate(user_id);
+	}
+
 
 }

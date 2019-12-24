@@ -90,5 +90,15 @@
 	WHERE USER_ID=#{user_id}
 	</update>
 
+	<select id="myUpdate" resultMap="myMemberResultMap" resultType="Member">
+	SELECT * FROM MEMBER
+	WHERE USER_ID = #{user_id} AND STATUS='Y'
+	</select>
+	
+	<select id="ImgUpdate" resultMap="myMemberImgResultMap" resultType="MemberImg">
+	SELECT * FROM MEMBERIMG
+	WHERE USER_ID = #{user_id} AND STATUS='Y'
+	</select>
+	
 	
 </mapper>

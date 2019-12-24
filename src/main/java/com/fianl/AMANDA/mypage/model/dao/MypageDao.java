@@ -55,6 +55,14 @@ public class MypageDao {
 		return sqlSession.update("MypageMapper.myresult", user_id);
 	}
 
+	public Member myUpdate(String user_id) {
+		return sqlSession.selectOne("MypageMapper.myUpdate",user_id);
+	}
+
+	public ArrayList<MemberImg> ImgUpdate(String user_id) {
+		return (ArrayList)sqlSession.selectList("MypageMapper.ImgUpdate",user_id);
+	}
+
 
 	
 }

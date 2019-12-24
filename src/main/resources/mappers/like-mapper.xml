@@ -41,21 +41,21 @@
 	</resultMap>
 	
 	
-	<select id="selectSender" parameterType="Member" resultMap="MemberResultMap" >
+	<select id="selectSender" parameterType="hashmap" resultMap="MemberResultMap" >
 		SELECT *
 		FROM MEMBER
 		WHERE USER_ID IN (SELECT SENDER
                           FROM MLIKE
-                          WHERE RECEIVER = #{user_id} AND LIKESTATUS = 'Y')
+                          WHERE RECEIVER = #{myId} AND SENDER = #{userId} AND LIKESTATUS = 'Y')
                           ORDER BY U_MID ASC
 	</select>
 	
-	<select id="selectReceiver" parameterType="Member" resultMap="MemberResultMap" >
+	<select id="selectReceiver" parameterType="hashmap" resultMap="MemberResultMap" >
 		SELECT *
 		FROM MEMBER
 		WHERE USER_ID IN (SELECT RECEIVER
                           FROM MLIKE
-                          WHERE SENDER = #{user_id} AND LIKESTATUS = 'Y')
+                          WHERE SENDER = #{myId} AND RECEIVER = #{userId} AND LIKESTATUS = 'Y')
                           ORDER BY U_MID ASC
 	</select>
 	
@@ -64,7 +64,7 @@
 		FROM MEMBERIMG
 		WHERE USER_ID IN (SELECT SENDER
                           FROM MLIKE
-                          WHERE RECEIVER = #{user_id} AND LIKESTATUS = 'Y')
+                          WHERE RECEIVER = #{user_id} AND LIKESTATUS = 'Y') AND STATUS = 'Y'
         AND IMG_COUNT = 0
         ORDER BY USER_ID ASC
 	</select>
@@ -74,7 +74,7 @@
 		FROM MEMBERIMG
 		WHERE USER_ID IN (SELECT RECEIVER
                           FROM MLIKE
-                          WHERE SENDER = #{user_id} AND LIKESTATUS = 'Y') 
+                          WHERE SENDER = #{user_id} AND LIKESTATUS = 'Y') AND STATUS = 'Y'
        	AND IMG_COUNT =0
        	ORDER BY USER_ID ASC
 	</select>
@@ -103,8 +103,8 @@
 		WHERE USER_ID IN (SELECT A.RECEIVER
                     FROM MLIKE A, MLIKE B
                     WHERE A.SENDER = B.RECEIVER AND B.SENDER = A.RECEIVER 
-                    AND A.SENDER = #{user_id} AND B.RECEIVER = #{user_id}
-                    AND A.LIKESTATUS ='Y' AND B.LIKESTATUS='Y')
+                    AND A.SENDER = #{myId} AND B.RECEIVER = #{myId}
+                    AND A.LIKESTATUS ='Y' AND B.LIKESTATUS='Y') AND USER_ID = #{userId}
               ORDER BY U_MID ASC
 	</select>
 	
@@ -115,7 +115,7 @@
                     FROM MLIKE A, MLIKE B
                     WHERE A.SENDER = B.RECEIVER AND B.SENDER = A.RECEIVER 
                     AND A.SENDER = #{user_id} AND B.RECEIVER = #{user_id}
-                    AND A.LIKESTATUS ='Y' AND B.LIKESTATUS='Y')
+                    AND A.LIKESTATUS ='Y' AND B.LIKESTATUS='Y') AND STATUS = 'Y'
         AND STATUS = 'Y' AND IMG_COUNT=0
         ORDER BY USER_ID ASC
 	</select>

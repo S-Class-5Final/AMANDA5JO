@@ -505,7 +505,6 @@
           
           var latest = $(".removed #tUser-email").last().val(); // 가장 최근 카드 선택자
           if (love) { // 좋아요 누를시 카드 움직임.
-           alert(latest);
                 card.style.transform = 'translate(' + moveOutWidth + 'px, -100px) rotate(-30deg)';
                 
                 $.ajax({
@@ -571,7 +570,7 @@
               chatConnList = testlist;      
              $.each(testlist, function(index, value) {
                 var str = 
-                           "<div id = card"+(index)+" class=tinder--card >"+
+                           "<div id = card"+(index)+" class='tinder--card' style='border: 2px solid #FFCFDA'>"+
                            "      <div class=mySlides" +index+" id='Slides1' style='pointer-events: none;'>"+
                            "         <img src =${contextPath }/resources/userface/" + testlist[index].imglist[0].renameFileName + " style='width: 400px; height: 300px;'>"+
                            "      </div>"+
@@ -988,10 +987,12 @@
      
     <!-- previous 버튼 누를 시. -->
     <script>
+    var returnCount = 1;
        $("#previous").on('click', function() {
            var test = $(".removed").last();
          test.removeClass('removed');
-           test.css('transform','translate(0px, 0px) rotate(0deg)').css('z-index','800');
+           test.css('transform','translate(0px, 0px) rotate(0deg)').css('z-index','800'+returnCount);
+           returnCount = returnCount +1;
       });
     </script>
     

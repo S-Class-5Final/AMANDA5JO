@@ -31,15 +31,15 @@
 	<result property="status" column="STATUS"/>
 	</resultMap>
 
-  <!-- 	<resultMap id="chatResultMap" type="Chat">
+  	<resultMap id="chatUpdateMap" type="Chat">
   	<id property="chatid" column="CHATID"/>
   	<result property="chatroom" column="CHATROOM"/>
   	<result property="createdate" column="CREATEDATE"/>
   	<result property="modifydate" column="MODIFYDATE"/>
   	<result property="u_mid" column="U_MID"/>
-  	<result property="u_mid" column="U_MID2"/>
+  	<result property="u_mid2" column="U_MID2"/>
   	<result property="status" column="STATUS"/>
-  	</resultMap> -->
+  	</resultMap>
   	
   		<resultMap id="chatResultMap" type="ChatInfo2">
   	<id property="chatid" column="CHATID"/>
@@ -52,67 +52,30 @@
   	</resultMap> 
  
 
- <!--  <insert id="myReportInsert" parameterType="Report2">
+  <insert id="myReportInsert" parameterType="Report2">
   INSERT INTO REPORT
   VALUES(SEQ_RKEY.NEXTVAL, #{u_mid}, #{r_user_id},#{r_type},#{r_contents},SYSDATE,'Y')
-  </insert> -->
+  </insert> 
   
-<!--  <select id="getmychatListCount" resultType="_int" parameterType="String">
+   <select id="selectmychatList" parameterType="string" resultType="ChatInfo2">
   SELECT *
   FROM CHATINFO
-  WHERE USER_ID=#{user_id} AND STATUS='Y'
-  </select>  -->
-  
-  
-  
-  
-    <select id="getmychatList" resultType="_int" parameterType="String">
-  SELECT count(*)
-  FROM CHATINFO
-  WHERE USER_ID = #{user_id} OR USER_ID2 = #{user_id} AND STATUS='Y'
-  </select>
-  
-  <select id="selectmychatList" parameterType="string" resultType="ChatInfo2">
-  SELECT *
-  FROM CHATINFO
-	WHERE USER_ID=#{user_id} OR USER_ID2 = #{user_id} AND STATUS='Y'
+	WHERE STATUS = 'Y' AND USER_ID = #{user_id} OR USER_ID2 = #{user_id}
    ORDER BY CHATID DESC
-  </select> 
+  </select>  
+  
   
   <update id="myReportUpdate" parameterType="String">
   UPDATE CHATINFO
   SET STATUS='N'
-  WHERE USER_ID=#{user_id}
+  WHERE USER_ID = #{user_id}
   </update>
   
-  
-  
-<!--   <select id="mylistAll" resultType="ChatInfo">
-  
-  <include refid="paging_header" />
-  SELECT *
-  FROM ChatInfo
-  WHERE USER_ID = #{user_id}
-  ORDER BY user_id DESC
-  <include refid="paging_footer"/>
-  
-  </select>
-  
-  <sql id="paging_header">
-  SELECT *
-  FROM(
-  	SELECT ROWNUM AS RN, A.*
-  FROM (
-  </sql>
-  
-  
-  <sql id="paging_footer">
-  	) A
-  	) WHERE RN BETWEEN #{start} and #{end}
-  </sql> -->
-  
-  
-
+  <update id="myChatUpdate" parameterType="_int">
+  UPDATE CHAT
+  SET STATUS='N'
+  WHERE CHATID=#{chatid}
+  </update>
   
 </mapper>
 
