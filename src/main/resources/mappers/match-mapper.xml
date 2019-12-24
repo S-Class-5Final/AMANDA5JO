@@ -164,6 +164,7 @@
       		  AND USER_NICK NOT IN (SELECT H_RECEIVER 
                     		        FROM MHATE 
                              	    WHERE H_SENDER=#{user.user_nick})) M ON (MI.USER_ID = M.USER_ID)
+                             	    WHERE MI.STATUS = 'Y'
 	</select>
 	<!-- 여자 -->
 	<select id="selectPFlist" resultMap="MemberImgResultMap" resultType="MemberImg"  parameterType="hashMap">
@@ -178,6 +179,7 @@
       		  AND USER_NICK NOT IN (SELECT H_RECEIVER 
                         		    FROM MHATE 
                              	    WHERE H_SENDER=#{user.user_nick})) M ON (MI.USER_ID = M.USER_ID)
+                             	    WHERE MI.STATUS = 'Y'
 	</select>
 	<!-- 레즈 -->
 	<select id="selectPFYlist" resultMap="MemberImgResultMap" resultType="MemberImg"  parameterType="hashMap">
@@ -192,6 +194,7 @@
       		  AND USER_NICK NOT IN (SELECT H_RECEIVER 
                         		    FROM MHATE 
                              	    WHERE H_SENDER=#{user.user_nick})) M ON (MI.USER_ID = M.USER_ID)
+                             	    WHERE MI.STATUS = 'Y'
 	</select>
 	<!-- 남자 -->
 	<select id="selectPMlist" resultMap="MemberImgResultMap" resultType="MemberImg"  parameterType="hashMap">
@@ -206,6 +209,7 @@
       		  AND USER_NICK NOT IN (SELECT H_RECEIVER 
                         		    FROM MHATE 
                              	    WHERE H_SENDER=#{user.user_nick})) M ON (MI.USER_ID = M.USER_ID)
+                             	    WHERE MI.STATUS = 'Y'
 	</select>
 	<!-- 게이 -->
 	<select id="selectPMYlist" resultMap="MemberImgResultMap" resultType="MemberImg"  parameterType="hashMap">
@@ -220,6 +224,7 @@
       		  AND USER_NICK NOT IN (SELECT H_RECEIVER 
                         		    FROM MHATE 
                              	    WHERE H_SENDER=#{user.user_nick})) M ON (MI.USER_ID = M.USER_ID)
+                             	    WHERE MI.STATUS = 'Y'
 	</select>
 	
 	
