@@ -36,8 +36,11 @@ public class LikeController {
 	@RequestMapping("likeTo.do")
 	public void likeTo(HttpServletResponse response, Member m, Like lk, String user_id) throws JsonIOException, IOException {
 		response.setContentType("application/json;charset=utf-8");
-		ArrayList<Member> result = lService.selectSender(m);
 		ArrayList<MemberImg> result2 = lService.selectSenderImg(m);
+		ArrayList<Member> result = lService.selectSender(result2, m.getUser_id());
+		
+		System.out.println(result);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		lk.setReceiver(user_id);
 		int likeUpdate = lService.updateLike(lk);
@@ -53,8 +56,8 @@ public class LikeController {
 	@RequestMapping("likeListTwo.do")
 	public void likeListTwo(HttpServletResponse response, Member m) throws JsonIOException, IOException {
 		response.setContentType("application/json;charset=utf-8");
-		ArrayList<Member> result3 = lService.selectReceiver(m);
 		ArrayList<MemberImg> result4 = lService.selectReceiverImg(m);
+		ArrayList<Member> result3 = lService.selectReceiver(result4, m.getUser_id());
 		
 		Map<String, Object> map1 = new HashMap<String, Object>();
 		
@@ -92,8 +95,8 @@ public class LikeController {
 	@RequestMapping("matchList.do")
 	public void matchList(HttpServletResponse response, Member m) throws JsonIOException, IOException {
 		response.setContentType("application/json;charset=utf-8");
-		ArrayList<Member> result1 = lService.selectMatchList(m);
 		ArrayList<MemberImg> result2 = lService.selectMatchImg(m);
+		ArrayList<Member> result1 = lService.selectMatchList(result2, m.getUser_id());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		

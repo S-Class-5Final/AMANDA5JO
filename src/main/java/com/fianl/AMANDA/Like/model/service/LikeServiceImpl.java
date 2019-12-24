@@ -18,13 +18,13 @@ public class LikeServiceImpl implements LikeService {
 	LikeDao lDao;
 
 	@Override
-	public ArrayList<Member> selectSender(Member m) {
-		return lDao.selectSender(m);
+	public ArrayList<Member> selectSender(ArrayList<MemberImg> result, String user_id) {
+		return lDao.selectSender(result, user_id);
 	}
 
 	@Override
-	public ArrayList<Member> selectReceiver(Member m) {
-		return lDao.selectReceiver(m);
+	public ArrayList<Member> selectReceiver(ArrayList<MemberImg> result, String user_id) {
+		return lDao.selectReceiver(result, user_id);
 	}
 
 	@Override
@@ -53,8 +53,8 @@ public class LikeServiceImpl implements LikeService {
 	}
 
 	@Override
-	public ArrayList<Member> selectMatchList(Member m) {
-		return lDao.selectMatchList(m);
+	public ArrayList<Member> selectMatchList(ArrayList<MemberImg> result, String user_id) {
+		return lDao.selectMatchList(result, user_id);
 	}
 
 	@Override
