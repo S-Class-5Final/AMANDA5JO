@@ -461,6 +461,7 @@ body {
 		$(function() {
 			findChatRoom();
 			setInterval(function() {
+				$("#chatListView").html("");
 				findChatRoom();
 			}, 5000);
 		});

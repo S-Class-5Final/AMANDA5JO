@@ -33,7 +33,7 @@
 /* 수정하기 버튼 효과 */
 .myUpdateBtnClass {
 margin-left:370px; 
-   margin-top:40px;
+	margin-top:40px;
   width: 200px;
   height: 60px;
   font-family: 'Roboto', sans-serif;
@@ -68,10 +68,10 @@ margin-left:370px;
 /*  .myHobbyCheck { display: none;}   /* input 체크박스 hidden */ 
 
 .myUpdateMemberImg{
-   width:220px; 
-   height:250px; 
-   border:1px solid ;
-   
+	width:220px; 
+	height:250px; 
+	border:1px solid ;
+	
 }
 
 #myUpdateMemberImgDiv{height:350px; margin-top:20px;}
@@ -303,7 +303,7 @@ h1 span:nth-child(14) {
 
 <div id="myUpdateMainDiv">
 
-   <form action="myupdate.do" onsubmit="return myUpdateBtn();" id="myMemberUpdateForm" method="post" enctype="multipart/form-data">
+	<form action="myupdate.do" onsubmit="return myUpdateBtn();" id="myMemberUpdateForm" method="post" enctype="multipart/form-data">
    <div class="myUpdateMemberBody" >
 <h1><span>회</span><span>원</span><span>정</span><span>보</span><span>수</span><span>정</span></h1>
    
@@ -348,22 +348,22 @@ h1 span:nth-child(14) {
    
    <!-- 아이디 DIV  휴대폰DIV-->
    
-   <br>  
+	<br>  
    <div class="myUpdateMemberDiv" style="float:left; width:100%;">   
-      <label>핸드폰 번호</label>
+	   <label>핸드폰 번호</label>
       <div id="myUpdateMemberPhone">
        <c:forTokens var="myPhoneTokens" items="${myMember.phone }" delims="-" varStatus="status">
-      <c:if test="${status.index eq 0 }">
+		<c:if test="${status.index eq 0 }">
       <input type="text" id="myphone1" name ="phone1" value="${myPhoneTokens}">-
       </c:if>
       
       <c:if test="${status.index eq 1 }"><input type="text" name= "phone2" id="myphone2" value="${myPhoneTokens}">-</c:if>
-     
-     <c:if test="${status.index eq 2 }"><input type="text" name = "phone3" id="myphone3" value="${myPhoneTokens}"></c:if>
-     
+	  
+	  <c:if test="${status.index eq 2 }"><input type="text" name = "phone3" id="myphone3" value="${myPhoneTokens}"></c:if>
+	  
       </c:forTokens>
-     </div>
-   </div>
+	  </div>
+	</div>
    
    <div  class="myUpdateMemberDiv" style="float:left; width:100%; " >
      <label>아이디 </label>
@@ -377,7 +377,7 @@ h1 span:nth-child(14) {
       <div id="myUpdateMemberPwd"><input type="password" name="user_pwd" id="mypw1"></div>
      </div>
      
-       <div class="myUpdateMemberDiv" style="float:left; width:55%;"> 
+ 	   <div class="myUpdateMemberDiv" style="float:left; width:55%;"> 
       <label>비밀번호 확인</label>
       <div id="myUpdateMemberPwdCheck" ><input type="password" name="user_pwd2"  id="mypw2"></div>
       </div>
@@ -403,19 +403,19 @@ h1 span:nth-child(14) {
       <c:if test="${myMember.gender eq 'M' }">
       <label style="margin-bottom:30px">남자
       <input type="radio" name = "gender" class = "option-input radio" value = "M" checked>&nbsp; 
-     </label>
-     <label style="margin-bottom:30px">여자
-     <input type = "radio" name = "gender" class = "option-input radio" value="F"><br>
-     </label>
-   </c:if>
-      <c:if test="${myMember.gender eq 'F' }">
-      <label style="margin-bottom:30px">남자
+	  </label>
+	  <label style="margin-bottom:30px">여자
+	  <input type = "radio" name = "gender" class = "option-input radio" value="F"><br>
+	  </label>
+	</c:if>
+	   <c:if test="${myMember.gender eq 'F' }">
+	   <label style="margin-bottom:30px">남자
        <input type="radio" name = "gender" class = "option-input radio" value = "M" >&nbsp; 
-      </label>
-      <label style="margin-bottom:30px">여자
-      <input type = "radio" name = "gender" class = "option-input radio" value="F" checked><br>
-      </label>
-   </c:if>
+		</label>
+		<label style="margin-bottom:30px">여자
+	   <input type = "radio" name = "gender" class = "option-input radio" value="F" checked><br>
+		</label>
+	</c:if>
       </div>
     </div>
     <div class="myUpdateMemberDiv" style="float:left; width:55%;">   
@@ -424,20 +424,20 @@ h1 span:nth-child(14) {
       <c:if test="${myMember.gay eq 'Y' }">
       <label style="margin-bottom:30px">네
      <input type="radio" name = "gay" class="option-input radio" id="yes" value = "Y" checked>
-      </label>
-      <label style="margin-bottom:30px">아니오
-      <input type = "radio" name = "gay" class="option-input radio" id="no" value="N">
-   </label>
-   </c:if>   
-   <c:if test="${myMember.gay eq 'N' }">
-   <label style="margin-bottom:30px">네
-         <input type="radio" name = "gay"  class="option-input radio"  value = "Y" >
-    </label>
-    <label style="margin-bottom:30px">아니오
-      <input type = "radio" name = "gay" class="option-input radio"  value="N" checked>
-   </label>
-   </c:if>
-    </div>
+ 	  </label>
+ 	  <label style="margin-bottom:30px">아니오
+		<input type = "radio" name = "gay" class="option-input radio" id="no" value="N">
+	</label>
+	</c:if>	
+	<c:if test="${myMember.gay eq 'N' }">
+	<label style="margin-bottom:30px">네
+     	 <input type="radio" name = "gay"  class="option-input radio"  value = "Y" >
+ 	</label>
+ 	<label style="margin-bottom:30px">아니오
+		<input type = "radio" name = "gay" class="option-input radio"  value="N" checked>
+	</label>
+	</c:if>
+	 </div>
    </div>
    
 
@@ -461,16 +461,16 @@ h1 span:nth-child(14) {
       <label>한줄 소개</label>
       <div id="myUpdateMemberInto" ><input type="text" name="user_into" value="${myMember.user_into }"></div>
    </div>
-   
-   
-   
-   
+	
+	
+	
+	
 
-    <div class="myUpdateMemberDiv" style="float:left; width:55%;">   
+	 <div class="myUpdateMemberDiv" style="float:left; width:55%;">   
       <label>취미</label>
       <div id="myUpdateMemberHobby" ><input type="text" id="myHobbyinput" style="background:#ebebeb" readonly >
         <button type="button" id="myHobbyListBtn" class="btn" data-toggle="modal" data-target="#myModal">
-      취미 수정
+		취미 수정
         </div>
  
    </div>
@@ -491,39 +491,39 @@ h1 span:nth-child(14) {
         
         <!-- Modal body -->
         <div class="modal-body mybody">
-           <div id="myModalBody">
+        	<div id="myModalBody">
     
-              <div class="myHobbyDiv" style="display:inline-block" ><label class="${myHobby.movie == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">영화</label>
-                 <input type="checkbox" id="myMovie" name="movie" class="myHobbyCheck"  value="Y" ${myHobby.movie == "Y" ? "CHECKED" : ""}>
-              </div>
-              <div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.sing == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">노래</label>
-              <input type="checkbox" id="mySing" name="sing" class="myHobbyCheck"  value="Y" ${myHobby.sing == "Y" ? "CHECKED" : ""}> 
-              </div>
-              <div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.game == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">게임</label>
-              <input type="checkbox" id="myGame" name="game" class="myHobbyCheck"  value="Y" ${myHobby.game == "Y" ? "CHECKED" : ""}> 
-              </div>
-              <br>
-              <div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.jmt == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">jMT</label>
-              <input type="checkbox" id="myJmt" name="jmt" class="myHobbyCheck" value="Y" ${myHobby.jmt == "Y" ? "CHECKED" : ""}> 
-              </div>
-              <div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.pet == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">동물</label>
-               <input type="checkbox" id="myPet" name="pet" class="myHobbyCheck" value="Y" ${myHobby.pet == "Y" ? "CHECKED" : ""}>
-              </div>
-              <div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.cafe == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">카페</label>
-               <input type="checkbox" id="myCafe" name="cafe" class="myHobbyCheck" value="Y" ${myHobby.cafe == "Y" ? "CHECKED" : ""}>
-              </div>
-              <br>
-              <div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.working == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">산책</label>
-              <input type="checkbox" id="myWorking" name="working" class="myHobbyCheck" value="Y" ${myHobby.working == "Y" ? "CHECKED" : "" }> 
-              </div>
-              <div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.poto == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">사진</label>
-              <input type="checkbox" id="myPoto" name="poto" class="myHobbyCheck" value="Y" ${myHobby.poto == "Y" ? "CHECKED" : "" }> 
-              </div>
-              <div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.travel == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">여행</label>
-              <input type="checkbox" id="myTravel" name="travel" class="myHobbyCheck" value="Y" ${myHobby.travel == "Y" ? "CHECKED" : "" }> 
-              </div>
-              <br>
-           </div>
+        		<div class="myHobbyDiv" style="display:inline-block" ><label class="${myHobby.movie == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">영화</label>
+        			<input type="checkbox" id="myMovie" name="movie" class="myHobbyCheck"  value="Y" ${myHobby.movie == "Y" ? "CHECKED" : ""}>
+        		</div>
+        		<div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.sing == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">노래</label>
+        		<input type="checkbox" id="mySing" name="sing" class="myHobbyCheck"  value="Y" ${myHobby.sing == "Y" ? "CHECKED" : ""}> 
+        		</div>
+        		<div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.game == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">게임</label>
+        		<input type="checkbox" id="myGame" name="game" class="myHobbyCheck"  value="Y" ${myHobby.game == "Y" ? "CHECKED" : ""}> 
+        		</div>
+        		<br>
+        		<div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.jmt == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">jMT</label>
+        		<input type="checkbox" id="myJmt" name="jmt" class="myHobbyCheck" value="Y" ${myHobby.jmt == "Y" ? "CHECKED" : ""}> 
+        		</div>
+        		<div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.pet == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">동물</label>
+        		 <input type="checkbox" id="myPet" name="pet" class="myHobbyCheck" value="Y" ${myHobby.pet == "Y" ? "CHECKED" : ""}>
+        		</div>
+        		<div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.cafe == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">카페</label>
+        		 <input type="checkbox" id="myCafe" name="cafe" class="myHobbyCheck" value="Y" ${myHobby.cafe == "Y" ? "CHECKED" : ""}>
+        		</div>
+        		<br>
+        		<div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.working == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">산책</label>
+        		<input type="checkbox" id="myWorking" name="working" class="myHobbyCheck" value="Y" ${myHobby.working == "Y" ? "CHECKED" : "" }> 
+        		</div>
+        		<div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.poto == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">사진</label>
+        		<input type="checkbox" id="myPoto" name="poto" class="myHobbyCheck" value="Y" ${myHobby.poto == "Y" ? "CHECKED" : "" }> 
+        		</div>
+        		<div class="myHobbyDiv" style="display:inline-block"><label class="${myHobby.travel == 'Y' ? 'myRemoveClassColor' : 'myAddClassColor' }">여행</label>
+        		<input type="checkbox" id="myTravel" name="travel" class="myHobbyCheck" value="Y" ${myHobby.travel == "Y" ? "CHECKED" : "" }> 
+        		</div>
+        		<br>
+        	</div>
         </div>
         
         <!-- Modal footer -->
@@ -541,11 +541,6 @@ h1 span:nth-child(14) {
          <button type="submit" class="myUpdateBtnClass">수정완료</button>
         </div>
         
-        
-        
-
-        
- 
    </div>
 </form>          
 </div>
@@ -553,63 +548,61 @@ h1 span:nth-child(14) {
 
 <!--   <script>
   $(".myfileList").sortable({
-   axis: "x, y",
-   update: function (event, ui) {
-      var order = $(this).sortable('toArray', {
-         attribute: '.myUpdateMemberImg'
-      });
-      console.log(order);
-      console.log(".myUpdateMemberImg");
-   }
+	axis: "x, y",
+	update: function (event, ui) {
+		var order = $(this).sortable('toArray', {
+			attribute: '.myUpdateMemberImg'
+		});
+		console.log(order);
+		console.log(".myUpdateMemberImg");
+	}
 });  
 
 </script>  -->
 
-
-
 <script>
-    /* 모달창 안의 버튼 클릭시 이벤트 */
-    
-    /* function 일어나고 자동으로 $()가 클릭이벤트를 실행함 */
-    $(function(){
-        $(".myHobbyCheck").hide(); 
-       $("#myModalMemberUpdate").click();
-    });
+ 	/* 모달창 안의 버튼 클릭시 이벤트 */
+ 	
+ 	/* function 일어나고 자동으로 $()가 클릭이벤트를 실행함 */
+ 	$(function(){
+ 		 $(".myHobbyCheck").hide(); 
+ 		$("#myModalMemberUpdate").click();
+ 	});
 
-    
-    $(document).on('click','.myHobbyDiv', function(){
-       if($(this).children('input').attr('checked') == 'checked'){
-          $(this).children('input').attr('checked', false);
-           $(this).children('label').removeClass('myRemoveClassColor'); 
-          $(this).children('label').addClass('myAddClassColor');
-       }else{
-          $(this).children('input').attr('checked', true);
-           $(this).children('label').removeClass('myAddClassColor'); 
-          $(this).children('label').addClass('myRemoveClassColor');
-       }
-    });
+ 	
+ 	$(document).on('click','.myHobbyDiv', function(){
+ 		if($(this).children('input').attr('checked') == 'checked'){
+ 			$(this).children('input').attr('checked', false);
+ 			 $(this).children('label').removeClass('myRemoveClassColor'); 
+ 			$(this).children('label').addClass('myAddClassColor');
+ 		}else{
+ 			$(this).children('input').attr('checked', true);
+ 	 		$(this).children('label').removeClass('myAddClassColor'); 
+ 			$(this).children('label').addClass('myRemoveClassColor');
+ 		}
+ 	});
 
-    // input 태그는 val   label document형식의  html
-    // 모달창안의 데이터 값 출력
-    $(document).on("click","#myModalMemberUpdate", function(){
-       var labelArray=[];
-       $('label[class="myRemoveClassColor"]').each(function(){
-          labelArray.push($(this).html());
-       });
-        var labelArrayTmp = labelArray.join(",");
-         $("#myHobbyinput").val(labelArrayTmp);
-    });
+ 	// input 태그는 val   label document형식의  html
+ 	// 모달창안의 데이터 값 출력
+ 	$(document).on("click","#myModalMemberUpdate", function(){
+ 		var labelArray=[];
+ 		$('label[class="myRemoveClassColor"]').each(function(){
+ 			labelArray.push($(this).html());
+ 		});
+ 		 var labelArrayTmp = labelArray.join(",");
+ 		  $("#myHobbyinput").val(labelArrayTmp);
+ 	});
 
 </script>
 
 <script>
           /* 
             change : function(e) {
-             var files = e.target.files;
-             var filesArr = Array.prototype.slice.call(files);
-             var form = document.getElementsByClassName("myUpdateMemberImg")
-           var formData = new FormData(form);
-             for(var i in)
+        	  var files = e.target.files;
+        	  var filesArr = Array.prototype.slice.call(files);
+        	  var form = document.getElementsByClassName("myUpdateMemberImg")
+			  var formData = new FormData(form);
+        	  for(var i in)
      
            } */
            
@@ -622,13 +615,12 @@ h1 span:nth-child(14) {
        
         $("#myfileList").disableSelection();
          $("#myfileList").sortable({
-               axis: 'x',
-               placeholder: 'slide-placeholder',
-               revert: 250
+        	    axis: 'x',
+        	    placeholder: 'slide-placeholder',
+        	    revert: 250
          });
      
 </script>
-
 
    <script>
    // 내용 작성 부분의 공간을 클릭할 때 파일 첨부 창이 뜨도록 설정하는 부분
@@ -672,21 +664,21 @@ h1 span:nth-child(14) {
    }
    </script>
 
-   <!-- 이미지 삭제 -->
-<!--    <script type="text/javascript">
-   $(document).on('click', "#myUpdateMemberImgDelete", function(){
-      $("#mytitleImg").attr("src","resources/images/test.png");
-      $("#mythumbnailImg1").val("");
-   });
-   $(document).on('click', "#myUpdateMemberImgDelete2", function(){
-      $("#mytitleImg1").attr("src","resources/images/test.png");
-      $("#mythumbnailImg2").val("");
-   });
-   $(document).on('click', "#myUpdateMemberImgDelete3", function(){
-      $("#mytitleImg2").attr("src","resources/images/test.png");
-      $("#mythumbnailImg3").val("");
-   });
-   </script> -->
+	<!-- 이미지 삭제 -->
+<!-- 	<script type="text/javascript">
+	$(document).on('click', "#myUpdateMemberImgDelete", function(){
+		$("#mytitleImg").attr("src","resources/images/test.png");
+		$("#mythumbnailImg1").val("");
+	});
+	$(document).on('click', "#myUpdateMemberImgDelete2", function(){
+		$("#mytitleImg1").attr("src","resources/images/test.png");
+		$("#mythumbnailImg2").val("");
+	});
+	$(document).on('click', "#myUpdateMemberImgDelete3", function(){
+		$("#mytitleImg2").attr("src","resources/images/test.png");
+		$("#mythumbnailImg3").val("");
+	});
+	</script> -->
 
 
             <!-- 주소 api -->
@@ -697,148 +689,127 @@ h1 span:nth-child(14) {
                    $("#postcodify_search_button_myBtn").postcodifyPopUp(); 
                });
             </script> -->
-      
-      <!-- 정보 정규식  -->   
-       <script>
-        function myUpdateBtn(){
-             var checkPwd = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
-             var checkHeight = /^\d*[.]\d{1}$/;
-             var checknum= /[^0-9]/g;
-             // 특수문자 여부
-             var checkPattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;  
-             var bool = confirm("수정 하시겠습니까?"); // confirm yes/no 팝업창
-           
-           /*    if($("#mythumbnailImg1").val() == "" && $("#mythumbnailImg2").val() == "" && $("#mythumbnailImg3").val() == ""  ){
-                 
-                  alert(" 사진 3장을 등록하셔야합니다.");
-              
-                  return false;
-               }  */
-                   
-              if(checknum.test($("#myphone1").val())){
-                 alert("전화번호는 숫자만 입력하세요");
-                 $("#myphone1").focus();
-                 return false;
-              }
-              if(checknum.test($("#myphone1").val())){
-                 alert("전화번호는 숫자만 입력하세요");
-                 $("#myphone2").focus();
-                 return false;
-              }
-              if(checknum.test($("#myphone1").val())){
-                 alert("전화번호는 숫자만 입력하세요");
-                 $("#myphone3").focus();
-                 return false;
-              }
-               
-               if($("#myphone1").val() == "") {
-                  alert("전화번로를 입력하세요");
-                $("#myphone1").focus();
-                 return false;
-               }     
-               
-               if($("#myphone2").val() == "") {
-                  alert("전화번로를 입력하세요");
-                $("#myphone2").focus();
-                 return false;
-               }  
-                
-               if($("#myphone3").val() == "") {
-                  alert("전화번로를 입력하세요");
-                $("#myphone3").focus();
-                 return false;
-               }  
-               
-            if($("#mypw1").val() == ""){
-               alert("비밀번호를 입력해주세요");
-               $("#mypw1").focus();
-               return false;
-            }
-            if($("#myid").val() == ($("#mypw1").val())) {
-               alert("비밀번호가 ID와 똑같습니다!");
-               $("#mypw1").val("");
-               $("#mypw1").focus();
-               return false;
-            } 
-            
-            if(!checkPwd.test($("#mypw1").val())){
-               alert("비밀번호는 8자 이상이며, 숫자/영어를 포함해야합니다."); 
-               $("#mypw1").val("");
-               $("#mypw1").focus();
-               return false;
-            }
-            
-           if(checkPattern.test($("#mypw1").val())) { 
-                alert("특수문자가 포함되었습니다. 비밀번호를 다시 입력해주세요.");               
-                $("#mypw1").val("");
-                $("#mypw1").focus();
-              return false;
-             } 
-           
-            if(!checkPwd.test($("#mypw2").val())){
-               alert("비밀번호는 8자 이상이며, 숫자/영어를 포함해야합니다."); 
-               $("#mypw2").val("");
-               $("#mypw2").focus();
-               return false;
-            }
-           
-            if($("#mypw1").val() != $("#mypw2").val()) {
-              alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요");
-              $("#mypw2").val("");
-              $("#mypw2").focus();
-              return false;
-            }
-            
-            
-            
-            if($("#mynick").val() == "") {
-               alert("별명을 입력해주세요");
-               $("#mynick").focus();
-               return false;
-            }
-           if(checkPattern.test($("#mynick").val())) { 
-               alert("특수문자가 포함되었습니다. 별명을 다시 입력해주세요.");               
-               $("#mynick").val("");
-               $("#mynick").focus();
-             return false;
-            } 
-            
-             if($("#myheight").val() == "") {
-                  alert("키를 입력해주세요");
-                  $("#myheight").val("");
-                  $("#myheight").focus();
-                  return false;
-               }
-           
-            if(checkHeight.test($("#myheight").val())){
-               alert("소수점을 제외하고 키를 입력해주세요");
-               $("#myheight").val("");
-               $("#myheight").focus("");
-               return false;
-            }
-             
-            
-            if($("#myage").val() == ""){
-               alert("나이 입력해주세요");
-               $("#myage").focus();
-               return false;
-            }
-           
-            if($("#detailAddress").val() == ""){
-               alert("상세주소를 입력해주세요");
-               $("#detailAddress").focus();
-               return false;
-            }
-            
-            if($("#myHobbyinput").val() == ""){
-               alert("취미를 골라주세요");
-               return false;
-               
-            }
-            
-      alert("정보 수정 완료");
-          }
-      </script>
+		
+		<!-- 정보 정규식  -->	
+		 <script>
+		  function myUpdateBtn(){
+	          var checkPwd = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
+	          var checkHeight = /^\d*[.]\d{1}$/;
+	          var checknum= /[^0-9]/g;
+	          // 특수문자 여부
+	          var checkPattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;  
+	          var bool = confirm("수정 하시겠습니까?"); // confirm yes/no 팝업창
+	        
+	        /*    if($("#mythumbnailImg1").val() == "" && $("#mythumbnailImg2").val() == "" && $("#mythumbnailImg3").val() == ""  ){
+	        	   
+		            alert(" 사진 3장을 등록하셔야합니다.");
+		        
+		            return false;
+		         }  */
+	          		
+		        if(checknum.test($("#myphone1").val())){
+		        	alert("전화번호는 숫자만 입력하세요");
+		        	$("#myphone1").focus();
+		        	return false;
+		        }
+		        if(checknum.test($("#myphone1").val())){
+		        	alert("전화번호는 숫자만 입력하세요");
+		        	$("#myphone2").focus();
+		        	return false;
+		        }
+		        if(checknum.test($("#myphone1").val())){
+		        	alert("전화번호는 숫자만 입력하세요");
+		        	$("#myphone3").focus();
+		        	return false;
+		        }
+		         
+		         if($("#myphone1").val() == "") {
+			  		 alert("전화번로를 입력하세요");
+			    	$("#myphone1").focus();
+				     return false;
+			      }  	
+		         
+		         if($("#myphone2").val() == "") {
+			  		 alert("전화번로를 입력하세요");
+			    	$("#myphone2").focus();
+				     return false;
+			      }  
+			       
+		         if($("#myphone3").val() == "") {
+			  		 alert("전화번로를 입력하세요");
+			    	$("#myphone3").focus();
+				     return false;
+			      }  
+		    	  
+	         if($("#mypw1").val() == ""){
+	            alert("비밀번호를 입력해주세요");
+	            $("#mypw1").focus();
+	            return false;
+	         }
+	         if($("#myid").val() == ($("#mypw1").val())) {
+	        	 alert("비밀번호가 ID와 똑같습니다!");
+	        	 $("#mypw1").val("");
+	        	 $("#mypw1").focus();
+	        	 return false;
+	         } 
+	         
+	     	
+	         if($("#mypw1").val() != $("#mypw2").val()) {
+	        	alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요");
+	        	$("#mypw2").val("");
+	        	$("#mypw2").focus();
+	        	return false;
+	         }
+	         
+	         
+	         if($("#mynick").val() == "") {
+	        	 alert("별명을 입력해주세요");
+	        	 $("#mynick").focus();
+	        	 return false;
+	         }
+	     	if(checkPattern.test($("#mynick").val())) { 
+        		 alert("특수문자가 포함되었습니다. 별명을 다시 입력해주세요.");		         
+        		 $("#mynick").val("");
+        		 $("#mynick").focus();
+         	 return false;
+ 	     	} 
+	         
+	     	  if($("#myheight").val() == "") {
+		        	 alert("키를 입력해주세요");
+		        	 $("#myheight").val("");
+		        	 $("#myheight").focus();
+		        	 return false;
+		         }
+	     	
+	         if(checkHeight.test($("#myheight").val())){
+	        	 alert("소수점을 제외하고 키를 입력해주세요");
+	        	 $("#myheight").val("");
+	        	 $("#myheight").focus("");
+	        	 return false;
+	         }
+	          
+	         
+	         if($("#myage").val() == ""){
+	            alert("나이 입력해주세요");
+	            $("#myage").focus();
+	            return false;
+	         }
+	        
+	         if($("#detailAddress").val() == ""){
+	            alert("주소를 입력해주세요");
+	            $("#detailAddress").focus();
+	            return false;
+	         }
+	         
+	         if($("#myHobbyinput").val() == ""){
+	        	 alert("취미를 골라주세요");
+	        	 return false;
+	        	 
+	         }
+	         
+	   alert("정보 수정 완료");
+			 }
+		</script>
 
 </body>
 </html>

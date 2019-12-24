@@ -40,16 +40,16 @@ public class MypageController {
 	public String noticeDetail(Model model, String user_id, Member mym, MemberImg mymImg, Hobby myh) {
 		mym = mypageService.myupdateMemberlist(user_id);
 		myh = mypageService.myupdateHobbylist(user_id);
-		ArrayList<MemberImg> mymImgList = mypageService.myupdateMemberImglist(user_id);
+		ArrayList<MemberImg> loginImg = mypageService.myupdateMemberImglist(user_id);
 		
 		/*
 		 * System.out.println(mym); System.out.println(myh);
 		 */
-		System.out.println(mymImgList);
-		if (mym != null && myh != null && mymImgList != null) {
+		System.out.println(loginImg);
+		if (mym != null && myh != null && loginImg != null) {
 			model.addAttribute("myMember", mym);
 			model.addAttribute("myHobby", myh);
-			model.addAttribute("mymImgList", mymImgList);
+			model.addAttribute("loginImg", loginImg);
 		} else {
 			throw new MypageException("정보수정 상세보기 실패!!");
 		}
@@ -106,7 +106,7 @@ public class MypageController {
 		  if(myMemberResult>0 && myhobbyResult > 0 && myMemberImgResult>0 ) {
 			  	model.addAttribute("myMember", mym);
 				model.addAttribute("myHobby", myh);
-				model.addAttribute("mymImgList", myMemberImgList);
+				model.addAttribute("loginImg", myMemberImgList);
 		  
 		  }else 
 		  { 
@@ -157,6 +157,7 @@ public class MypageController {
 			@RequestParam("phone3") String myp3, @RequestParam(value =  "imgorginname", required = false) ArrayList<String> imgorignname,
 			@RequestParam(value = "mythumbnailImg", required = false) ArrayList<MultipartFile> myMultipartFile,
 			@RequestParam(value =  "imgrename", required = false) ArrayList<String> imgrename, HttpSession Session) {
+		
 		int myresult = mypageService.myresult(user_id);
 		System.out.println("myresult : "+ myresult);
 		String myphone = myp1 + "-" + myp2 + "-" + myp3;
@@ -258,6 +259,8 @@ public class MypageController {
 
 		return renameFileName;
 	}
+	
+	
 	
 
 

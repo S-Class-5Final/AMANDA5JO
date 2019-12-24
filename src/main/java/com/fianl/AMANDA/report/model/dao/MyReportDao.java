@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.fianl.AMANDA.chat.model.vo.Chat;
 import com.fianl.AMANDA.report.model.vo.ChatInfo;
 import com.fianl.AMANDA.report.model.vo.PageInfo;
 import com.fianl.AMANDA.report.model.vo.Report;
@@ -31,43 +32,40 @@ public class MyReportDao {
 	}
 */
 
-	public ArrayList<ChatInfo> selectmychatList(String user_id, PageInfo pi) {
-		
-		
-		  int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit(); 
-		  RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit()); //RowBounds은 건너뛰는거
-		return (ArrayList)sqlSession.selectList("reportMapper.selectmychatList", user_id, rowBounds);
-	}
-
-
+	
+	/*
+	 * public ArrayList<ChatInfo> selectmychatList(String user_id, PageInfo pi) {
+	 * 
+	 * 
+	 * int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit(); RowBounds
+	 * rowBounds = new RowBounds(offset, pi.getBoardLimit()); //RowBounds은 건너뛰는거
+	 * return (ArrayList)sqlSession.selectList("reportMapper.selectmychatList",
+	 * user_id, rowBounds); }
+	 */
+	  public ArrayList<ChatInfo> selectmychatList(String user_id) {
+	  
+	  return (ArrayList)sqlSession.selectList("reportMapper.selectmychatList", user_id); 
+	  }
+	 
+	
+	
+	
+	
+	
 	public int myReportUpdate(String myreport_Id) {
 		return sqlSession.update("reportMapper.myReportUpdate", myreport_Id);
 	}
 
 
 	
-	 public int getmychatList(String user_id) { 
-		 return sqlSession.selectOne("reportMapper.getmychatList", user_id); }
-	 
+	/*
+	 * public int getmychatList(String user_id) { return
+	 * sqlSession.selectOne("reportMapper.getmychatList", user_id); }
+	 */
 
-/*
-	public List<ChatInfo> listAll(String user_id, String keyword, int start, int end) {
-		 Map<String,Object> map = new HashMap<>();
-         map.put("user_id", user_id);
-         map.put("keyword", keyword);
-         map.put("start", start); 
-         map.put("end", end);
-         return sqlSession.selectList("reportMapper.mylistAll", map);
+	public int myChatUpdate(int myChatId) {
+		return sqlSession.update("reportMapper.myChatUpdate", myChatId);
 	}
-
-	*/
-	
-	
-	
-	
-	
-	
-	
-	
+	 
 	
 }
