@@ -229,7 +229,7 @@
 	
 	<!-- 좋아요 삽입 -->
 	<insert id="likeInsert" parameterType="Match">
-	 	INSERT INTO MLIKE VALUES(SEQ_MATCH.NEXTVAL, #{u_mid}, #{likeSender}, #{likeReceiver}, 'Y', DEFAULT)
+	 	INSERT INTO MLIKE VALUES(SEQ_LIKENO.NEXTVAL, #{u_mid}, #{likeSender}, #{likeReceiver}, 'Y', DEFAULT)
 	</insert>
 	
 	<!-- 싫어요 삽입 -->
