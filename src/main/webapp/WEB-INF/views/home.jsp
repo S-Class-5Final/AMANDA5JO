@@ -499,7 +499,50 @@ margin-top: 5px;
 text-align: center;
 }
 
+/* introBtns */
+.introBtns{
+	width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 30px;
+    background: none;
+    margin-top: 40px;
+    transition: 0.3s;
+}
+.introBtns:hover {
+	 background: black; 
+	/* animation-duration: 2s; */
+	/* animation-delay: 1s; */
+}
+.slick-slider{
+	margin-bottom: 15%;
+}
+#introLogo{
+	width: 40px;
+    height: 40px;
+    margin-left: 15%;
+    margin-top: 30%;
+    margin-bottom: 30%;
+}
+#introFooter{
+	box-shadow: 0px 10px 20px grey;
+}
 
+#introFooter:hover{
+	-webkit-transform: translateY(-7px);
+     box-shadow: 0px 30px 20px grey;
+     transition: 0.5s;
+}
+
+#pt1 :hover{
+	color: pink;
+}
+#pt2 :hover{
+	color: pink;
+}
+#pt3 :hover{
+	color: pink;
+}
 </style>
 </head>
 <body>
@@ -531,7 +574,7 @@ text-align: center;
    <!-- 모달창 연습 -->
          <div id="myModal" class="modal">
       <!-- Modal content -->
-            <div class="modal-content">
+            <div class="modal-content" style="margin-top: 10%;">
                <div class="closebten">
                   <span class="close">&times;</span><br><br><br>
                </div>
@@ -1922,132 +1965,127 @@ $(function() {
       </div>
    </div>
 
-    <div class="section service" id="service">
-        <ul class="slider">
-                <li class="slide1">
-                    <div class="slider_img"></div>
-                    <div class="content">
-                        <div class="text_wrap">
-                            <p class="title_st1 eng">당신의 연예는</p>
-                                 <p class="f_logo">
-                               <img src="resources/images/.JPG" /></p> 
-                                <p class="f_name">아</p>
-                                <p class="f_description">아무나</p>
-                        </div>
-                        <div class="img_wrap">
-                        <img src="resources/images/준하1.jpg" />
-                        </div>
-                        <div class="slider_ar">
-                            <div class="count count2">
-                                <span class="idx">01</span>
-                                <span class="dash"><img src="/public/images/slide_count_bar_g.png" alt="" /></span>
-                                <span class="length">05</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                 <li class="slide2">
-                    <div class="slider_img"></div>
-                    <div class="content">
-                        <div class="text_wrap">
-                            <p class="title_st1 eng">언제 어디서 든지 </p>
-                                 <p class="f_logo">
-                                 <img src="resources/images/진형.JPG" />
-                                </p>
-                                <p class="f_name">만</p>
-                                <p class="f_description">만난</p>
-                        </div>
-                        <div class="img_wrap">
-                        <img src="resources/images/진형.jpg" />
-                        </div>
-                        <div class="slider_ar">
-                            <div class="count count2">
-                                <span class="idx">02</span>
-                                <span class="dash"><img src="/public/images/slide_count_bar_g.png" alt="" /></span>
-                                <span class="length">05</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                            <li class="slide3">
-                    <div class="slider_img"></div>
-                    <div class="content">
-                        <div class="text_wrap">
-                            <p class="title_st1 eng">아만다에서 만나세요</p>
-                                <p class="f_logo">
-                                <img src="resources/images/상훈.JPG" />
-                                </p>
-                                <p class="f_name">다</p>
-                                <p class="f_description">다</p>
-                            
-                        </div>
-                        <div class="img_wrap">
-                        <img src="resources/images/G.jpg" />
-                        </div>
-                        <div class="slider_ar">
-                            <div class="count count2">
-                                <span class="idx">03</span>
-                                <span class="dash"><img src="/public/images/slide_count_bar_g.png" alt="" /></span>
-                                <span class="length">05</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                 <li class="slide4">
-                    <div class="slider_img"></div>
-                    <div class="content">
-                        <div class="text_wrap">
-                            <p class="title_st1 eng">아만다에서 만나세요</p>
-                                <p class="f_logo">
-                                <img src="resources/images/재윤.JPG" />
-                                </p>
-                                <p class="f_name">다</p>
-                                <p class="f_description">다</p>
-                            
-                        </div>
-                        <div class="img_wrap">
-                        <img src="resources/images/상훈.jpg" />
-                        </div>
-                        <div class="slider_ar">
-
-                            <div class="count count2">
-                                <span class="idx">04</span>
-                                <span class="dash"><img src="/public/images/slide_count_bar_g.png" alt="" /></span>
-                                <span class="length">05</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                 <li class="slide5">
-                    <div class="slider_img"></div>
-                    <div class="content">
-                        <div class="text_wrap">
-                            <p class="title_st1 eng">아만다에서 만나세요</p>
-                                <p class="f_logo">
-                                <img src="/public/upload/20190322/49c3cc4c3f202dab5813136402dc48fe.jpg" />
-                                </p>
-                                <p class="f_name">다</p>
-                                <p class="f_description">다</p>
-                            
-                        </div>
-                        <div class="img_wrap">
-                        <img src="resources/images/재윤.jpg" />
-                        </div>
-                        <div class="slider_ar">
-
-                            <div class="count count2">
-                                <span class="idx">05</span>
-                                <span class="dash"><img src="/public/images/slide_count_bar_g.png" alt="" /></span>
-                                <span class="length">05</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                    </ul>
+    <div class="section service" id="service"  style="background: white;">
+       <div style="margin-top: 5%;
+                   text-align-last: center;
+				   font-size: 32px;
+				   font-weight: 900;">
+		WHAT IS AMANDA?<br>
+		<p style="opacity: 0.5; font-size: 25px; font-weight: 400">Premium Service for people who wants to meet random people</p>
+								
+								
+								
+						<div id="intro1" 
+					         style="display: inline-block;
+					                margin-left: 0%;
+					                text-align-last: right;
+					                font-size: 15px;">
+					     	<div id="introBtnWrapper">
+						       <div style="display: inline-block;">
+						        <p><h5>신입심사</h5></p><br>
+							    <p style="opacity: 0.5; font-weight: 500;">내가 직접 신입회원을 심사하고,<br> 괜찮은 이성에겐 호감을 표시해요</p>
+						       </div>
+						       <button class="introBtns" id="introBtns2" style=" margin-left: 30px;"><img src="resources/images/file1.png" onmouseover="this.src='resources/images/file.png'" onmouseout="this.src='resources/images/file1.png'" style="z-index: 100; width: 30px; height: 30px; padding: 3px; margin-right: 3px;"></button>
+					     	</div>
+						    <div id="introBtnWrapper">
+						       <div style="display: inline-block;">
+						        <p><h5>소개팅</h5></p><br>
+							    <p style="opacity: 0.5; font-weight: 500;">하루에 2명, 내 이상형에 맞춘<br> 소개팅을 무료로 받아요</p>
+						       </div>
+						       <button class="introBtns" id="introBtns2" style=" margin-left: 30px;"><img src="resources/images/couple1.png" onmouseover="this.src='resources/images/couple2.png'" onmouseout="this.src='resources/images/couple1.png'" style="z-index: 100; width: 30px; height: 30px; padding: 3px; margin-right: 3px;"></button>
+						    </div>
+						    <div id="introBtnWrapper">
+						       <div style="display: inline-block;">
+						        <p><h5>카드리스트</h5></p><br>
+							    <p style="opacity: 0.5; font-weight: 500;">앱에서 만난 모든 이성은 <br>카드리스트에서 확인해요</p>
+						       </div>
+						       <button class="introBtns" style=" margin-left: 30px;"><img src="resources/images/introHeart.png" onmouseover="this.src='resources/images/introHeart2.png'" onmouseout="this.src='resources/images/introHeart.png'" style="z-index: 100; width: 30px; height: 30px; padding: 3px; margin-right: 3px;"></button>
+						    </div>
+					    </div>	
+					    
+					    	
+					    <img  src="resources/images/aman.png" 
+									         style="width: 500px;
+									                height: 400px;
+									                margin-bottom: 13%;
+						                            margin-top: 8%;
+						                            margin-left: 3%;">
+												                            
+						<div id="intro2" 
+					         style="display: inline-block;
+					                margin-left: 3%;
+					                font-size: 15px;
+					                text-align-last: auto;">
+					     	<div id="introBtnWrapper">
+							<button class="introBtns" style=" margin-right: 30px;"><img src="resources/images/introChat.png" onmouseover="this.src='resources/images/introChat2.png'" onmouseout="this.src='resources/images/introChat.png'" style="z-index: 100; width: 30px; height: 30px; padding: 3px; margin-right: 3px;"></button>
+						       <div style="display: inline-block;">
+						        <p><h5>채팅</h5></p><br>
+							    <p style="opacity: 0.5; font-weight: 500;">부담스런 연락처 공개 No!<br> 서로 연결되면 대화방이 열려요</p>
+						       </div>
+					     	</div>
+						    <div id="introBtnWrapper">
+					        <button class="introBtns" style=" margin-right: 30px;"><img src="resources/images/infor1.png" onmouseover="this.src='resources/images/infor2.png'" onmouseout="this.src='resources/images/infor1.png'" style="z-index: 100; width: 30px; height: 30px; padding: 3px; margin-right: 3px;"></button>
+						       <div style="display: inline-block;">
+						        <p><h5>상세프로필</h5></p><br>
+							   <p style="opacity: 0.5; font-weight: 500;">이성의 자세한 소개와 사진을 <br>보고 마음에 들면 호감을 표시해요</p>
+						       </div>
+						    </div>
+						    <div id="introBtnWrapper">
+						    <button class="introBtns" style=" margin-right: 30px;"><img src="resources/images/teamwork1.png" onmouseover="this.src='resources/images/teamwork2.png'" onmouseout="this.src='resources/images/teamwork1.png'" style="z-index: 100; width: 35px; height: 35px; padding: 3px; margin-right: 3px;"></button>
+						       <div style="display: inline-block;">
+						        <p><h5>미팅</h5></p><br>
+							   <p style="opacity: 0.5; font-weight: 500;">아만다의 다른 이성들을<br> 친구와 함께 만나요</p>
+						       </div>
+						    </div>
+					    </div>	
+								
+	    </div>
     </div>
     <!--//section-->
+<!-- <style>
 
-         <div class="section interview" id="interview">
+#video {
+     position: absolute;
+     top: 0px;
+     left: 0px;
+     min-width: 100%;
+     min-height: 100%;
+     width: auto;
+     height: auto;
+     z-index: -1;
+     overflow: hidden;
+}
+
+</style>
+
+
+
+출처: https://woodstar.tistory.com/58 [MOUSE world] -->
+		<!-- 	<video id="video" preload="auto" autoplay="true" loop="loop"
+				muted="muted" volume="0">
+				<source src="resources/video/Welcome.mp4">
+			</video>
+			<div class="content">
+				<p class="title_st1 eng">INTERVIEW</p>
+				<a href="/career#interview">
+					<p class="cont">
+						만족스런 주문 경험을 제공할 수 있는<br />서비스를 기획합니다. <span class="team">기술연구소,
+							Consumer Product팀</span> <span class="name">박소희</span>
+					</p>
+				</a>
+				<div class="slider_ar">
+					<a href="javascript:;" class="prev"></a> <a href="javascript:;"
+						class="next"></a>
+					<div class="count">
+						<span class="idx">1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</span> <span
+							class="dash"><img
+							src="/public/images/slide_count_bar_g.png" alt="" /></span> <span
+							class="length">6</span>
+					</div>
+				</div>
+			</div> -->
+			<!--content-->
+			<div class="section interview" id="interview" style="">
             <ul class="slider">
                <li>
                   <div class="slider_img">
@@ -2065,24 +2103,23 @@ $(function() {
                         <a href="javascript:;" class="prev"></a> <a href="javascript:;"
                            class="next"></a>
                         <div class="count">
-                           <span class="idx">01</span> <span class="dash"><img
+                           <span class="idx">1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</span> <span class="dash"><img
                               src="/public/images/slide_count_bar_g.png" alt="" /></span> <span
-                              class="length">11</span>
+                              class="length">6</span>
                         </div>
                      </div>
                   </div> <!--content-->
                </li>
                <li>
                   <div class="slider_img">
-                     <img src="resources/face/O.jpg"  width="100%"/>
+                  	<img src="resources/face/t2.JPG"/>
                   </div>
                   <div class="content">
                      <p class="title_st1 eng">INTERVIEW</p>
                      <a href="/career#interview">
                         <p class="cont">
-                           데이터를 통해 우리 서비스가<br />올바른 방향으로 나아갈 수 있도록 돕습니다. <span
-                              class="team">Data, Business Intelligence팀</span> <span
-                              class="name">김은선</span>
+                                                    지랄하지마<br />서비스를 기획합니다. <span class="team">기술연구소,
+                              Consumer Product팀</span> <span class="name">박소희</span>
                         </p>
                      </a>
                      <div class="slider_ar">
@@ -2090,9 +2127,9 @@ $(function() {
                            class="next"></a>
 
                         <div class="count">
-                           <span class="idx"> 02 </span> <span class="dash"><img
+                           <span class="idx"> 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </span> <span class="dash"><img
                               src="/public/images/slide_count_bar_g.png" alt="" /></span> 
-                              <span class="length">11</span>
+                              <span class="length">6</span>
                         </div>
                      </div>
                   </div> <!--content-->
@@ -2114,9 +2151,9 @@ $(function() {
                            class="next"></a>
 
                         <div class="count">
-                           <span class="idx"> 03 </span> <span class="dash"><img
+                           <span class="idx"> 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </span> <span class="dash"><img
                               src="/public/images/slide_count_bar_g.png" alt="" /></span> <span
-                              class="length">11</span>
+                              class="length">6</span>
                         </div>
                      </div>
                   </div> <!--content-->
@@ -2139,9 +2176,9 @@ $(function() {
                            class="next"></a>
 
                         <div class="count">
-                           <span class="idx"> 04 </span> <span class="dash"><img
+                           <span class="idx"> 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </span> <span class="dash"><img
                               src="/public/images/slide_count_bar_g.png" alt="" /></span> <span
-                              class="length">11</span>
+                              class="length">6</span>
                         </div>
                      </div>
                   </div> <!--content-->
@@ -2164,9 +2201,9 @@ $(function() {
                            class="next"></a>
 
                         <div class="count">
-                           <span class="idx"> 05 </span> <span class="dash"><img
+                           <span class="idx"> 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </span> <span class="dash"><img
                               src="/public/images/slide_count_bar_g.png" alt="" /></span> <span
-                              class="length">11</span>
+                              class="length">6</span>
                         </div>
                      </div>
                   </div> <!--content-->
@@ -2190,171 +2227,81 @@ $(function() {
                            class="next"></a>
 
                         <div class="count">
-                           <span class="idx"> 06 </span> <span class="dash"><img
+                           <span class="idx"> 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </span> <span class="dash"><img
                               src="/public/images/slide_count_bar_g.png" alt="" /></span> <span
-                              class="length">11</span>
+                              class="length">6</span>
                         </div>
                      </div>
                   </div> <!--content-->
                </li>
-               <li>
-                  <div class="slider_img">
-                     <img
-                        src="resources/face/O.jpg" />
-                  </div>
-                  <div class="content">
-                     <p class="title_st1 eng">INTERVIEW</p>
-                     <a href="/career#interview">
-                        <p class="cont">
-                           고객의 목소리를 귀 기울여 듣고,<br />서비스를 개선해 나가고 있어요. <span class="team">서비스운영본부,
-                              고객경험향상팀</span> <span class="name">이제호</span>
-                        </p>
-                     </a>
-                     <div class="slider_ar">
-                        <a href="javascript:;" class="prev"></a> <a href="javascript:;"
-                           class="next"></a>
-
-                        <div class="count">
-                           <span class="idx"> 07 </span> <span class="dash"><img
-                              src="/public/images/slide_count_bar_g.png" alt="" /></span> <span
-                              class="length">11</span>
-                        </div>
-                     </div>
-                  </div> <!--content-->
-               </li>
-               <li>
-                  <div class="slider_img">
-                     <img
-                        src="resources/face/O.jpg" />
-                  </div>
-                  <div class="content">
-                     <p class="title_st1 eng">INTERVIEW</p>
-                     <a href="/career#interview">
-                        <p class="cont">
-                           만족스런 주문 경험을 제공할 수 있는<br />서비스를 기획합니다. <span class="team">기술연구소,
-                              Consumer Product팀</span> <span class="name">박소희</span>
-                        </p>
-                     </a>
-                     <div class="slider_ar">
-                        <a href="javascript:;" class="prev"></a> <a href="javascript:;"
-                           class="next"></a>
-
-                        <div class="count">
-                           <span class="idx"> 08 </span> <span class="dash"><img
-                              src="/public/images/slide_count_bar_g.png" alt="" /></span> <span
-                              class="length">11</span>
-                        </div>
-                     </div>
-                  </div> <!--content-->
-               </li>
-               <li>
-                  <div class="slider_img">
-                     <img
-                        src="resources/face/O.jpg" />
-                  </div>
-                  <div class="content">
-                     <p class="title_st1 eng">INTERVIEW</p>
-                     <a href="/career#interview">
-                        <p class="cont">
-                           맛있는 일상을 선물하는 일을 하고 있어요! <span class="team">셰플리 강남키친, 셰프</span>
-                           <span class="name">이예진</span>
-                        </p>
-                     </a>
-                     <div class="slider_ar">
-                        <a href="javascript:;" class="prev"></a> <a href="javascript:;"
-                           class="next"></a>
-
-                        <div class="count">
-                           <span class="idx"> 09 </span> <span class="dash"><img
-                              src="/public/images/slide_count_bar_g.png" alt="" /></span> <span
-                              class="length">11</span>
-                        </div>
-                     </div>
-                  </div> <!--content-->
-               </li>
-               <li>
-                  <div class="slider_img">
-                     <img
-                        src="resources/face/O.jpg" />
-                  </div>
-                  <div class="content">
-                     <p class="title_st1 eng">INTERVIEW</p>
-                     <a href="/career#interview">
-                        <p class="cont">
-                           사장님들에게 가장 필요한 것은 무엇일까<br />항상 고민합니다. <span class="team">알뜰쇼핑사업기획실,
-                              판매전략팀</span> <span class="name">전다솜</span>
-                        </p>
-                     </a>
-                     <div class="slider_ar">
-                        <a href="javascript:;" class="prev"></a> <a href="javascript:;"
-                           class="next"></a>
-
-                        <div class="count">
-                           <span class="idx"> 10 </span> <span class="dash"><img
-                              src="/public/images/slide_count_bar_g.png" alt="" /></span> <span
-                              class="length">11</span>
-                        </div>
-                     </div>
-                  </div> <!--content-->
-               </li>
-               <li>
-                  <div class="slider_img">
-                     <img
-                        src="resources/face/O.jpg" />
-                  </div>
-                  <div class="content">
-                     <p class="title_st1 eng">INTERVIEW</p>
-                     <a href="/career#interview">
-                        <p class="cont">
-                           딜리버리히어로 코리아의 자금 업무를<br />맡고 있어요! <span class="team">Finance,
-                              Treasury팀</span> <span class="name">민병일</span>
-                        </p>
-                     </a>
-                     <div class="slider_ar">
-                        <a href="javascript:;" class="prev"></a> <a href="javascript:;"
-                           class="next"></a>
-
-                        <div class="count">
-                           <span class="idx"> 11 </span> <span class="dash"><img
-                              src="/public/images/slide_count_bar_g.png" alt="" /></span> <span
-                              class="length">11</span>
-                        </div>
-                     </div>
-                  </div> <!--content-->
-               </li>
+               
             </ul>
          </div>
          <!--//section-->
-           <div class="section notice" id="notice">
+         
+         
+         
+         
+         
+    <!-- 마지막 페이지(footer)  -->    
+	<div class="section notice" id="notice">
         <div class="content">
-            <div class="left">
-                <p class="title_st1 eng">CAREER</p>
-                <div class="notice_wrap">
-                    <p class="title">채용 정보</p>
-
-                    <ul>
-                                                                                <li>
-                                    <p class="left" style="width=100%">
-                                        <span class="career">[경력]</span><a href="https://grnh.se/ec16cf522" target="_blank">Sr.Analyst - Business Analyst</a>
-                                    </p>
-                                </li>
-                                                                                                        <li>
-                                    <p class="left" style="width=100%">
-                                        <span class="career">[경력]</span><a href="https://grnh.se/553afb922" target="_blank">Sr. Manager - 전략팀장</a>
-                                    </p>
-                                </li>
-                                                                    </ul>
-                    <a href="/career#recruitment" class="btn_employment_information"><img src="/public/images/btn_view_more.png" alt="더보기" /></a>
-                </div>
-            </div>
-            <div class="center">
-                <p class="title_st1 eng">CH. HERO</p>
-                <a href="/pr#ch_hero" class="btn_ch_hero"><img src="/public/images/main_ad1.jpg" alt="채널히어로" /></a>
-            </div>
-            <div class="right">
-                <p class="title_st1 eng">HERO BENEFIT</p>
-                <a href="/career#dh_culture" class="btn_benefit"><img src="/public/images/main_ad2.jpg" alt="다양한문화" /></a>
-            </div>
+        sdfsdf
+            <!-- 왼쪽 컨텐츠 -->
+			<div class="left" id="introFooter" style="width: 600px;height: 585px; background: none; margin-left: -12%; color: black;">
+				<div style="width:100%; height:100%; background: none; color: black; font-size: 20px;">
+					<div>
+						<img id="introLogo" src="resources/images/introAMANDA.png" style="width: 200px; height: 80px; margin-left: 9%; margin-top: 15%; margin-bottom: 10%;" alt="사진없음">
+					</div>		
+					<div style="margin-left: 10%;">
+						<h3>AMANDA</h3><br>
+						<p>
+							KH정보교육원<br>
+							팀장 : 장준하  <br>
+							팀원 : 박상훈, 박진형, 안상재, 임재1윤  <br>
+							대표자 : 김용승  <br>
+							책임자 : 김용승  <br>
+							주소 : 서울 강남구 테헤란로14길 6 남도빌딩 2층, 3층, 4층  <br><br>
+							
+							<p style="font-weight: 500;">Copyright © 1998-2019 <br>KH Information Educational Institute All Right Reserved</p>
+						</p>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 가운데 컨텐츠 -->
+			<div class="center" id="introFooter" style="width: 300px;height: 585px; background: white;">
+				<div style="width:100%; height:100%; background: none; color: black; font-size: 20px;">
+					<div>
+						<img id="introLogo" src="resources/images/grad.png" style="width: 70px; height: 70px;" alt="사진없음">
+					</div>		
+					<div style="margin-left: 8%;">
+						<h3>VISION OF KH STUDENTS</h3><br>
+						<p style="text-align: -webkit-left;">
+							KH Institute of Information and Communication
+							has developed technology to improve international 
+							competitiveness to solve the youth unemployment problem.
+							Lifelong education system to be realistic
+							The virtuous cycle of individuals, companies, and nations
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- 오른쪽 컨텐츠 -->
+			<div class="right" id="introFooter" style="width: 300px;height: 585px; background: white;">
+				<div style="width:100%; height:100%; background: none; color: black; font-size: 20px;">
+					<div>
+						<img id="introLogo" src="resources/images/mindmap.png" style="width: 60px; height: 60px; " alt="사진없음">
+					</div>		
+					<div style="margin-left: 10%;">
+						<h3>PARTNER COMPANY</h3><br>
+						<ul id="pt">
+							<li id="pt1"><a href="https://tinder.com/?lang=koz" target='_blank'>TINDER</a></li><br>
+							<li id="pt2"><a href="https://ko-kr.facebook.com/meeffkorea/" target="_blank">MEEFF</a></li><br>
+							<li id="pt3"><a href="https://www.iei.or.kr/main/main.kh">KH 정보교육원</a></li>
+						</ul>
+				</div>
+			</div>
         </div>
         <!--content-->
     </div>

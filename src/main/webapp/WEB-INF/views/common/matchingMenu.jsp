@@ -260,7 +260,15 @@ body {
   <a class="menuBtn" href="#">Clients</a>
   <a class="menuBtn" href="#">Contact</a>
 </div> -->
-	<div id="mySidenav" class="sidenav" style="padding: 0; border: 0;">
+	<!-- <div id="mySidenav" class="sidenav" style="padding: 0; border: 0;"> --> 
+	<div id="mySidenav" class="sidenav" style="padding: 0;  border: 0; border-top: 0px; border-bottom: 0px;"> 
+	<!--
+         margin-left: 2%;
+         
+	     border: 5px solid #febebe;
+    	 border-top: 0px;
+    	 border-bottom: 0px;
+     -->
 			<a style="position: absolute; font-weight: 900" onclick="location.href='SuccessReturn.do'">AMANDA</a>
 		<div id="pAll" style="width: 500px; height: 70px; margin-left: 10%;">
 			<a href="LikeLists.do" id="lArea"> <img
@@ -271,8 +279,7 @@ body {
 		</div>
 		<!-- <a>Profile</a> <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
 		<!-- <img alt="사진없음" src="me.jpg" style="width: 400px; height: 400px; margin-left: 22px; border-radius: 100px;"> -->
-		<img alt="사진없음" src="resources/userface/${loginImg[0].renameFileName}"
-			style="width: 370px; height: 400px; margin-left: 22px; border-radius: 100px; margin-top: 30px;">
+		<img alt="사진없음" src="resources/userface/${loginImg[0].renameFileName}" 	style="width: 370px; height: 400px;  margin-left: 2%; border-radius: 100px; margin-top: 30px;">
 
 		<div id="but" align="center">
 			<div class="button button--flip">

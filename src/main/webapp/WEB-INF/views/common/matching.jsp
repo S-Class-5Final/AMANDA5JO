@@ -990,7 +990,7 @@
     <script>
        $("#previous").on('click', function() {
            var test = $(".removed").last();
-         test.removeClass('.removed');
+         test.removeClass('removed');
            test.css('transform','translate(0px, 0px) rotate(0deg)').css('z-index','800');
       });
     </script>
