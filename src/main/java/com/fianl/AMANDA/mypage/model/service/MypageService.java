@@ -25,6 +25,10 @@ public interface MypageService {
 
 	int myresult(String user_id);
 
+	Member myUpdate(String user_id);
+
+	ArrayList<MemberImg> ImgUpdate(String user_id);
+
 	
 	
 
