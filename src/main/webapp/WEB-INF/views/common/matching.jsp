@@ -492,6 +492,13 @@
           var rotate = xMulti * yMulti;
       
           event.target.style.transform = 'translate(' + event.deltaX + 'px, ' + event.deltaY + 'px) rotate(' + rotate + 'deg)';
+
+          /* 드래그시 이전, 다음, 점들 안움직이게. */
+          
+          $(".prev").removeAttr('style');
+          $(".next").removeAttr('style');
+          $(".dots").removeAttr('style');
+          $(".dot").removeAttr('style');
         });
       
         hammertime.on('panend', function (event) {
@@ -520,7 +527,6 @@
           }
         });
       });
-      
       function createButtonListener(love) {
         return function (event) {
           var cards = document.querySelectorAll('.tinder--card:not(.removed)');
@@ -623,7 +629,7 @@
                            "      </div>"+
                            "      <a class=prev onclick=plusSlides(-1,"+index+")>&#10094;</a>"+
                            "      <a class=next onclick=plusSlides(1,"+index+")>&#10095;</a>"+
-                           "      <div style=text-align:center style='pointer-events: none;'>"+
+                           "      <div class=dots style=text-align:center style='pointer-events: none;'>"+
                            "          <span class=dot onclick=currentSlide(1,"+index+")></span>"+
                            "          <span class=dot onclick=currentSlide(2,"+index+")></span>"+
                            "          <span class=dot onclick=currentSlide(3,"+index+")></span>"+
