@@ -433,6 +433,7 @@
 
 <script>
 
+
  var infoView;
    // ajax의 작업을 먼저 완료하고, 그다음에 다큐먼트들을 긁어온다음, 카드들을 생성해야되.
 
@@ -739,6 +740,13 @@
                 var rotate = xMulti * yMulti;
             
                 event.target.style.transform = 'translate(' + event.deltaX + 'px, ' + event.deltaY + 'px) rotate(' + rotate + 'deg)';
+                
+                /* 드래그시 이전, 다음, 점들 안움직이게. */
+                
+                $(".prev").removeAttr('style');
+                $(".next").removeAttr('style');
+                $(".dots").removeAttr('style');
+                $(".dot").removeAttr('style');
               });
             
               hammertime.on('panend', function (event) {
@@ -780,85 +788,98 @@
          $("#gayBtn4").css('background','white').css('color','#ff8282');
          btn1 = $(this).val();
         // alert("변수에담자" + btn1); 
-         alert("레즈비언 선택");
-         makeCard(btn1);
-         
-          var tinderContainer = document.querySelector('.tinder');
-            var allCards = document.querySelectorAll('.tinder--card');
-            var nope = document.getElementById('nope');
-            var love = document.getElementById('love');
-            
-            /* 1. 카드시작 함수 */
-            function initCards(card, index) {
-              var newCards = document.querySelectorAll('.tinder--card:not(.removed)');
-            
-              newCards.forEach(function (card, index) {
-                card.style.zIndex = allCards.length - index;
-                card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 30 * index + 'px)';
-                card.style.opacity = (10 - index) / 10;
-              });
-              
-              tinderContainer.classList.add('loaded');
-            }
-            
-            initCards();
-            
-            /* 모든 카드에게, 드래그 먹이는 작업. */
-            allCards.forEach(function (el) {
-              var hammertime = new Hammer(el);
-            
-              hammertime.on('pan', function (event) {
-                el.classList.add('moving');
-              });
-            
-              hammertime.on('pan', function (event) {
-                if (event.deltaX === 0) return;
-                if (event.center.x === 0 && event.center.y === 0) return;
-            
-                // event.delta(X,Y) : 지금까지 드래그한 거리값을 가져옴.
-                // event.deltaX > 0 : x축방향 즉, 0을기준으로 오른쪽(양수)일때 값을 love로 지정한다는거.
-                // event.deltaX > 0 : x축방향 즉, 0을기준으로 오른쪽(음수)일때 값을 nope로 지정한다는거.
-                tinderContainer.classList.toggle('tinder_love', event.deltaX > 0);
-                tinderContainer.classList.toggle('tinder_nope', event.deltaX < 0);
-            
-                var xMulti = event.deltaX * 0.03;
-                var yMulti = event.deltaY / 80;
-                var rotate = xMulti * yMulti;
-            
-                event.target.style.transform = 'translate(' + event.deltaX + 'px, ' + event.deltaY + 'px) rotate(' + rotate + 'deg)';
-              });
-            
-              hammertime.on('panend', function (event) {
-                el.classList.remove('moving');
-                tinderContainer.classList.remove('tinder_love');   
-                tinderContainer.classList.remove('tinder_nope');
-            
-                var moveOutWidth = document.body.clientWidth;
-                var keep = Math.abs(event.deltaX) < 80 || Math.abs(event.velocityX) < 0.5;
-            
-                event.target.classList.toggle('removed', !keep);
-            
-                if (keep) {
-                  event.target.style.transform = '';
-                } else {
-                  var endX = Math.max(Math.abs(event.velocityX) * moveOutWidth, moveOutWidth);
-                  var toX = event.deltaX > 0 ? endX : -endX;
-                  var endY = Math.abs(event.velocityY) * moveOutWidth;
-                  var toY = event.deltaY > 0 ? endY : -endY;
-                  var xMulti = event.deltaX * 0.03;
-                  var yMulti = event.deltaY / 80;
-                  var rotate = xMulti * yMulti;
-            
-                  event.target.style.transform = 'translate(' + toX + 'px, ' + (toY + event.deltaY) + 'px) rotate(' + rotate + 'deg)';
-                  initCards();
-                }
-              });
-            });
-         
-            /* ----------- */
-            showSlides();
-           /* ----------- */
-            
+        
+        
+         if(${loginUser.grade} == '1'){
+	         alert("결제후 이용 가능합니다.");
+         }else {
+	         alert("레즈비언 선택");
+	
+	         makeCard(btn1);
+	         
+	          var tinderContainer = document.querySelector('.tinder');
+	            var allCards = document.querySelectorAll('.tinder--card');
+	            var nope = document.getElementById('nope');
+	            var love = document.getElementById('love');
+	            
+	            /* 1. 카드시작 함수 */
+	            function initCards(card, index) {
+	              var newCards = document.querySelectorAll('.tinder--card:not(.removed)');
+	            
+	              newCards.forEach(function (card, index) {
+	                card.style.zIndex = allCards.length - index;
+	                card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 30 * index + 'px)';
+	                card.style.opacity = (10 - index) / 10;
+	              });
+	              
+	              tinderContainer.classList.add('loaded');
+	            }
+	            
+	            initCards();
+	            
+	            /* 모든 카드에게, 드래그 먹이는 작업. */
+	            allCards.forEach(function (el) {
+	              var hammertime = new Hammer(el);
+	            
+	              hammertime.on('pan', function (event) {
+	                el.classList.add('moving');
+	              });
+	            
+	              hammertime.on('pan', function (event) {
+	                if (event.deltaX === 0) return;
+	                if (event.center.x === 0 && event.center.y === 0) return;
+	            
+	                // event.delta(X,Y) : 지금까지 드래그한 거리값을 가져옴.
+	                // event.deltaX > 0 : x축방향 즉, 0을기준으로 오른쪽(양수)일때 값을 love로 지정한다는거.
+	                // event.deltaX > 0 : x축방향 즉, 0을기준으로 오른쪽(음수)일때 값을 nope로 지정한다는거.
+	                tinderContainer.classList.toggle('tinder_love', event.deltaX > 0);
+	                tinderContainer.classList.toggle('tinder_nope', event.deltaX < 0);
+	            
+	                var xMulti = event.deltaX * 0.03;
+	                var yMulti = event.deltaY / 80;
+	                var rotate = xMulti * yMulti;
+	            
+	                event.target.style.transform = 'translate(' + event.deltaX + 'px, ' + event.deltaY + 'px) rotate(' + rotate + 'deg)';
+	                
+	                /* 드래그시 이전, 다음, 점들 안움직이게. */
+	                
+	                $(".prev").removeAttr('style');
+	                $(".next").removeAttr('style');
+	                $(".dots").removeAttr('style');
+	                $(".dot").removeAttr('style');
+	              });
+	            
+	              hammertime.on('panend', function (event) {
+	                el.classList.remove('moving');
+	                tinderContainer.classList.remove('tinder_love');   
+	                tinderContainer.classList.remove('tinder_nope');
+	            
+	                var moveOutWidth = document.body.clientWidth;
+	                var keep = Math.abs(event.deltaX) < 80 || Math.abs(event.velocityX) < 0.5;
+	            
+	                event.target.classList.toggle('removed', !keep);
+	            
+	                if (keep) {
+	                  event.target.style.transform = '';
+	                } else {
+	                  var endX = Math.max(Math.abs(event.velocityX) * moveOutWidth, moveOutWidth);
+	                  var toX = event.deltaX > 0 ? endX : -endX;
+	                  var endY = Math.abs(event.velocityY) * moveOutWidth;
+	                  var toY = event.deltaY > 0 ? endY : -endY;
+	                  var xMulti = event.deltaX * 0.03;
+	                  var yMulti = event.deltaY / 80;
+	                  var rotate = xMulti * yMulti;
+	            
+	                  event.target.style.transform = 'translate(' + toX + 'px, ' + (toY + event.deltaY) + 'px) rotate(' + rotate + 'deg)';
+	                  initCards();
+	                }
+	              });
+	            });
+	         
+	            /* ----------- */
+	            showSlides();
+	           /* ----------- */
+         }
       });
       $("#gayBtn3").click(function() {
          $(this).css('background','#ff8282').css('color','white');
@@ -913,6 +934,13 @@
                 var rotate = xMulti * yMulti;
             
                 event.target.style.transform = 'translate(' + event.deltaX + 'px, ' + event.deltaY + 'px) rotate(' + rotate + 'deg)';
+                
+                /* 드래그시 이전, 다음, 점들 안움직이게. */
+                
+                $(".prev").removeAttr('style');
+                $(".next").removeAttr('style');
+                $(".dots").removeAttr('style');
+                $(".dot").removeAttr('style');
               });
             
               hammertime.on('panend', function (event) {
@@ -953,86 +981,102 @@
          $("#gayBtn2").css('background','white').css('color','#ff8282');
          $("#gayBtn3").css('background','white').css('color','#ff8282');
          btn1 = $(this).val();
-         //alert("변수에담자" + btn1); 
-         alert("게이 선택");
-         makeCard(btn1);
-      
-          var tinderContainer = document.querySelector('.tinder');
-            var allCards = document.querySelectorAll('.tinder--card');
-            var nope = document.getElementById('nope');
-            var love = document.getElementById('love');
-            
-            /* 1. 카드시작 함수 */
-            function initCards(card, index) {
-              var newCards = document.querySelectorAll('.tinder--card:not(.removed)');
-            
-              newCards.forEach(function (card, index) {
-                card.style.zIndex = allCards.length - index;
-                card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 30 * index + 'px)';
-                card.style.opacity = (10 - index) / 10;
-              });
-              
-              tinderContainer.classList.add('loaded');
-            }
-            
-            initCards();
-            
-            /* 모든 카드에게, 드래그 먹이는 작업. */
-            allCards.forEach(function (el) {
-              var hammertime = new Hammer(el);
-            
-              hammertime.on('pan', function (event) {
-                el.classList.add('moving');
-              });
-            
-              hammertime.on('pan', function (event) {
-                if (event.deltaX === 0) return;
-                if (event.center.x === 0 && event.center.y === 0) return;
-            
-                
-                // event.delta(X,Y) : 지금까지 드래그한 거리값을 가져옴.
-                // event.deltaX > 0 : x축방향 즉, 0을기준으로 오른쪽(양수)일때 값을 love로 지정한다는거.
-                // event.deltaX > 0 : x축방향 즉, 0을기준으로 오른쪽(음수)일때 값을 nope로 지정한다는거.
-                tinderContainer.classList.toggle('tinder_love', event.deltaX > 0);
-                tinderContainer.classList.toggle('tinder_nope', event.deltaX < 0);
-            
-                var xMulti = event.deltaX * 0.03;
-                var yMulti = event.deltaY / 80;
-                var rotate = xMulti * yMulti;
-            
-                event.target.style.transform = 'translate(' + event.deltaX + 'px, ' + event.deltaY + 'px) rotate(' + rotate + 'deg)';
-              });
-            
-              hammertime.on('panend', function (event) {
-                el.classList.remove('moving');
-                tinderContainer.classList.remove('tinder_love');   
-                tinderContainer.classList.remove('tinder_nope');
-            
-                var moveOutWidth = document.body.clientWidth;
-                var keep = Math.abs(event.deltaX) < 80 || Math.abs(event.velocityX) < 0.5;
-            
-                event.target.classList.toggle('removed', !keep);
-            
-                if (keep) {
-                  event.target.style.transform = '';
-                } else {
-                  var endX = Math.max(Math.abs(event.velocityX) * moveOutWidth, moveOutWidth);
-                  var toX = event.deltaX > 0 ? endX : -endX;
-                  var endY = Math.abs(event.velocityY) * moveOutWidth;
-                  var toY = event.deltaY > 0 ? endY : -endY;
-                  var xMulti = event.deltaX * 0.03;
-                  var yMulti = event.deltaY / 80;
-                  var rotate = xMulti * yMulti;
-            
-                  event.target.style.transform = 'translate(' + toX + 'px, ' + (toY + event.deltaY) + 'px) rotate(' + rotate + 'deg)';
-                  initCards();
-                }
-              });
-            });
-            
-         /* ----------- */
-         showSlides();
-         /* ----------- */
+         //alert("변수에담자" + btn1);
+         
+
+         if(${loginUser.grade} == '1'){
+	         alert("결제후 이용 가능합니다.");
+         }else {
+             alert("게이 선택");
+             
+	         makeCard(btn1);
+	         
+	      
+	          var tinderContainer = document.querySelector('.tinder');
+	            var allCards = document.querySelectorAll('.tinder--card');
+	            var nope = document.getElementById('nope');
+	            var love = document.getElementById('love');
+	            
+	            /* 1. 카드시작 함수 */
+	            function initCards(card, index) {
+	              var newCards = document.querySelectorAll('.tinder--card:not(.removed)');
+	            
+	              newCards.forEach(function (card, index) {
+	                card.style.zIndex = allCards.length - index;
+	                card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 30 * index + 'px)';
+	                card.style.opacity = (10 - index) / 10;
+	              });
+	              
+	              tinderContainer.classList.add('loaded');
+	            }
+	            
+	            initCards();
+	            
+	            /* 모든 카드에게, 드래그 먹이는 작업. */
+	            allCards.forEach(function (el) {
+	              var hammertime = new Hammer(el);
+	            
+	              hammertime.on('pan', function (event) {
+	                el.classList.add('moving');
+	              });
+	            
+	              hammertime.on('pan', function (event) {
+	                if (event.deltaX === 0) return;
+	                if (event.center.x === 0 && event.center.y === 0) return;
+	            
+	                
+	                // event.delta(X,Y) : 지금까지 드래그한 거리값을 가져옴.
+	                // event.deltaX > 0 : x축방향 즉, 0을기준으로 오른쪽(양수)일때 값을 love로 지정한다는거.
+	                // event.deltaX > 0 : x축방향 즉, 0을기준으로 오른쪽(음수)일때 값을 nope로 지정한다는거.
+	                tinderContainer.classList.toggle('tinder_love', event.deltaX > 0);
+	                tinderContainer.classList.toggle('tinder_nope', event.deltaX < 0);
+	            
+	                var xMulti = event.deltaX * 0.03;
+	                var yMulti = event.deltaY / 80;
+	                var rotate = xMulti * yMulti;
+	            
+	                event.target.style.transform = 'translate(' + event.deltaX + 'px, ' + event.deltaY + 'px) rotate(' + rotate + 'deg)';
+	               
+	                /* 드래그시 이전, 다음, 점들 안움직이게. */
+	                
+	                $(".prev").removeAttr('style');
+	                $(".next").removeAttr('style');
+	                $(".dots").removeAttr('style');
+	                $(".dot").removeAttr('style');
+	              });
+	            
+	              hammertime.on('panend', function (event) {
+	                el.classList.remove('moving');
+	                tinderContainer.classList.remove('tinder_love');   
+	                tinderContainer.classList.remove('tinder_nope');
+	            
+	                var moveOutWidth = document.body.clientWidth;
+	                var keep = Math.abs(event.deltaX) < 80 || Math.abs(event.velocityX) < 0.5;
+	            
+	                event.target.classList.toggle('removed', !keep);
+	            
+	                if (keep) {
+	                  event.target.style.transform = '';
+	                } else {
+	                  var endX = Math.max(Math.abs(event.velocityX) * moveOutWidth, moveOutWidth);
+	                  var toX = event.deltaX > 0 ? endX : -endX;
+	                  var endY = Math.abs(event.velocityY) * moveOutWidth;
+	                  var toY = event.deltaY > 0 ? endY : -endY;
+	                  var xMulti = event.deltaX * 0.03;
+	                  var yMulti = event.deltaY / 80;
+	                  var rotate = xMulti * yMulti;
+	            
+	                  event.target.style.transform = 'translate(' + toX + 'px, ' + (toY + event.deltaY) + 'px) rotate(' + rotate + 'deg)';
+	                  initCards();
+	                }
+	              });
+	            });
+	            
+	         /* ----------- */
+	         showSlides();
+	         /* ----------- */
+        	 
+         }
       });
     </script>
      
