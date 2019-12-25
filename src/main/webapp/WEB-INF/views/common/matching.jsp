@@ -344,7 +344,36 @@
     .footerImg{
 			margin-left: 70%;
 			margin-top: -8%;
-		}
+	}
+	#previous:hover{
+		background: #ff8282;
+		opacity: 0.4;
+	}
+	#nope:hover{
+		background: #ff8282;
+		opacity: 0.4;
+	}
+	#love:hover{
+		background: #ff8282;
+		opacity: 0.4;
+	}
+	#superLike:hover{
+		background: #ff8282;
+		opacity: 0.4;
+	}
+	#gayBtn1:hover{
+		background: #FFCFDA;
+	}
+	#gayBtn2:hover{
+		background: #FFCFDA;
+	}
+	#gayBtn3:hover{
+		background: #FFCFDA;
+	}
+	#gayBtn4:hover{
+		background: #FFCFDA;
+	}
+		
   </style>
 </head>
    <jsp:include page="matchingMenu.jsp"/>
@@ -655,7 +684,8 @@
          $("#gayBtn3").css('background','white').css('color','#ff8282');
          $("#gayBtn4").css('background','white').css('color','#ff8282');
           btn1 = $(this).val();
-         alert("변수에담자" + btn1); 
+         //alert("변수에담자" + btn1);
+         alert("여성 선택");
          makeCard(btn1);
           
          
@@ -743,7 +773,8 @@
          $("#gayBtn3").css('background','white').css('color','#ff8282');
          $("#gayBtn4").css('background','white').css('color','#ff8282');
          btn1 = $(this).val();
-         alert("변수에담자" + btn1); 
+        // alert("변수에담자" + btn1); 
+         alert("레즈비언 선택");
          makeCard(btn1);
          
           var tinderContainer = document.querySelector('.tinder');
@@ -829,7 +860,8 @@
          $("#gayBtn2").css('background','white').css('color','#ff8282');
          $("#gayBtn4").css('background','white').css('color','#ff8282');
          btn1 = $(this).val();
-         alert("변수에담자" + btn1); 
+         //alert("변수에담자" + btn1); 
+         alert("남성 선택");
          makeCard(btn1);
          
           var tinderContainer = document.querySelector('.tinder');
@@ -915,7 +947,8 @@
          $("#gayBtn2").css('background','white').css('color','#ff8282');
          $("#gayBtn3").css('background','white').css('color','#ff8282');
          btn1 = $(this).val();
-         alert("변수에담자" + btn1); 
+         //alert("변수에담자" + btn1); 
+         alert("게이 선택");
          makeCard(btn1);
       
           var tinderContainer = document.querySelector('.tinder');
