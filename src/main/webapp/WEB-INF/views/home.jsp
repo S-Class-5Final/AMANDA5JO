@@ -2346,7 +2346,7 @@ $(function() {
 						<ul id="pt">
 							<li id="pt1"><a href="https://tinder.com/?lang=koz" target='_blank'>TINDER</a></li><br>
 							<li id="pt2"><a href="https://ko-kr.facebook.com/meeffkorea/" target="_blank">MEEFF</a></li><br>
-							<li id="pt3"><a href="https://www.iei.or.kr/main/main.kh">KH 정보교육원</a></li>
+							<li id="pt3"><a href="https://www.iei.or.kr/main/main.kh" target="_blank">KH 정보교육원</a></li>
 						</ul>
 				</div>
 			</div>
