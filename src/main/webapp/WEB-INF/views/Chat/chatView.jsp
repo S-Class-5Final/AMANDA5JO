@@ -707,10 +707,10 @@ body {
 		</div>
 	</div>
 	<!-- ip 주소값 수정 -->
-	<script src="http://192.168.130.169:80/socket.io/socket.io.js"></script>
+	<script src="http://192.168.30.159:80/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
 
-	const socket = io("http://192.168.130.169:80");
+	const socket = io("http://192.168.30.159:80");
 
 	var room = "${chat.chatRoom}";
 	var name = '${loginUser.user_nick }';
@@ -901,7 +901,6 @@ body {
 			}
 			$('<p></p>').text(time).css("margin-top", "0").appendTo(timeTd);
 			var addTd = $('<td></td>').appendTo(firstTr);
-			$("<p></p>").text(userCount).appendTo(timeTd).addClass("userChatCount");
 			$('<img>').attr("src", "resources/chatImg/"+msg).addClass("my_chatImg").appendTo(addTd);
 			$("<input>").attr({"type" : "hidden", "name":"crId", "id": index}).appendTo(addTd);
 		}

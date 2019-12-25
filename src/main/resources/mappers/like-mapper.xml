@@ -47,7 +47,6 @@
 		WHERE USER_ID IN (SELECT SENDER
                           FROM MLIKE
                           WHERE RECEIVER = #{myId} AND SENDER = #{userId} AND LIKESTATUS = 'Y')
-                          ORDER BY U_MID ASC
 	</select>
 	
 	<select id="selectReceiver" parameterType="hashmap" resultMap="MemberResultMap" >
@@ -56,7 +55,6 @@
 		WHERE USER_ID IN (SELECT RECEIVER
                           FROM MLIKE
                           WHERE SENDER = #{myId} AND RECEIVER = #{userId} AND LIKESTATUS = 'Y')
-                          ORDER BY U_MID ASC
 	</select>
 	
 	<select id="selectSenderImg" parameterType="MemberImg" resultMap="MemberImgResultMap">
@@ -66,7 +64,6 @@
                           FROM MLIKE
                           WHERE RECEIVER = #{user_id} AND LIKESTATUS = 'Y') AND STATUS = 'Y'
         AND IMG_COUNT = 0
-        ORDER BY USER_ID ASC
 	</select>
 	
 	<select id="selectReceiverImg" parameterType="MemberImg" resultMap="MemberImgResultMap">
@@ -76,7 +73,6 @@
                           FROM MLIKE
                           WHERE SENDER = #{user_id} AND LIKESTATUS = 'Y') AND STATUS = 'Y'
        	AND IMG_COUNT =0
-       	ORDER BY USER_ID ASC
 	</select>
 	
 	<insert id="insertLike" parameterType="Like">
@@ -105,7 +101,6 @@
                     WHERE A.SENDER = B.RECEIVER AND B.SENDER = A.RECEIVER 
                     AND A.SENDER = #{myId} AND B.RECEIVER = #{myId}
                     AND A.LIKESTATUS ='Y' AND B.LIKESTATUS='Y') AND USER_ID = #{userId}
-              ORDER BY U_MID ASC
 	</select>
 	
 	<select id="selectMatchImg" parameterType="MemberImg" resultMap="MemberImgResultMap">
@@ -117,7 +112,6 @@
                     AND A.SENDER = #{user_id} AND B.RECEIVER = #{user_id}
                     AND A.LIKESTATUS ='Y' AND B.LIKESTATUS='Y') AND STATUS = 'Y'
         AND STATUS = 'Y' AND IMG_COUNT=0
-        ORDER BY USER_ID ASC
 	</select>
 	
 	<select id="selectLikeAlram" parameterType="Like" resultType="_int">

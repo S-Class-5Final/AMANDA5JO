@@ -561,6 +561,10 @@ h1 span:nth-child(14) {
 </script>  -->
 
 <script>
+
+ var myimgcheck1;
+ var myimgcheck2;
+ var myimgcheck3;
  	/* 모달창 안의 버튼 클릭시 이벤트 */
  	
  	/* function 일어나고 자동으로 $()가 클릭이벤트를 실행함 */
@@ -628,10 +632,8 @@ h1 span:nth-child(14) {
    $(".mythumbnailImg").hide();   
                    
     $("#mytitleImg").dblclick(function(){
-   $("#mythumbnailImg1").click();
-   });
-   
-   
+   		$("#mythumbnailImg1").click();
+   		});
    $("#mytitleImg1").dblclick(function(){
       $("#mythumbnailImg2").click();
       });
@@ -649,13 +651,126 @@ h1 span:nth-child(14) {
                      reader.onload = function(e){
                         switch(num){
                         case 1:
-                           $("#mytitleImg").attr("src",e.target.result);
-                           break;
+                            var formData = new FormData();
+                            formData.append("imgtest",$("#mythumbnailImg1")[0].files[0]); 
+                            $.ajax({
+                               url: "imgCheckTest.do",
+                               data : formData,
+                               processData:false,
+                               contentType:false,
+                               type:'POST',
+                               dataType:'JSON',
+                               success: function(data){
+                            	   myimgcheck1 = data;
+                                  var jsonObj = JSON.parse(data);
+                                  var faceCount = jsonObj.info.faceCount;
+                                  if(faceCount == '0' ){
+                                     alert("얼굴이 제대로 안나온 사진이네요 ㅠㅠ");
+                                     $("#mytitleImg").attr("src", "resources/images/image.png");
+                                  }else{
+                                     if(jsonObj.faces[0].landmark == null){
+                                        alert("눈 코 입이 제대로 보이질 않아요 ");
+                                        $("#mytitleImg").attr("src", "resources/images/image.png");
+                                     }else{
+                                      	if(myimgcheck1 == myimgcheck2 || myimgcheck1 == myimgcheck3){
+                                     		alert("중복사진 금지 입니다.");
+                                     		$("#mytitleImg").attr("src", "resources/images/image.png");
+                                     	}else{
+                                     		alert("첫번째 사진 등록 완료");
+                                             $("#mytitleImg").attr("src", e.target.result);
+                                     	}
+                                     
+                                     }   
+                               }
+                               },
+                               error:function(request, status, errorData){
+                                  alert("error code: " + request.status + "\n"
+                                        +"message: " + request.responseText
+                                        +"error: " + errorData);
+                               }
+                            });
+                            break;
                         case 2:
-                        $("#mytitleImg1").attr("src",e.target.result);
+                        	var formData = new FormData();
+                            formData.append("imgtest",$("#mythumbnailImg2")[0].files[0]); 
+                            $.ajax({
+                               url: "imgCheckTest.do",
+                               data : formData,
+                               processData:false,
+                               contentType:false,
+                               type:'POST',
+                               dataType:'JSON',
+                               success: function(data){
+                            	   
+                            	   myimgcheck2 = data;
+                                  var jsonObj = JSON.parse(data);
+                                  var faceCount = jsonObj.info.faceCount;
+                                  if(faceCount == '0' ){
+                                     alert("얼굴이 제대로 안나온 사진이네요 ㅠㅠ");
+                                     $("#mytitleImg1").attr("src", "resources/images/image.png");
+                                  }else{
+                                     if(jsonObj.faces[0].landmark == null){
+                                        $("#mytitleImg1").attr("src", "resources/images/image.png");
+                                        alert("눈 코 입이 제대로 보이질 않아요 ");
+                                     }else{
+                                     	if(myimgcheck1 == myimgcheck2 || myimgcheck2 == myimgcheck3){
+                                     		alert("중복사진 금지 입니다.");
+                                     		$("#mytitleImg1").attr("src", "resources/images/image.png");
+                                     	}else{
+                                     		alert("두번째 사진 등록 완료");
+                                             $("#mytitleImg1").attr("src", e.target.result);
+                                     	}
+                                     
+                                     }   
+                               }
+                               },
+                               error:function(request, status, errorData){
+                                  alert("error code: " + request.status + "\n"
+                                        +"message: " + request.responseText
+                                        +"error: " + errorData);
+                               }
+                            });
                         break;
                         case 3:
-                           $("#mytitleImg2").attr("src",e.target.result);
+                            var formData = new FormData();
+                            formData.append("imgtest",$("#mythumbnailImg3")[0].files[0]); 
+                            $.ajax({
+                               url: "imgCheckTest.do",
+                               data : formData,
+                               processData:false,
+                               contentType:false,
+                               type:'POST',
+                               dataType:'JSON',
+                               success: function(data){
+                            	   myimgcheck3 = data;
+                                  var jsonObj = JSON.parse(data);
+                                  var faceCount = jsonObj.info.faceCount;
+                                  /* var landmark = jsonObj.faces[0].landmark; */
+                                  if(faceCount == '0' ){
+                                     alert("얼굴이 제대로 안나온 사진이네요 ㅠㅠ");
+                                     $("#mytitleImg2").attr("src", "resources/images/image.png");
+                                  }else{
+                                     if(jsonObj.faces[0].landmark == null){
+                                        $("#mytitleImg2").attr("src", "resources/images/image.png");
+                                        alert("눈 코 입이 제대로 보이질 않아요 ");
+                                     }else{
+                                     	if(myimgcheck1 == myimgcheck2 || myimgcheck2 == myimgcheck3){
+                                     		alert("중복사진은 안되요");
+                                     		$("#mytitleImg2").attr("src", "resources/images/image.png");
+                                     	}else{
+                                     		alert("사람임");
+                                             $("#mytitleImg2").attr("src", e.target.result);
+                                     	}
+                                        
+                                     }   
+                               }
+                               },
+                               error:function(request, status, errorData){
+                                  alert("error code: " + request.status + "\n"
+                                        +"message: " + request.responseText
+                                        +"error: " + errorData);
+                               }
+                            });
                            break;
                         }
                         }
