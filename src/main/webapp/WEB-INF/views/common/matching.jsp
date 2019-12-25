@@ -593,7 +593,7 @@
 
 
     // ajax 카드만들기 함수.
-      var indexsize = null;
+    var indexsize = null;
     var chatIndex = 0;
     function makeCard(parameter) {
        $.ajax({

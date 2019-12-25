@@ -2136,25 +2136,28 @@ $(function() {
 			<div class="section interview" id="interview" style="">
             <ul class="slider">
                <li>
-                  <div class="slider_img">
-                  <img src="resources/face/G.jpg"/>
-                  </div>
-                  <div class="content">
-                     <p class="title_st1 eng">INTERVIEW</p>
-                     <a href="">
-                        <p class="cont">
-                                                    아무나 만나는 당신 지금 당장 여기로 !<br />
-                           <span class="team">이제 더이상 현실에서 찾지마세요!<br><br>
-									당신이 바라던만남 바로 여기서!<br><br>
-									아만다가 당신의 짝을 찾아드립니다!</span>
-                            <span class="name">안상재</span>
-                        </p>
-                     </a>
+               <div style="width:100%; height:30px;opacity: 0.5;  z-index: 100; color: white; text-align: center; font-weight: 900;"> 
+               		<label style="margin-right: 31%; font-size: 30px;">
+               				<<< DRAG >>>
+               		</label>
+               </div>
+                  <video id="video" preload="auto" autoplay="true" loop="loop"
+				muted="muted" volume="0">
+				<source src="resources/video/Welcome.mp4">
+			</video>
+			<div class="content">
+				<p class="title_st1 eng">INTERVIEW</p>
+				<a href="/career#interview">
+					<p class="cont">
+						만족스런 주문 경험을 제공할 수 있는<br />서비스를 기획합니다. <span class="team">기술연구소,
+							Consumer Product팀</span> <span class="name">박소희</span>
+					</p>
+				</a>
                      <div class="slider_ar">
                         <a href="javascript:;" class="prev"></a> <a href="javascript:;"
                            class="next"></a>
                         <div class="count">
-                           <span class="idx">1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</span> <span class="dash"><img
+                           <span class="idx">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</span> <span class="dash"><img
                               src="/public/images/slide_count_bar_g.png" alt="" /></span> <span
                               class="length">6</span>
                         </div>
@@ -2163,7 +2166,35 @@ $(function() {
                </li>
                <li>
                   <div class="slider_img">
-                  	<img src="resources/face/t2.JPG"/>
+                  	<img src="resources/face/G.jpg"/>
+                  </div>
+                  <div class="content">
+                     <p class="title_st1 eng">INTERVIEW</p>
+                     <a href="">
+                        <p class="cont">
+                                                    복잡한 회원 가입 절차, 신뢰성 없는 사진들??<br />
+                           <span class="team">아무사진이나 허용되는 방식,<br><br>
+									등급을 매기기 방식,<br><br>
+									우리는 허용하지 않습니다.
+									</span><br>
+                            <span class="name">안상재</span>
+                        </p>
+                     </a>
+                     <div class="slider_ar">
+                        <a href="javascript:;" class="prev"></a> <a href="javascript:;"
+                           class="next"></a>
+
+                        <div class="count">
+                           <span class="idx"> 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ </span> <span class="dash"><img
+                              src="/public/images/slide_count_bar_g.png" alt="" /></span> 
+                              <span class="length">6</span>
+                        </div>
+                     </div>
+                  </div> <!--content-->
+               </li>
+               <li>
+                  <div class="slider_img">
+                  	<img src="resources/face/상훈프로필.jpg"/>
                   </div>
                   <div class="content">
                      <p class="title_st1 eng">INTERVIEW</p>
@@ -2172,7 +2203,7 @@ $(function() {
                                                     아무나 만나는 당신 지금 당장 여기로 !<br />
                            <span class="team">이제 더이상 현실에서 찾지마세요!<br><br>
 									당신이 바라던만남 바로 여기서!<br><br>
-									아만다가 당신의 짝을 찾아드립니다!</span>
+									아만다가 당신의 짝을 찾아드립니다!</span><br>
                             <span class="name">박상훈</span>
                         </p>
                      </a>
@@ -2190,7 +2221,7 @@ $(function() {
                </li>
                <li>
                   <div class="slider_img">
-                     <img src="resources/face/O.jpg" />
+                     <img src="resources/face/재윤프로필.jpg" />
                   </div>
                   <div class="content">
                      <p class="title_st1 eng">INTERVIEW</p>
@@ -2201,7 +2232,7 @@ $(function() {
 							당신이 아만다에 첫발을 디디는 순간<br><br>
 							당신은 더 이상 혼자가 아닙니다.<br><br>
 							아만다와 함께 하세요!
-									</span>
+									</span><br>
                             <span class="name">임재윤</span>
                         </p>
                      </a>
@@ -2220,7 +2251,7 @@ $(function() {
                <li>
                   <div class="slider_img">
                      <img
-                        src="resources/face/O.jpg" />
+                        src="resources/face/진형프로필.jpg" />
                   </div>
                   <div class="content">
                      <p class="title_st1 eng">INTERVIEW</p>
@@ -2231,7 +2262,7 @@ $(function() {
 								더이상의 커플지옥 솔로천국은 그만!<br><br>
 								당신도 커플이될수있습니다<br><br>
 								바로 여기 아만다에서
-									</span>
+									</span><br>
                             <span class="name">박진형</span>
                         </p>
                      </a>
@@ -2250,18 +2281,18 @@ $(function() {
                <li>
                   <div class="slider_img">
                      <img
-                        src="resources/face/O.jpg" />
+                        src="resources/face/준하프로필.jpg" />
                   </div>
                   <div class="content">
-                     <p class="title_st1 eng">INTERVIEW</p>
+                     <p class="title_st1 eng">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTERVIEW</p>
                      <a href="">
                         <p class="cont">
-                                                    아무나 만나는 당신 지금 당장 여기로 !<br />
+                                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 아무나 만나는 당신 지금 당장 여기로 !<br />
                            <span class="team">
-                           			이제 더이상 현실에서 찾지마세요!<br><br>
-									당신이 바라던만남 바로 여기서!<br><br>
-									아만다가 당신의 짝을 찾아드립니다!</span>
-                            <span class="name">장준하</span>
+                           			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이제 더이상 현실에서 찾지마세요!<br><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;당신이 바라던만남 바로 여기서!<br><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;아만다가 당신의 짝을 찾아드립니다!</span><br>
+                            <span class="name">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;장준하</span>
                         </p>
                      </a>
                      <div class="slider_ar">
@@ -2279,17 +2310,16 @@ $(function() {
                <li>
                   <div class="slider_img">
                      <img
-                        src="resources/face/O.jpg" />
+                        src="resources/face/커플3.jpg" style="width: 60%; height: 98%;"/>
                   </div>
                   <div class="content">
-                     <p class="title_st1 eng">INTERVIEW</p>
                      <a href="">
                         <p class="cont">
                                                     AMANDA는 항상 당신을 응원 합니다.<br />
                            <span class="team">
                            
                            </span>
-                            <span class="name">AMANDA</span>
+                            <span class="name"></span>
                         </p>
                      </a>
                      <div class="slider_ar">
