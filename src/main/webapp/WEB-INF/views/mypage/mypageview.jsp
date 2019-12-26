@@ -922,8 +922,13 @@ h1 span:nth-child(14) {
 	        	 
 	         }
 	         
-	   alert("정보 수정 완료");
-			 }
+	         if(bool == false) {
+	              
+	               return false;
+	            }else{
+	               alert("수정되었습니다.");
+	            }
+		  }
 		</script>
 
 </body>

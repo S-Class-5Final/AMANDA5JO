@@ -709,7 +709,7 @@ text-align: center;
                      <td>
                키 : <input type="number" name="height" id= "height" placeholder = "ex) 180, 165">&nbsp;
                나이 : <input type ="number" name="age" id = "age" placeholder = "ex) 20 ,21">&nbsp;
-               사는곳 : <input type="text" name="address" id = "address">
+               사는곳 : <input type="text" name="address" id = "address" placeholder = "ex) OO동 / 00시">
                      </td>
                   </tr>
                <tr>
@@ -2287,11 +2287,11 @@ $(function() {
                      <p class="title_st1 eng">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTERVIEW</p>
                      <a href="">
                         <p class="cont">
-                                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 아무나 만나는 당신 지금 당장 여기로 !<br />
+                                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 즐거운 연애를 위하여!<br />
                            <span class="team">
-                           			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이제 더이상 현실에서 찾지마세요!<br><br>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;당신이 바라던만남 바로 여기서!<br><br>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;아만다가 당신의 짝을 찾아드립니다!</span><br>
+                           			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;도전해 보십시요!<br><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;당신은 충분한 사랑을 받을 사람입니다.<br><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;언제나 이쁜사랑하시길 기원합니다.</span><br>
                             <span class="name">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;장준하</span>
                         </p>
                      </a>

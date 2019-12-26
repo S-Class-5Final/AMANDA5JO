@@ -557,6 +557,7 @@
                        }
                   });
                   initCards();
+                  l_check = false;
         	  }else{
         		  alert("호감표시를 하시지 않으셨어요");
         	  }
@@ -580,6 +581,7 @@
                     }
                });  
               initCards();
+              h_check = false;
           }else{
 			alert("좋은 선택이에요!"); 
           }

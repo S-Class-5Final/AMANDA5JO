@@ -168,7 +168,7 @@ border-radius: 10px;
 	<tbody id="mytd" align="center">
 	 	<c:forEach var="my" items="${list }" varStatus="status">
 			<tr id="reIndex${status.count }">
-				<td>${my.chatroom }</td>
+				<td class="connChatView">${my.chatroom }</td>
 				<td class='myuser_id2'>${my.user_id2}</td>
 					<td >${my.username2 }</td>
 					<td><button id="myBtn" onclick="reportModal('${my.user_id2}', '${my.chatid }', '${status.count }')">신고</button></td>
@@ -415,7 +415,16 @@ function reportModal(userName, chatId, trIndex){
 	  
   } 
 </script> -->
-	
+	<script>
+      $(document).on("click", ".connChatView", function(){
+         var conn = $(this).text().split(',');
+         if(conn[0] == '${loginUser.u_mid}'){
+            newWindow('${loginUser.u_mid}', conn[1]);            
+         }else{
+            newWindow('${loginUser.u_mid}', conn[0]);
+         }
+      });
+   </script>
 	
 </body>
 </html>

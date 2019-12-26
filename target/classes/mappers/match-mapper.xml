@@ -91,7 +91,6 @@
         WHERE STATUS= 'Y'
     		  AND NOT USER_NICK=#{user.user_nick}
     		  AND NOT GENDER=#{user.gender}
-    		  AND GAY = 'N'
       		  AND USER_NICK NOT IN (SELECT H_RECEIVER 
                     		        FROM MHATE 
                              	    WHERE H_SENDER=#{user.user_nick})
@@ -156,7 +155,6 @@
 	   JOIN (SELECT *
 		FROM MEMBER
         WHERE STATUS= 'Y'
-              AND GAY = 'N'
     		  AND NOT USER_NICK=#{user.user_nick}
     		  AND NOT GENDER=#{user.gender}
       		  AND USER_NICK NOT IN (SELECT H_RECEIVER 

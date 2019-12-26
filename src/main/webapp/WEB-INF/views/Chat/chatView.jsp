@@ -587,6 +587,7 @@ body {
 						${chat.userName2 }
 					</c:when>
 				</c:choose>
+				<p class="userChatCount"></p>
 			</div>
 		</div>
 		<div id="chat_box"></div>
@@ -692,6 +693,7 @@ body {
 						<ul id="imgInputUl" class="chatModalUl">
 							
 						</ul>
+						
 						<!-- 채팅방 인덱스번호를 가진 jstl 태그 이용 -->
 						<input type="hidden" name="chatId" value="${chat.chatId}">
 						<!-- 현재 사용자의 이름을 가진 jstl 태그 이용 --> 
@@ -727,7 +729,7 @@ body {
 			});
 
 			// 채팅창에 들어왔을 시 socket에 join
-			socket.emit('joinRoom', room, '임시');
+			socket.emit('joinRoom', room, '${loginUser.user_nick}');
 			
 			 // 신고된 채팅창일 시 
 			socket.on('declar_User', function(roomNum){
@@ -738,14 +740,14 @@ body {
 		
 			// 채팅창이 닫히면 발동
 			window.onbeforeunload = function() {
-				socket.emit('leaveRoom', room, '임시');
+				socket.emit('leaveRoom', room, '${loginUser.user_nick}');
 			}
 			
 			socket.on('joinRoom', function(count){
 				userCount = count;
 				
 				if(userCount == 0){
-					var chatCount = $(".userChatCount p").text("");
+					var chatCount = $(".userChatCount:gt(0)").text("");
 				}
 			});
 			
@@ -769,7 +771,6 @@ body {
 								for(var i in data){
 									socket.emit("send_msg", '${chat.chatRoom}', data[i]);									
 								}
-								console.log(userCount)
 							}else{
 								console.log("fail");
 							}
@@ -783,7 +784,9 @@ body {
 			//소켓 서버로 부터 send_msg를 통해 이벤트를 받을 경우 
 			socket.on('chat_msg', function(data) {
 				var timeP = data.chatTime.split(':');
-				if(timeP[0] > 11){
+				if(timeP[0] > 12){
+					timeP = '오후 '+(timeP[0]-12)+":"+timeP[1];
+				}else if(timeP[0] == 12){
 					timeP = '오후 '+timeP[0]+":"+timeP[1];
 				}else{
 					timeP = '오전 '+timeP[0]+":"+timeP[1];
@@ -811,7 +814,9 @@ body {
 			//소켓 서버로 부터 sendImg_msg를 통해 이벤트를 받을 경우 
 			socket.on('chatImg_msg', function(data) {
 				var timeP = data.chatTime.split(':');
-				if(timeP[0] > 11){
+				if(timeP[0] > 12){
+					timeP = '오후 '+(timeP[0]-12)+":"+timeP[1];
+				}else if(timeP[0] == 12){
 					timeP = '오후 '+timeP[0]+":"+timeP[1];
 				}else{
 					timeP = '오전 '+timeP[0]+":"+timeP[1];
@@ -847,7 +852,6 @@ body {
 
 		// 내가 연속으로 채팅 시
 		function my_chat2(index, msg) {
-			console.log(msg);
 			var tableChat = $(".chatLine").last().children(".myChat_table");
 			var addTr = $('<tr></tr>').appendTo(tableChat)
 			// tr의 갯수를 파악하여 rowspan을 한다.
@@ -891,7 +895,6 @@ body {
 		}
 		
 		function my_imgChat(index, msg, time, count){
-			console.log("되니?");
 			var contentDiv = $("<div></div>").addClass("chatLine").appendTo("#chat_box");
 			var tableChat = $("<table></table>").addClass("myChat_table").appendTo(contentDiv);
 			var firstTr = $("<tr></tr>").appendTo(tableChat);
@@ -1037,7 +1040,6 @@ body {
 			for(var i in filesArr){
 				formData.append("files", filesArr[uploadFileList[i]]);
 				formData.append("confirm", userCount);
-				console.log(filesArr[uploadFileList[i]]);
 			}
 			insertImg(formData);
 		});
@@ -1057,7 +1059,6 @@ body {
 						$("#imgInputUl").html('');
 						
 						for(var i in data){
-							console.log(data[data.length-i-1]);
 							socket.emit("sendImg_msg", '${chat.chatRoom}', data[data.length-i-1]);
 						}
 					}
@@ -1083,7 +1084,9 @@ body {
 						for(var i in data){
 							var cp = data[i].chatTime+data[i].chatUser;
 							var timeP = data[i].chatTime.split(':');
-							if(timeP[0] > 11){
+							if(timeP[0] > 12){
+								timeP = '오후 '+(timeP[0]-12)+":"+timeP[1];
+							}else if(timeP[0] == 12){
 								timeP = '오후 '+timeP[0]+":"+timeP[1];
 							}else{
 								timeP = '오전 '+timeP[0]+":"+timeP[1];
@@ -1315,7 +1318,6 @@ body {
 						r_Type:$("#r_Type").val(), r_Contents:$("#declarMsg").val(), chatId : "${chat.chatId}"},
 					dataType:"json",
 					success:function(data){
-						console.log(data);
 						if(data == "success"){
 							socket.emit("declar_User", room);
 						}
